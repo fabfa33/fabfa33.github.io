@@ -1,329 +1,2320 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#203329">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 128 128%27%3E%3Crect width=%27128%27 height=%27128%27 rx=%2728%27 fill=%27%23274335%27/%3E%3Cpath d=%27M64 20C47 34 28 52 28 73c0 20 15 35 36 35s36-15 36-35C100 52 81 34 64 20Z%27 fill=%27%23b85a3b%27/%3E%3Cpath d=%27M64 40v64M64 57 45 45M64 68l20-13M64 80 45 68M64 89l18-10%27 fill=%27none%27 stroke=%27%23fff7e7%27 stroke-width=%275%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
-<title>Carnet de collection — Érables du Japon</title>
-<style>
-:root{--bg:#eee9d6;--card:#fffdf7;--ink:#253128;--muted:#6d746c;--accent:#274235;--line:#d7d0ba;--gold:#a77b18}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-header{padding:18px 18px 10px;text-align:center;border-bottom:1px solid var(--line)}h1{font-size:19px;margin:0 0 12px;font-weight:650}
-.tabs{display:flex;gap:4px;overflow:auto;padding:0 12px;background:var(--bg);position:sticky;top:0;z-index:5}
-.tab{border:0;background:none;padding:15px 14px;font-size:15px;color:#656b64;white-space:nowrap}.tab.active{color:#18271f;font-weight:700;border-bottom:3px solid #a14e39}
-main{max-width:760px;margin:auto;padding:18px 14px 40px}.panel{display:none}.panel.active{display:block}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px #00000008}
-h2{font-size:20px;margin:0 0 8px}h3{font-size:16px;margin:0 0 10px}.muted{color:var(--muted);font-size:14px;line-height:1.45}
-textarea,input,select{width:100%;font:inherit;border:1px solid #cfc7ad;border-radius:10px;background:white;padding:12px;color:var(--ink)}
-textarea{min-height:190px;resize:vertical}
-button{font:inherit;border:0;border-radius:10px;padding:12px 15px;cursor:pointer}.primary{background:var(--accent);color:#fff;font-weight:650}.secondary{background:#e7e1cd;color:var(--ink)}.danger{background:#f0d8d3;color:#762d24}
-.row{display:flex;gap:9px;flex-wrap:wrap}.row>*{flex:1 1 150px}.big{width:100%;font-size:17px;padding:16px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{background:#f2eedf;border-radius:11px;padding:12px;text-align:center}.stat b{display:block;font-size:23px}
-.search{margin-bottom:12px}.item{padding:12px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}.item:last-child{border-bottom:0}
-.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#e6eee7;font-size:12px}.badge.red{background:#f2dfda}.score{font-weight:750;color:#8b6413}
-#cameraWrap{display:none}.camera{width:100%;border-radius:12px;background:#111;max-height:55vh;object-fit:cover}.hint{font-size:13px;color:var(--muted);margin-top:8px}
-.progress{height:8px;background:#ddd8c8;border-radius:8px;overflow:hidden;margin:10px 0}.progress>div{height:100%;width:0;background:#315742}
-pre{white-space:pre-wrap;background:#f3f0e5;padding:10px;border-radius:9px;font-size:12px}
-footer{font-size:12px;color:var(--muted);text-align:center;padding:10px}
-@media(max-width:430px){main{padding:14px 10px}.tab{padding:13px 10px}.stats{grid-template-columns:1fr 1fr 1fr}.stat b{font-size:20px}}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🌳 Ma collection d'érables</title>
 
-.fiche{margin-top:10px;padding:12px;border-top:1px solid var(--line);background:#fbf9f0;border-radius:10px}.fiche h4{margin:10px 0 5px;font-size:13px}.fiche p{margin:4px 0;font-size:13px;line-height:1.4}.fiche .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.fiche .cell{background:white;border:1px solid #e2dcc8;border-radius:9px;padding:8px}.fiche a{color:#274235;text-decoration:underline}.item{align-items:flex-start}.item-main{flex:1}.item-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.smallbtn{padding:8px 10px;font-size:12px}.tag{display:inline-block;margin:2px 4px 2px 0;padding:3px 7px;border-radius:999px;background:#e8eee8;font-size:11px}.photo-box{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.photo-thumb{display:block;width:100%;max-height:260px;object-fit:cover;border-radius:10px;margin:7px 0;border:1px solid #ddd5bd}.photo-actions{display:flex;gap:6px;flex-wrap:wrap}.photo-actions label{display:inline-flex;align-items:center;justify-content:center}.photo-empty{font-size:12px;color:var(--muted)}.photo-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:7px}.photo-cell{position:relative}.photo-cell img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:9px;border:1px solid #ddd5bd}.photo-cell button{position:absolute;right:4px;top:4px;padding:4px 7px;font-size:11px;border-radius:99px}.location-box{margin-top:10px;padding:10px;border-top:1px solid var(--line);background:#fbf9f0;border-radius:9px}.location-box h4{margin:0 0 7px;font-size:13px}.location-status{font-size:12px;line-height:1.4;margin:6px 0}.gps-ok{color:#315742;font-weight:650}.coords{display:grid;grid-template-columns:1fr 1fr;gap:6px}.coords input{padding:8px;font-size:12px}.nearby{margin-top:10px;padding:10px;background:#fbf9f0;border-radius:9px}.nearby-item{padding:8px 0;border-bottom:1px solid var(--line)}.nearby-item:last-child{border-bottom:0}.distance{font-weight:750;color:var(--gold)}
+<style>
+*{box-sizing:border-box}
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+    background:#f3f6f3;
+    color:#222
+}
+header{
+    background:#245c36;
+    color:white;
+    padding:18px;
+    text-align:center
+}
+header h1{
+    margin:0 0 6px;
+    font-size:25px
+}
+header p{
+    margin:0;
+    opacity:.9
+}
+main{
+    max-width:1000px;
+    margin:auto;
+    padding:15px
+}
+.card{
+    background:white;
+    padding:18px;
+    margin-bottom:15px;
+    border-radius:14px;
+    box-shadow:0 2px 8px #ccc
+}
+h2{margin-top:0}
+input,textarea,button{
+    font:inherit;
+    border-radius:9px
+}
+input,textarea{
+    border:1px solid #bbb;
+    padding:11px;
+    width:100%;
+    margin:5px 0 10px
+}
+button{
+    border:0;
+    padding:11px 15px;
+    background:#245c36;
+    color:white;
+    cursor:pointer;
+    margin:3px
+}
+button.secondary{background:#666}
+button.red{background:#b33}
+.search{font-size:17px}
+.stats{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap
+}
+.stat{
+    background:#edf3ed;
+    padding:12px;
+    border-radius:10px;
+    flex:1;
+    min-width:130px;
+    text-align:center
+}
+#liste{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:10px
+}
+.item{
+    background:#f5f5f5;
+    border-radius:10px;
+    padding:13px;
+    border-left:5px solid #245c36
+}
+.item strong{font-size:17px}
+.actions{margin-top:8px}
+.badge{
+    display:inline-block;
+    background:#ddd;
+    border-radius:20px;
+    padding:4px 8px;
+    font-size:12px;
+    margin-top:5px
+}
+#message{
+    padding:10px;
+    border-radius:8px;
+    background:#edf3ed;
+    margin-top:10px
+}
+.fiche{
+    line-height:1.5;
+    background:#fafafa;
+    border-radius:10px;
+    padding:12px;
+    margin-top:10px
+}
+.fiche b{color:#245c36}
 </style>
 </head>
+
 <body>
-<header><h1>Carnet de collection — Érables du Japon</h1></header>
-<nav class="tabs">
-<button class="tab active" data-tab="collection">Ma collection</button>
-<button class="tab" data-tab="nursery">En pépinière</button>
-<button class="tab" data-tab="add">Ajouter</button>
-<button class="tab" data-tab="import">Import</button>
-</nav>
+
+<header>
+<h1>🌳 Ma collection d'érables</h1>
+<p id="titre">116 érables préchargés</p>
+</header>
 
 <main>
-<section id="collection" class="panel active">
-  <div class="card">
-    <h2>Ma collection — 116 érables • fiches enrichies</h2>
-    <div class="stats">
-      <div class="stat"><b id="count">0</b>érables</div>
-      <div class="stat"><b id="verified">0</b>fiches vérifiées</div>
-      <div class="stat"><b id="doubt">0</b>à vérifier</div>
-    </div>
-  </div>
-  <div class="card">
-    <h3>🧭 Retrouver un érable dans le jardin</h3>
-    <p class="muted">Enregistre la position de chaque arbre. Ensuite, ce bouton utilise ta position actuelle et te donne les érables enregistrés les plus proches.</p>
-    <button class="primary big" onclick="findNearest()">🧭 Identifier l’érable le plus proche</button>
-    <div id="nearbyResult"></div>
-  </div>
-  <div class="card">
-    <input id="filter" class="search" placeholder="Rechercher un cultivar…">
-    <div id="list"></div>
-  </div>
-  <div class="card">
-    <h3>Sauvegarde</h3>
-    <div class="row">
-      <button class="secondary" onclick="exportData()">Exporter ma collection</button>
-      <label class="secondary" style="text-align:center;cursor:pointer">Importer une sauvegarde
-        <input type="file" accept=".json" hidden onchange="importData(event)">
-      </label>
-    </div>
-  </div>
-</section>
 
-<section id="nursery" class="panel">
-  <div class="card">
-    <h2>📷 Scanner une étiquette</h2>
-    <p class="muted">Prends l'étiquette en photo. L'OCR lit le texte, puis tu valides/corriges le nom avant toute recherche.</p>
-    <button class="primary big" onclick="startCamera()">📷 Photographier l'étiquette</button>
-    <div id="cameraWrap">
-      <video id="video" class="camera" autoplay playsinline></video>
-      <canvas id="canvas" style="display:none"></canvas>
-      <div class="row" style="margin-top:10px">
-        <button class="primary" onclick="capture()">Lire l'étiquette</button>
-        <button class="secondary" onclick="stopCamera()">Fermer</button>
-      </div>
-      <div class="progress"><div id="ocrbar"></div></div>
-      <div id="ocrstatus" class="hint"></div>
-    </div>
-  </div>
-  <div id="scanResult"></div>
-  <div class="card">
-    <h3>Ou saisir manuellement</h3>
-    <div class="row"><input id="manualNursery" placeholder="Nom du cultivar"><button class="primary" onclick="checkNursery()">Analyser</button></div>
-  </div>
-</section>
+<div class="card">
+<h2>🔎 Rechercher</h2>
 
-<section id="add" class="panel">
-  <div class="card">
-    <h2>Ajouter un érable</h2>
-    <input id="addName" placeholder="Nom du cultivar">
-    <div class="row" style="margin-top:9px">
-      <select id="addSpecies"><option>Acer palmatum</option><option>Acer japonicum</option><option>Acer shirasawanum</option><option>Autre Acer</option></select>
-      <input id="addPot" placeholder="Pot / taille (ex. 3 L)">
-    </div>
-    <textarea id="addNotes" placeholder="Notes personnelles" style="min-height:100px;margin-top:9px"></textarea>
-    <button class="primary big" style="margin-top:9px" onclick="addPlant()">Ajouter à ma collection</button>
-  </div>
-</section>
+<input
+id="recherche"
+class="search"
+type="text"
+placeholder="Rechercher une variété..."
+oninput="afficher()">
 
-<section id="import" class="panel">
-  <div class="card">
-    <h2>Import</h2>
-    <p class="muted">Colle un nom par ligne. Les doublons sont ignorés. L'enrichissement réel par recherche web nécessite un service/API de recherche configuré ; cette version ne prétend pas avoir trouvé une source lorsqu'elle ne l'a pas.</p>
-    <textarea id="importText" placeholder="Mila&#10;Azuma&#10;F. Nakai&#10;Purple Ghost&#10;Wood's linearilobum&#10;Verkade's Winter Gold&#10;Will's Devine&#10;Emmett's Pumpkin"></textarea>
-    <button class="primary big" style="margin-top:9px" onclick="doImport()">Importer les noms</button>
-    <div id="importStatus" class="hint"></div>
-  </div>
-</section>
+<div class="stats">
+<div class="stat">
+<strong id="total">0</strong><br>
+érables
+</div>
+
+<div class="stat">
+<strong id="affiches">0</strong><br>
+affichés
+</div>
+</div>
+</div>
+
+
+<div class="card">
+<h2>➕ Ajouter un érable</h2>
+
+<input
+id="nom"
+type="text"
+placeholder="Nom de la variété">
+
+<button onclick="ajouter()">Ajouter</button>
+</div>
+
+
+<div class="card">
+<h2>📷 Scanner une étiquette</h2>
+
+<p>
+Sélectionne une photo d'étiquette ou de feuille.
+</p>
+
+<input
+id="photo"
+type="file"
+accept="image/*"
+capture="environment"
+onchange="scannerInfo()">
+
+<div id="scannerMessage"></div>
+</div>
+
+
+<div class="card">
+<h2>📋 Ma collection — 116 érables</h2>
+
+<div id="liste"></div>
+</div>
+
+
+<div class="card">
+<h2>📥 Import</h2>
+
+<p>
+La liste complète des 116 cultivars est conservée ici.
+</p>
+
+<textarea
+id="importBox"
+rows="15"></textarea>
+
+<br>
+
+<button onclick="importer()">Importer cette liste</button>
+
+<button
+class="secondary"
+onclick="copierListe()">
+Copier la liste
+</button>
+</div>
+
+
+<div class="card">
+<h2>💾 Sauvegarde</h2>
+
+<button onclick="exporter()">
+Exporter ma collection
+</button>
+
+<button
+class="secondary"
+onclick="reinitialiser()">
+Réinitialiser les 116
+</button>
+
+<div id="message"></div>
+</div>
+
 </main>
-<footer>Données et photos conservées localement sur cet appareil.
- </footer>
+
 
 <script>
-const KEY='carnet-erables-v5-116-fiches';
-let plants=JSON.parse(localStorage.getItem(KEY)||"[{\"name\": \"Mila\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Azuma\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"F.Nakai\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Purple ghost\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Wood's linearilobum\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Verkade's winter gold\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Will's devine\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Emmett's Pumpkin\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Gimborn's élégant surprise\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Oregon fern\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Palmatifolium\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Alpenweiss\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Villa taranto\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Ikandi\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Aka hosada\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Kawahara rose\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Butterfly\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Aureum\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Metamorphosa\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Inaba shidare\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Shigitatsu\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Ukigumo\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Seryu\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Beni Maiko\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Sango Kaku\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Rubrifolium\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Katsura\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Koto Hime\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Lace Lady\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Scolopendrifolium\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Trompenburg\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Akatayioo\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Crimson Carole\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Wilson Pink\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Inazuma\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Bi Hoo\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Aconitifolium\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Kujaku Bato\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Cascade Gold\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Phoenix\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Garnet\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Veridis\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Skeeter Broom\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Shishigashira\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Shirazz\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Atropurpureum\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Aka Shigitatsu Sawa\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Reticulatum Red\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Blood good\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Osakazuki\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Arakawa\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Celebration\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Wakakusa Yama\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Autumn Moon\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Alexandre 1\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Orange Dream\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Emerald Lace\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Jerre Schwarts\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Festival\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Little Princess\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Starfish\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Summer gold\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Going Green\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Atrolineare\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Ueno Yama\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Shin deeshojo\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Yoshi\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Ryusen\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Burgundy Lace\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Shaina\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Moonrise\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Taylor\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Mikawa Yatsubusa\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Orangeola\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Flavescens\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Tamukeyama\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Lileeane's jewel\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Ariadne\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Ellen\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Koshimino\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Nyaku Oji\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Orange Lace\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Dr Baker\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Genji Yama\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Mikazuki\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Jordan\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Geisha\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Honoka\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Ice Dragon\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Manyo No Sato\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"North Wind\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Artic Jade\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Vitifolium\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Hana Matoi\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Rainbow\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Arton\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Baldsmith\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Beni Kumo no su\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Black Lace\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Burgundy Lime\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Hagoromo\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Honoo\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Kishuzan\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Kuro Kami Yama\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Mischa\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Miss Piggy\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Nathan\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Nomura shidare\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Ohjishi\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Ornatum\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Otome zakura\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Pink Filigree\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Red Strata\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Red Wood\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Seiun Kaku\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}, {\"name\": \"Stella Rosa\", \"confidence\": \"unknown\", \"created\": \"2026-09-03T00:00:00.000Z\"}]");let stream=null;
+
+/* =========================================================
+   LISTE DEFINITIVE DES 116 ERABLES
+   ========================================================= */
+
+const CULTIVARS = [
+
+"Mila",
+"Azuma",
+"F.Nakai",
+"Purple ghost",
+"Wood's linearilobum",
+"Verkade's winter gold",
+"Will's devine",
+"Emmett's Pumpkin",
+"Gimborn's élégant surprise",
+"Oregon fern",
+"Palmatifolium",
+"Alpenweiss",
+"Villa taranto",
+"Ikandi",
+"Aka hosoda",
+"Kawahara rose",
+"Butterfly",
+"Aureum",
+"Metamorphosa",
+"Inaba shidare",
+"Shigitatsu",
+"Ukigumo",
+"Seryu",
+"Beni Maiko",
+"Sango Kaku",
+"Rubrifolium",
+"Katsura",
+"Koto Hime",
+"Lace Lady",
+"Scolopendrifolium",
+"Trompenburg",
+"Akatayioo",
+"Crimson Carole",
+"Wilson Pink",
+"Inazuma",
+"Bi Hoo",
+"Aconitifolium",
+"Kujaku Bato",
+"Cascade Gold",
+"Phoenix",
+"Garnet",
+"Veridis",
+"Skeeter Broom",
+"Shishigashira",
+"Shirazz",
+"Atropurpureum",
+"Aka Shigitatsu Sawa",
+"Reticulatum Red",
+"Blood good",
+"Osakazuki",
+"Arakawa",
+"Celebration",
+"Wakakusa Yama",
+"Autumn Moon",
+"Alexandre 1",
+"Orange Dream",
+"Emerald Lace",
+"Jerre Schwarts",
+"Festival",
+"Little Princess",
+"Starfish",
+"Summer gold",
+"Going Green",
+"Atrolineare",
+"Ueno Yama",
+"Shin deeshojo",
+"Yoshi",
+"Ryusen",
+"Burgundy Lace",
+"Shaina",
+"Moonrise",
+"Taylor",
+"Mikawa Yatsubusa",
+"Orangeola",
+"Flavescens",
+"Tamukeyama",
+"Lileeane's jewel",
+"Ariadne",
+"Ellen",
+"Koshimino",
+"Nyaku Oji",
+"Orange Lace",
+"Dr Baker",
+"Genji Yama",
+"Mikazuki",
+"Jordan",
+"Geisha",
+"Honoka",
+"Ice Dragon",
+"Manyo No Sato",
+"North Wind",
+"Artic Jade",
+"Vitifolium",
+"Hana Matoi",
+"Rainbow",
+"Arton",
+"Baldsmith",
+"Beni Kumo no su",
+"Black Lace",
+"Burgundy Lime",
+"Hagoromo",
+"Honoo",
+"Kishuzan",
+"Kuro Kami Yama",
+"Mischa",
+"Miss Piggy",
+"Nathan",
+"Nomura shidare",
+"Ohjishi",
+"Ornatum",
+"Otome zakura",
+"Pink Filigree",
+"Red Strata",
+"Red Wood",
+"Seiun Kaku",
+"Stella Rosa"
+
+];
 
 
-const nurserySites={
-  Choteau:'https://www.google.com/search?q=site%3Achoteau.com+%22NAME%22',
-  Maillot:'https://www.google.com/search?q=site%3Apepiniere-maillot.com+%22NAME%22',
-  Palmatia:'https://palmatia.com/?s=NAME',
-  Esveld:'https://www.esveld.nl/?s=NAME',
-  TheMapleNursery:'https://themaplenursery.com/search?q=NAME',
-  Negoplante:'https://www.google.com/search?q=Negoplante+%22NAME%22'
+/* =========================================================
+   FICHES DES CULTIVARS
+   ========================================================= */
+
+const FICHES = {
+
+"Mila":{
+espece:"Acer palmatum",
+port:"Érigé à semi-retombant",
+feuilles:"Feuillage fin et découpé",
+printemps:"Tons rouges à pourprés",
+ete:"Rouge à vert pourpré",
+automne:"Rouge et orange",
+croissance:"Moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Rare",
+wahou:"Très intéressant pour son feuillage coloré"
+},
+
+"Azuma":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles découpées",
+printemps:"Vert tendre à bronze",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre à soleil doux",
+rareté:"Rare",
+wahou:"Belle coloration automnale"
+},
+
+"F.Nakai":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuillage fin",
+printemps:"Rouge à bronze",
+ete:"Vert bronze",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Intérêt de collection élevé"
+},
+
+"Purple ghost":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées à lobes fins",
+printemps:"Rouge pourpré avec nervures contrastées",
+ete:"Pourpre violacé",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre à soleil doux",
+rareté:"Rare",
+wahou:"Très fort contraste du feuillage"
+},
+
+"Wood's linearilobum":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Très étroites et linéaires",
+printemps:"Vert à bronze",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Silhouette et feuillage très graphiques"
+},
+
+"Verkade's winter gold":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Vert tendre",
+ete:"Vert",
+automne:"Jaune à orange",
+croissance:"Moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Rare",
+wahou:"Intérêt hivernal par ses jeunes rameaux"
+},
+
+"Will's devine":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuillage fin",
+printemps:"Rose à rouge",
+ete:"Vert nuancé",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très décoratif"
+},
+
+"Emmett's Pumpkin":{
+espece:"Acer japonicum",
+port:"Large et arrondi",
+feuilles:"Grandes feuilles profondément découpées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange citrouille très intense",
+croissance:"Moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Très rare",
+wahou:"Automne exceptionnel"
+},
+
+"Gimborn's élégant surprise":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées et découpées",
+printemps:"Rose, blanc et vert",
+ete:"Vert panaché",
+automne:"Jaune à orange",
+croissance:"Lente à moyenne",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Panachure spectaculaire"
+},
+
+"Oregon fern":{
+espece:"Acer palmatum",
+port:"Large",
+feuilles:"Très fines, profondément découpées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Lente à moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Aspect de fougère très marqué"
+},
+
+"Palmatifolium":{
+espece:"Acer shirasawanum",
+port:"Érigé et arrondi",
+feuilles:"Grandes feuilles palmées",
+printemps:"Vert tendre",
+ete:"Vert",
+automne:"Jaune, orange et rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre à soleil doux",
+rareté:"Rare",
+wahou:"Feuillage très élégant"
+},
+
+"Alpenweiss":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées",
+printemps:"Rose, blanc et vert",
+ete:"Vert avec panachure blanche",
+automne:"Rose, rouge et orange",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Panachure exceptionnelle"
+},
+
+"Villa taranto":{
+espece:"Acer palmatum",
+port:"Érigé, compact",
+feuilles:"Très étroites et linéaires",
+printemps:"Rouge",
+ete:"Bronze puis vert",
+automne:"Jaune à orange",
+croissance:"Lente à moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Rare",
+wahou:"Silhouette linéaire très originale"
+},
+
+"Ikandi":{
+espece:"Acer palmatum",
+port:"En vase",
+feuilles:"Feuilles panachées",
+printemps:"Rose très intense",
+ete:"Vert avec panachure blanche",
+automne:"Jaune, orange et rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Effet spectaculaire au printemps"
+},
+
+"Aka hosoda":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles fines et découpées",
+printemps:"Rouge",
+ete:"Vert bronze",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très beau feuillage"
+},
+
+"Kawahara rose":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Rose à rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Coloration printanière"
+},
+
+"Butterfly":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Petites feuilles panachées",
+printemps:"Rose et blanc",
+ete:"Vert, blanc et rose",
+automne:"Rose à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Panachure très reconnaissable"
+},
+
+"Aureum":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Jaune doré",
+ete:"Jaune à vert",
+automne:"Orange",
+croissance:"Lente à moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage doré"
+},
+
+"Metamorphosa":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles découpées",
+printemps:"Rose, orange et jaune",
+ete:"Vert et crème",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Évolution des couleurs remarquable"
+},
+
+"Inaba shidare":{
+espece:"Acer palmatum",
+port:"Retombant",
+feuilles:"Très découpées",
+printemps:"Rouge pourpre",
+ete:"Rouge pourpre",
+automne:"Rouge écarlate",
+croissance:"Moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Classique recherché",
+wahou:"Cascade rouge spectaculaire"
+},
+
+"Shigitatsu":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles finement découpées",
+printemps:"Vert avec nuances roses",
+ete:"Vert",
+automne:"Orange et rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage très raffiné"
+},
+
+"Ukigumo":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées",
+printemps:"Vert, blanc et rose",
+ete:"Vert et blanc",
+automne:"Jaune à orange",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Aspect nuageux caractéristique"
+},
+
+"Seryu":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Très découpées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Rapide",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Moyenne",
+wahou:"Port très élégant"
+},
+
+"Beni Maiko":{
+espece:"Acer palmatum",
+port:"Compact",
+feuilles:"Petites feuilles palmées",
+printemps:"Rouge vif",
+ete:"Vert rougeâtre",
+automne:"Rouge",
+croissance:"Lente à moyenne",
+exposition:"Mi-ombre",
+rareté:"Moyenne",
+wahou:"Printemps très spectaculaire"
+},
+
+"Sango Kaku":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Vert-jaune",
+ete:"Vert",
+automne:"Jaune à orange",
+croissance:"Rapide",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Moyenne",
+wahou:"Écorce rouge corail en hiver"
+},
+
+"Rubrifolium":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles rouges",
+printemps:"Rouge",
+ete:"Rouge pourpre",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Rare",
+wahou:"Couleur rouge persistante"
+},
+
+"Katsura":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Petites feuilles palmées",
+printemps:"Orange, rose et jaune",
+ete:"Vert",
+automne:"Orange",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Moyenne",
+wahou:"Printemps très lumineux"
+},
+
+"Koto Hime":{
+espece:"Acer palmatum",
+port:"Nain et compact",
+feuilles:"Très petites feuilles",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Très lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Miniature exceptionnelle"
+},
+
+"Lace Lady":{
+espece:"Acer palmatum",
+port:"Compact",
+feuilles:"Très fines et découpées",
+printemps:"Rouge",
+ete:"Vert à rougeâtre",
+automne:"Orange à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage très fin"
+},
+
+"Scolopendrifolium":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Très longues et linéaires",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Aspect très graphique"
+},
+
+"Trompenburg":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles profondément lobées",
+printemps:"Rouge",
+ete:"Rouge sombre",
+automne:"Rouge vif",
+croissance:"Moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Moyenne",
+wahou:"Feuillage rouge très découpé"
+},
+
+"Akatayioo":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Rouge",
+ete:"Rouge bronze",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très décoratif"
+},
+
+"Crimson Carole":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles profondément découpées",
+printemps:"Rouge",
+ete:"Pourpre",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Rare",
+wahou:"Masse rouge intense"
+},
+
+"Wilson Pink":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées",
+printemps:"Rose et blanc",
+ete:"Vert panaché",
+automne:"Rose à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Panachure spectaculaire"
+},
+
+"Inazuma":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles découpées",
+printemps:"Rouge",
+ete:"Rouge sombre",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage sombre"
+},
+
+"Bi Hoo":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Jaune",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Écorce jaune très décorative"
+},
+
+"Aconitifolium":{
+espece:"Acer japonicum",
+port:"Large et arrondi",
+feuilles:"Très grandes et profondément découpées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Rouge écarlate",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Moyenne",
+wahou:"Automne exceptionnel"
+},
+
+"Kujaku Bato":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Très fines et découpées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage très fin"
+},
+
+"Cascade Gold":{
+espece:"Acer palmatum",
+port:"Retombant",
+feuilles:"Feuilles dorées découpées",
+printemps:"Jaune doré",
+ete:"Jaune-vert",
+automne:"Orange",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Cascade dorée"
+},
+
+"Phoenix":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles découpées",
+printemps:"Rose à rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Coloration saisonnière"
+},
+
+"Garnet":{
+espece:"Acer palmatum",
+port:"Retombant",
+feuilles:"Feuilles fines et découpées",
+printemps:"Rouge pourpre",
+ete:"Rouge sombre",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Moyenne",
+wahou:"Cascade pourpre"
+},
+
+"Veridis":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles vertes découpées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très élégant"
+},
+
+"Skeeter Broom":{
+espece:"Acer palmatum",
+port:"Colonnaire",
+feuilles:"Petites feuilles rouges",
+printemps:"Rouge",
+ete:"Rouge pourpre",
+automne:"Rouge",
+croissance:"Lente",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Rare",
+wahou:"Port étroit exceptionnel"
+},
+
+"Shishigashira":{
+espece:"Acer palmatum",
+port:"Compact et dressé",
+feuilles:"Petites feuilles frisées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Moyenne",
+wahou:"Texture du feuillage unique"
+},
+
+"Shirazz":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées",
+printemps:"Rose, blanc et rouge",
+ete:"Vert, blanc et rose",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Panachure très spectaculaire"
+},
+
+"Atropurpureum":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Rouge pourpre",
+ete:"Pourpre",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Classique",
+wahou:"Belle masse pourpre"
+},
+
+"Aka Shigitatsu Sawa":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées et découpées",
+printemps:"Rose, rouge et vert",
+ete:"Vert panaché",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Panachure raffinée"
+},
+
+"Reticulatum Red":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles veinées",
+printemps:"Rouge",
+ete:"Rouge sombre avec nervures",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Nervures contrastées"
+},
+
+"Blood good":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Rouge",
+ete:"Rouge pourpre",
+automne:"Rouge",
+croissance:"Moyenne à rapide",
+exposition:"Soleil doux",
+rareté:"Classique",
+wahou:"Rouge intense"
+},
+
+"Osakazuki":{
+espece:"Acer palmatum",
+port:"Large et érigé",
+feuilles:"Grandes feuilles palmées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange écarlate",
+croissance:"Rapide",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Classique recherché",
+wahou:"Automne parmi les plus spectaculaires"
+},
+
+"Arakawa":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Jaune à orange",
+croissance:"Moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Rare",
+wahou:"Écorce liégeuse exceptionnelle"
+},
+
+"Celebration":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles découpées",
+printemps:"Rose et rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très coloré"
+},
+
+"Wakakusa Yama":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Vert jaune",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Teintes fraîches"
+},
+
+"Autumn Moon":{
+espece:"Acer shirasawanum",
+port:"Arrondi",
+feuilles:"Grandes feuilles palmées",
+printemps:"Orange et rose",
+ete:"Vert doré",
+automne:"Orange, rouge et jaune",
+croissance:"Lente à moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Palette multicolore"
+},
+
+"Alexandre 1":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles découpées",
+printemps:"Rouge",
+ete:"Vert rougeâtre",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Belle coloration"
+},
+
+"Orange Dream":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Orange vif",
+ete:"Vert jaune",
+automne:"Orange",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Moyenne",
+wahou:"Printemps orange spectaculaire"
+},
+
+"Emerald Lace":{
+espece:"Acer palmatum",
+port:"Retombant",
+feuilles:"Très découpées",
+printemps:"Vert",
+ete:"Vert émeraude",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage très fin"
+},
+
+"Jerre Schwarts":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Rouge",
+ete:"Pourpre",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Rare",
+wahou:"Très belle coloration sombre"
+},
+
+"Festival":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées",
+printemps:"Rose, blanc et vert",
+ete:"Vert panaché",
+automne:"Orange à rouge",
+croissance:"Lente à moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Panachure décorative"
+},
+
+"Little Princess":{
+espece:"Acer palmatum",
+port:"Compact",
+feuilles:"Petites feuilles palmées",
+printemps:"Rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Format compact très élégant"
+},
+
+"Starfish":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles étroites et profondément découpées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Silhouette de feuille très originale"
+},
+
+"Summer gold":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles dorées",
+printemps:"Jaune",
+ete:"Jaune doré",
+automne:"Orange",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage doré"
+},
+
+"Going Green":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Jaune à orange",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très élégant"
+},
+
+"Atrolineare":{
+espece:"Acer palmatum",
+port:"Arbustif compact",
+feuilles:"Très étroites et linéaires",
+printemps:"Rouge vin",
+ete:"Rouge sombre à vert",
+automne:"Rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage extrêmement graphique"
+},
+
+"Ueno Yama":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Rose à rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Belle évolution des couleurs"
+},
+
+"Shin deeshojo":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Petites feuilles",
+printemps:"Rouge écarlate",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Printemps exceptionnel"
+},
+
+"Yoshi":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles découpées",
+printemps:"Vert à rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Intérêt saisonnier"
+},
+
+"Ryusen":{
+espece:"Acer palmatum",
+port:"Retombant",
+feuilles:"Feuilles fines et découpées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Lente à moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Port pleureur spectaculaire"
+},
+
+"Burgundy Lace":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Très découpées",
+printemps:"Bordeaux",
+ete:"Bordeaux pourpré",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage sombre et fin"
+},
+
+"Shaina":{
+espece:"Acer palmatum",
+port:"Compact et érigé",
+feuilles:"Petites feuilles rouges",
+printemps:"Rouge vif",
+ete:"Rouge pourpre",
+automne:"Rouge",
+croissance:"Lente",
+exposition:"Soleil doux à mi-ombre",
+rareté:"Rare",
+wahou:"Forme compacte remarquable"
+},
+
+"Moonrise":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Orange, rose et jaune",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très belle palette"
+},
+
+"Taylor":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées",
+printemps:"Rose intense",
+ete:"Vert et blanc",
+automne:"Rose à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Panachure rose spectaculaire"
+},
+
+"Mikawa Yatsubusa":{
+espece:"Acer palmatum",
+port:"Compact",
+feuilles:"Petites feuilles superposées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Très lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Structure du feuillage exceptionnelle"
+},
+
+"Orangeola":{
+espece:"Acer palmatum",
+port:"Retombant",
+feuilles:"Feuilles profondément découpées",
+printemps:"Orange rougeâtre",
+ete:"Rouge bronze",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Cascade chaude"
+},
+
+"Flavescens":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Jaune-vert",
+ete:"Vert",
+automne:"Jaune à orange",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Tons lumineux"
+},
+
+"Tamukeyama":{
+espece:"Acer palmatum",
+port:"Retombant",
+feuilles:"Très découpées",
+printemps:"Rouge pourpre",
+ete:"Rouge sombre",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Moyenne",
+wahou:"Cascade rouge"
+},
+
+"Lileeane's jewel":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées",
+printemps:"Rose et blanc",
+ete:"Vert et blanc",
+automne:"Rose à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Panachure précieuse"
+},
+
+"Ariadne":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles fortement découpées",
+printemps:"Rose, blanc et vert",
+ete:"Vert panaché",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Panachure spectaculaire"
+},
+
+"Ellen":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles très découpées",
+printemps:"Rose et rouge",
+ete:"Vert bronze",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Feuillage très fin"
+},
+
+"Koshimino":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles fines et découpées",
+printemps:"Rouge",
+ete:"Vert bronze",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très élégant"
+},
+
+"Nyaku Oji":{
+espece:"Acer palmatum",
+port:"Compact",
+feuilles:"Petites feuilles",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très belle miniature"
+},
+
+"Orange Lace":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Très découpées",
+printemps:"Orange rougeâtre",
+ete:"Vert bronze",
+automne:"Orange",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage fin et lumineux"
+},
+
+"Dr Baker":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles découpées",
+printemps:"Rose à rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Belle coloration"
+},
+
+"Genji Yama":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Rouge",
+ete:"Vert rougeâtre",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très décoratif"
+},
+
+"Mikazuki":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées",
+printemps:"Rose, blanc et vert",
+ete:"Vert panaché",
+automne:"Orange à rouge",
+croissance:"Lente à moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Panachure très originale"
+},
+
+"Jordan":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Jaune à orange",
+ete:"Vert doré",
+automne:"Orange",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très lumineux"
+},
+
+"Geisha":{
+espece:"Acer palmatum",
+port:"Compact",
+feuilles:"Petites feuilles panachées",
+printemps:"Rose, rouge et blanc",
+ete:"Vert panaché",
+automne:"Orange à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Panachure très raffinée"
+},
+
+"Honoka":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Rose à rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très décoratif"
+},
+
+"Ice Dragon":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles fines et très découpées",
+printemps:"Rouge",
+ete:"Vert bronze",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Feuillage fin et original"
+},
+
+"Manyo No Sato":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées",
+printemps:"Rose, blanc et vert",
+ete:"Vert panaché",
+automne:"Orange à rouge",
+croissance:"Lente à moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Panachure spectaculaire"
+},
+
+"North Wind":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Rouge à bronze",
+ete:"Vert bronze",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Très belle présence"
+},
+
+"Artic Jade":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées",
+printemps:"Rose, blanc et vert",
+ete:"Vert avec panachure claire",
+automne:"Jaune à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Panachure lumineuse"
+},
+
+"Vitifolium":{
+espece:"Acer japonicum",
+port:"Large",
+feuilles:"Très grandes feuilles ressemblant à celles de la vigne",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange, rouge et jaune",
+croissance:"Rapide",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Taille spectaculaire des feuilles"
+},
+
+"Hana Matoi":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles fortement panachées",
+printemps:"Rose, blanc et vert",
+ete:"Vert, blanc et rose",
+automne:"Orange à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Panachure exceptionnelle"
+},
+
+"Rainbow":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles multicolores",
+printemps:"Rose, orange et vert",
+ete:"Vert panaché",
+automne:"Orange et rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Palette multicolore"
+},
+
+"Arton":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles découpées",
+printemps:"Rouge",
+ete:"Vert bronze",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très décoratif"
+},
+
+"Baldsmith":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées et découpées",
+printemps:"Rose, blanc et vert",
+ete:"Vert panaché",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Panachure spectaculaire"
+},
+
+"Beni Kumo no su":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles rouges et fines",
+printemps:"Rouge",
+ete:"Rouge bronze",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très belle coloration"
+},
+
+"Black Lace":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Très découpées",
+printemps:"Pourpre sombre",
+ete:"Pourpre presque noir",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage très sombre"
+},
+
+"Burgundy Lime":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles contrastées",
+printemps:"Bordeaux et vert",
+ete:"Vert bronze",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Contraste des couleurs"
+},
+
+"Hagoromo":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles fines",
+printemps:"Rose à rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage délicat"
+},
+
+"Honoo":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Rouge orangé",
+ete:"Vert rougeâtre",
+automne:"Rouge feu",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Couleurs de feu"
+},
+
+"Kishuzan":{
+espece:"Acer palmatum",
+port:"Compact",
+feuilles:"Petites feuilles découpées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Texture très fine"
+},
+
+"Kuro Kami Yama":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles sombres et découpées",
+printemps:"Rouge sombre",
+ete:"Pourpre",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Feuillage très sombre"
+},
+
+"Mischa":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles découpées",
+printemps:"Rose à rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Belle évolution saisonnière"
+},
+
+"Miss Piggy":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles panachées",
+printemps:"Rose",
+ete:"Vert et rose",
+automne:"Orange à rouge",
+croissance:"Lente à moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Tons roses originaux"
+},
+
+"Nathan":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Rouge",
+ete:"Pourpre",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Belle présence"
+},
+
+"Nomura shidare":{
+espece:"Acer palmatum",
+port:"Retombant",
+feuilles:"Feuilles profondément découpées",
+printemps:"Rouge pourpre",
+ete:"Pourpre",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Moyenne",
+wahou:"Cascade pourpre"
+},
+
+"Ohjishi":{
+espece:"Acer palmatum",
+port:"Érigé et compact",
+feuilles:"Petites feuilles",
+printemps:"Vert",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Structure compacte"
+},
+
+"Ornatum":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles finement découpées",
+printemps:"Rouge à bronze",
+ete:"Vert bronze",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Feuillage très élégant"
+},
+
+"Otome zakura":{
+espece:"Acer palmatum",
+port:"Compact",
+feuilles:"Petites feuilles",
+printemps:"Rose à rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Aspect miniature"
+},
+
+"Pink Filigree":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Très fines et découpées",
+printemps:"Rose",
+ete:"Vert et rose",
+automne:"Orange à rouge",
+croissance:"Lente",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Feuillage filigrané rose"
+},
+
+"Red Strata":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles rouges découpées",
+printemps:"Rouge",
+ete:"Rouge sombre",
+automne:"Rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Rouge intense"
+},
+
+"Red Wood":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles palmées",
+printemps:"Vert",
+ete:"Vert",
+automne:"Jaune à orange",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Intérêt hivernal du bois coloré"
+},
+
+"Seiun Kaku":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles découpées",
+printemps:"Rose à rouge",
+ete:"Vert",
+automne:"Orange à rouge",
+croissance:"Moyenne",
+exposition:"Mi-ombre",
+rareté:"Rare",
+wahou:"Très décoratif"
+},
+
+"Stella Rosa":{
+espece:"Acer palmatum",
+port:"Érigé",
+feuilles:"Feuilles fines",
+printemps:"Rose vif",
+ete:"Vert panaché de rose",
+automne:"Orange à rouge",
+croissance:"Lente à moyenne",
+exposition:"Mi-ombre",
+rareté:"Très rare",
+wahou:"Coloration rose remarquable"
+}
+
 };
-const profiles={
- 'Purple ghost':['Acer palmatum','Pourpre profond','printemps rouge-pourpre; été pourpre; automne rouge','feuille palmée, lobes fins à moyens','mi-ombre à soleil doux','Très graphique; excellent contraste'],
- "Emmett\'s Pumpkin":['Acer japonicum','orange à bronze','printemps vert-bronze; été vert; automne orange cuivré à rouge','grande feuille palmée, lobes larges','mi-ombre','Très fort effet automnal'],
- "Gimborn\'s élégant surprise":['Acer palmatum','panaché','jeunes pousses panachées; été vert/crème avec variations; automne chaud','feuille palmée finement découpée','mi-ombre','Panachure très décorative'],
- 'Oregon fern':['Acer palmatum','vert à bronze','printemps bronze; été vert; automne rouge/orange','très découpée, aspect fougère','mi-ombre','Texture très originale'],
- 'Palmatifolium':['Acer shirasawanum','vert frais','printemps vert tendre; été vert; automne jaune/orange/rouge','grande feuille arrondie, profondément lobée','mi-ombre','Feuillage très architectural'],
- 'Alpenweiss':['Acer palmatum','panaché blanc/rose/vert','printemps rose/blanc; été vert panaché; automne rouge/orange','feuille palmée','mi-ombre','Panachure spectaculaire'],
- 'Villa taranto':['Acer palmatum','bronze-vert à rouge sur jeunes pousses','nouvelles pousses rouges; feuillage mûr vert; automne jaune/orange','linéaire, très étroite','soleil doux à mi-ombre','Silhouette et texture rares'],
- 'Ikandi':['Acer palmatum','rose puis vert panaché blanc','printemps presque rose; été vert/blanc; automne jaune/orange/rouge','feuille palmée panachée','mi-ombre','Très fort effet wahou'],
- 'Aka hosada':['Acer palmatum','rouge/pourpre','printemps rouge; été pourpre/vert selon exposition; automne rouge','feuille fine et découpée','mi-ombre','Texture et couleur'],
- 'Kawahara rose':['Acer palmatum','rose, crème et vert','printemps rose/crème; été panaché; automne rouge','feuille palmée','mi-ombre','Panachure recherchée'],
- 'Butterfly':['Acer palmatum','vert bordé de blanc/rose','printemps rose/blanc; été vert marginé crème; automne rouge','petite feuille palmée','mi-ombre','Panachure classique mais très décorative'],
- 'Metamorphosa':['Acer palmatum','multicolore','printemps rose/rouge; été vert/bronze; automne orange/rouge','feuille palmée','mi-ombre','Très évolutif'],
- 'Inaba shidare':['Acer palmatum dissectum','rouge pourpre','printemps rouge; été pourpre; automne écarlate','très finement découpée, retombante','soleil doux à mi-ombre','Grand classique de collection'],
- 'Shigitatsu':['Acer palmatum','vert argenté/rose','printemps rose et crème; été vert argenté; automne orange/rouge','feuille palmée','mi-ombre','Contraste lumineux'],
- 'Ukigumo':['Acer palmatum','vert très clair panaché blanc','printemps blanc/rose; été vert pâle et blanc; automne jaune/orange','feuille palmée','ombre claire à mi-ombre','Panachure aérienne'],
- 'Seryu':['Acer palmatum dissectum','vert','printemps vert; été vert; automne orange/rouge','feuille très finement découpée, port dressé','soleil doux à mi-ombre','Dissectum dressé'],
- 'Beni Maiko':['Acer palmatum','rouge vif','printemps rouge intense; été rouge-vert; automne rouge','petite feuille palmée','mi-ombre','Couleur printanière très forte'],
- 'Sango Kaku':['Acer palmatum','vert','printemps vert; été vert; automne jaune/orange','feuille palmée; jeunes rameaux rouges','soleil doux à mi-ombre','Écorce rouge très distinctive'],
- 'Rubrifolium':['Acer palmatum','rouge','printemps rouge; été rouge/pourpre; automne rouge','feuille palmée','soleil doux à mi-ombre','Couleur durable'],
- 'Katsura':['Acer palmatum','orange/abricot puis vert','printemps orange-abricot; été vert; automne orange','petite feuille palmée','mi-ombre','Débourrement remarquable'],
- 'Koto Hime':['Acer palmatum','vert','printemps vert; été vert; automne jaune/orange','très petite feuille, croissance compacte','soleil doux à mi-ombre','Miniature et texture'],
- 'Lace Lady':['Acer palmatum','vert','printemps vert; été vert; automne orange/rouge','très découpée','mi-ombre','Feuillage très fin'],
- 'Scolopendrifolium':['Acer palmatum','vert','printemps vert; été vert; automne jaune/orange','très étroite et allongée','mi-ombre','Aspect scolopendre'],
- 'Trompenburg':['Acer palmatum','rouge pourpre','printemps rouge; été pourpre; automne rouge','feuille palmée, lobes recourbés','soleil doux à mi-ombre','Port et feuillage distinctifs'],
- 'Akatayioo':['Acer palmatum','rouge puis vert','printemps rouge; été vert/rouge; automne rouge','feuille palmée','mi-ombre','Débourrement coloré'],
- 'Crimson Carole':['Acer palmatum','rouge pourpre','printemps rouge; été pourpre; automne rouge','feuille palmée','soleil doux à mi-ombre','Pourpre soutenu'],
- 'Wilson Pink':['Acer palmatum','rose/vert panaché','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure rare'],
- 'Inazuma':['Acer palmatum','rouge/pourpre','printemps rouge; été pourpre; automne rouge','feuille palmée','mi-ombre','Coloration forte'],
- 'Bi Hoo':['Acer palmatum','vert; rameaux jaunes','printemps vert; été vert; automne jaune/orange','feuille palmée; rameaux jaunes','soleil doux à mi-ombre','Écorce hivernale spectaculaire'],
- 'Aconitifolium':['Acer japonicum','vert puis rouge','printemps vert; été vert; automne rouge écarlate','grande feuille très profondément découpée','mi-ombre','Feuillage spectaculaire'],
- 'Kujaku Bato':['Acer japonicum','vert','printemps vert; été vert; automne rouge/orange','grande feuille finement découpée','mi-ombre','Texture remarquable'],
- 'Cascade Gold':['Acer palmatum','jaune/vert','printemps jaune; été vert-jaune; automne orange','feuille palmée','mi-ombre','Luminosité'],
- 'Phoenix':['Acer palmatum','rose/rouge puis vert','printemps rose/rouge; été vert; automne rouge','feuille palmée','mi-ombre','Débourrement spectaculaire'],
- 'Garnet':['Acer palmatum dissectum','rouge sombre','printemps rouge; été pourpre; automne rouge','finement découpée, retombante','soleil doux à mi-ombre','Dissectum rouge fiable'],
- 'Veridis':['Acer palmatum dissectum','vert','printemps vert; été vert; automne orange/rouge','très finement découpée','mi-ombre','Texture fine'],
- 'Skeeter Broom':['Acer palmatum','rouge/pourpre','printemps rouge; été pourpre; automne rouge','petite feuille; port en colonne','soleil doux à mi-ombre','Port très compact'],
- 'Shishigashira':['Acer palmatum','vert','printemps vert; été vert; automne orange/rouge','petite feuille très frisée','mi-ombre','Texture très particulière'],
-'Shirazz':['Acer palmatum','rose/rouge/vert panaché','printemps rose et rouge; été vert/rose/blanc; automne rouge','feuille palmée découpée','mi-ombre','Panachure spectaculaire'],
-'Atropurpureum':['Acer palmatum','pourpre','printemps pourpre; été pourpre; automne rouge','feuille palmée','soleil doux à mi-ombre','Pourpre classique'],
-'Aka Shigitatsu Sawa':['Acer palmatum','rose/blanc/vert','printemps rose; été vert panaché crème; automne rouge','feuille palmée','mi-ombre','Panachure très décorative'],
-'Reticulatum Red':['Acer palmatum','rouge et vert','printemps rouge/vert; été vert veiné rouge; automne rouge','feuille réticulée','mi-ombre','Veinage original'],
-'Blood good':['Acer palmatum','rouge pourpre','printemps rouge; été pourpre; automne rouge','feuille palmée','soleil doux à mi-ombre','Grand classique'],
-'Osakazuki':['Acer palmatum','vert puis rouge','printemps vert; été vert; automne rouge écarlate','grande feuille palmée','soleil doux à mi-ombre','Automne exceptionnel'],
-'Arakawa':['Acer palmatum','vert','printemps vert; été vert; automne jaune/orange','feuille palmée; écorce liégeuse','soleil doux à mi-ombre','Écorce très caractéristique'],
-'Celebration':['Acer palmatum','rose/vert panaché','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure lumineuse'],
-'Wakakusa Yama':['Acer palmatum','vert tendre','printemps vert tendre; été vert; automne jaune/orange','feuille palmée fine','mi-ombre','Aspect frais'],
-'Autumn Moon':['Acer shirasawanum','jaune/vert/rose','printemps jaune-rose; été vert-jaune; automne orange/rouge','grande feuille palmée','mi-ombre','Couleurs changeantes'],
-'Alexandre 1':['Acer palmatum','rouge/vert','printemps rouge; été vert/bronze; automne rouge','feuille palmée','mi-ombre','Débourrement coloré'],
-'Orange Dream':['Acer palmatum','orange/jaune puis vert','printemps orange; été jaune-vert; automne orange','feuille palmée','mi-ombre','Très lumineux'],
-'Emerald Lace':['Acer palmatum dissectum','vert','printemps vert; été vert; automne orange/rouge','feuille très fine et découpée','soleil doux à mi-ombre','Texture élégante'],
-'Jerre Schwarts':['Acer palmatum','rose/blanc/vert','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure recherchée'],
-'Festival':['Acer palmatum','rose/vert/crème','printemps rose; été vert panaché; automne rouge/orange','feuille palmée','mi-ombre','Multicolore'],
-'Little Princess':['Acer palmatum','vert','printemps vert; été vert; automne jaune/orange','petite feuille; port compact','mi-ombre','Compact et fin'],
-'Starfish':['Acer palmatum','vert','printemps vert; été vert; automne rouge/orange','feuille palmée aux lobes étroits et recourbés','mi-ombre','Forme de feuille originale'],
-'Summer gold':['Acer palmatum','jaune/vert','printemps jaune; été jaune-vert; automne orange','feuille palmée','mi-ombre','Très lumineux'],
-'Going Green':['Acer palmatum','vert','printemps vert; été vert; automne jaune/orange','feuille palmée','mi-ombre','Vert lumineux'],
-'Atrolineare':['Acer palmatum','vert/pourpre','printemps bronze; été vert/pourpre; automne rouge','feuille très étroite et linéaire','mi-ombre','Silhouette très graphique'],
-'Ueno Yama':['Acer palmatum','rose/rouge','printemps rose-rouge; été vert; automne rouge','feuille palmée','mi-ombre','Débourrement marqué'],
-'Shin deeshojo':['Acer palmatum','rouge vif puis vert','printemps rouge vif; été vert; automne rouge','petite feuille palmée','mi-ombre','Printemps spectaculaire'],
-'Yoshi':['Acer palmatum','vert/rose','printemps rose; été vert; automne rouge','feuille palmée','mi-ombre','Débourrement décoratif'],
-'Ryusen':['Acer palmatum','vert','printemps vert; été vert; automne orange/rouge','feuille palmée; port pleureur','mi-ombre','Port pleureur remarquable'],
-'Burgundy Lace':['Acer palmatum','pourpre','printemps pourpre; été pourpre; automne rouge','feuille finement découpée','soleil doux à mi-ombre','Feuillage fin et sombre'],
-'Shaina':['Acer palmatum','rouge pourpre','printemps rouge; été pourpre; automne rouge','petite feuille; port compact','soleil doux à mi-ombre','Compact et très coloré'],
-'Moonrise':['Acer shirasawanum','orange/jaune/vert','printemps orange; été vert-jaune; automne orange/rouge','feuille palmée','mi-ombre','Couleurs saisonnières'],
-'Taylor':['Acer palmatum','rose/crème/vert','printemps rose; été vert panaché blanc; automne rouge','feuille palmée','mi-ombre','Panachure très visible'],
-'Mikawa Yatsubusa':['Acer palmatum','vert','printemps vert; été vert; automne orange/rouge','petite feuille empilée, très compacte','mi-ombre','Texture exceptionnelle'],
-'Orangeola':['Acer palmatum dissectum','orange/rouge','printemps orange-rouge; été rouge-bronze; automne rouge','feuille finement découpée, retombante','soleil doux à mi-ombre','Dissectum très coloré'],
-'Flavescens':['Acer palmatum','jaune/vert','printemps jaune; été vert-jaune; automne orange','feuille palmée','mi-ombre','Lumineux'],
-'Tamukeyama':['Acer palmatum dissectum','rouge pourpre','printemps rouge; été pourpre; automne rouge','très finement découpée, retombante','soleil doux à mi-ombre','Port retombant élégant'],
-"Lileeane's jewel":['Acer palmatum','rose/blanc/vert','printemps rose; été panaché crème/vert; automne rouge','feuille palmée','mi-ombre','Panachure recherchée'],
-'Ariadne':['Acer palmatum','rose/crème/vert','printemps rose; été vert/crème; automne rouge','feuille palmée finement lobée','mi-ombre','Panachure spectaculaire'],
-'Ellen':['Acer palmatum','rose/blanc/vert','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure lumineuse'],
-'Koshimino':['Acer palmatum','vert/rose','printemps rose; été vert; automne rouge/orange','feuille palmée','mi-ombre','Débourrement coloré'],
-'Nyaku Oji':['Acer palmatum','vert/rouge','printemps rouge; été vert; automne rouge','petite feuille palmée','mi-ombre','Compact et original'],
-'Orange Lace':['Acer palmatum','orange/vert','printemps orange; été vert/orange; automne rouge','feuille finement découpée','mi-ombre','Couleurs chaudes'],
-'Dr Baker':['Acer palmatum','rose/rouge/vert','printemps rose; été vert; automne rouge','feuille palmée','mi-ombre','Coloration saisonnière'],
-'Genji Yama':['Acer palmatum','rouge/vert','printemps rouge; été vert; automne rouge/orange','feuille palmée','mi-ombre','Débourrement coloré'],
-'Mikazuki':['Acer palmatum','vert/rose/crème','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure originale'],
-'Jordan':['Acer palmatum','jaune/orange/vert','printemps jaune-orange; été vert; automne orange','feuille palmée','mi-ombre','Très lumineux'],
-'Geisha':['Acer palmatum','rose/rouge/vert panaché','printemps rose; été vert panaché; automne rouge','petite feuille palmée','mi-ombre','Panachure remarquable'],
-'Honoka':['Acer palmatum','rose/crème/vert','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Très décoratif'],
-'Ice Dragon':['Acer palmatum dissectum','vert/bleuté','printemps vert; été vert; automne rouge','feuille très fine, découpée','mi-ombre','Texture et couleur inhabituelles'],
-'Manyo No Sato':['Acer palmatum','vert/rose/crème','printemps rose; été vert panaché; automne rouge/orange','feuille palmée','mi-ombre','Panachure très originale'],
-'North Wind':['Acer palmatum','vert/rouge','printemps rouge; été vert; automne orange/rouge','feuille palmée','mi-ombre','Bonne dynamique saisonnière'],
-'Artic Jade':['Acer palmatum','vert clair/blanc','printemps vert tendre; été vert pâle; automne jaune/orange','feuille palmée','mi-ombre','Très lumineux'],
-'Vitifolium':['Acer palmatum','vert','printemps vert; été vert; automne orange/rouge','grande feuille rappelant la vigne','mi-ombre','Très grande feuille originale'],
-'Hana Matoi':['Acer palmatum','rose/blanc/vert','printemps rose; été vert panaché; automne rouge','feuille palmée finement découpée','mi-ombre','Panachure spectaculaire'],
-'Rainbow':['Acer palmatum','rose/blanc/vert','printemps rose; été vert panaché; automne rouge/orange','feuille palmée','mi-ombre','Très coloré'],
-'Arton':['Acer palmatum','rose/vert/crème','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure lumineuse'],
-'Baldsmith':['Acer palmatum dissectum','rose/vert','printemps rose; été vert; automne orange/rouge','très finement découpée, retombante','mi-ombre','Très beau dissectum'],
-'Beni Kumo no su':['Acer palmatum','rouge/vert','printemps rouge; été vert veiné; automne rouge','feuille palmée','mi-ombre','Veinage original'],
-'Black Lace':['Acer palmatum','pourpre très sombre','printemps pourpre; été presque noir; automne rouge','feuille fine et découpée','soleil doux à mi-ombre','Contraste très fort'],
-'Burgundy Lime':['Acer palmatum','vert/rouge/pourpre','printemps rouge; été vert/pourpre; automne rouge','feuille palmée','mi-ombre','Contraste saisonnier'],
-'Hagoromo':['Acer palmatum','vert/rose','printemps rose; été vert; automne rouge','feuille palmée fine','mi-ombre','Élégant et léger'],
-'Honoo':['Acer palmatum','rouge/orange','printemps rouge; été vert/bronze; automne orange/rouge','feuille palmée','mi-ombre','Couleurs de feu'],
-'Kishuzan':['Acer palmatum','vert/jaune','printemps vert-jaune; été vert; automne orange','petite feuille très découpée','mi-ombre','Texture très fine'],
-'Kuro Kami Yama':['Acer palmatum','pourpre très sombre','printemps pourpre; été pourpre-noir; automne rouge','feuille palmée','soleil doux à mi-ombre','Très sombre et graphique'],
-async function deleteOnePhoto(id){if(!confirm('Supprimer cette photo ?'))return;await removePhoto(id);await renderPhotos()}
 
-function save(){localStorage.setItem(KEY,JSON.stringify(plants));render();}
 
-function distanceMeters(lat1,lon1,lat2,lon2){const R=6371000,toRad=x=>x*Math.PI/180,dLat=toRad(lat2-lat1),dLon=toRad(lon2-lon1),a=Math.sin(dLat/2)**2+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(a))}
-function formatDistance(m){return m<1?'moins d’un mètre':m<100?Math.round(m)+' m':(m/1000).toFixed(2)+' km'}
-function saveGPS(index){if(!navigator.geolocation)return alert('La géolocalisation n’est pas disponible.');navigator.geolocation.getCurrentPosition(pos=>{plants[index].location={lat:pos.coords.latitude,lon:pos.coords.longitude,accuracy:pos.coords.accuracy,savedAt:new Date().toISOString()};save()},()=>alert('Position impossible. Active la localisation du téléphone et autorise le navigateur.'),{enableHighAccuracy:true,timeout:20000,maximumAge:0})}
-function saveManualGPS(index){const lat=parseFloat(String(document.getElementById('lat-'+index).value).replace(',','.')),lon=parseFloat(String(document.getElementById('lon-'+index).value).replace(',','.'));if(!Number.isFinite(lat)||!Number.isFinite(lon)||lat<-90||lat>90||lon<-180||lon>180)return alert('Coordonnées invalides.');plants[index].location={lat,lon,manual:true,savedAt:new Date().toISOString()};save()}
-function clearGPS(index){if(!plants[index].location)return;if(!confirm('Effacer la position de cet érable ?'))return;delete plants[index].location;save()}
-function showGPS(index){const box=document.getElementById('loc-'+index),p=plants[index];if(!box||!p)return;if(!p.location){box.innerHTML='<span class="muted">Aucune position enregistrée.</span>';return}const l=p.location;box.innerHTML='<span class="gps-ok">📍 Position enregistrée'+(l.accuracy?' • précision ±'+Math.round(l.accuracy)+' m':'')+(l.manual?' • manuelle':'')+'</span><br><span class="muted">'+l.lat.toFixed(6)+', '+l.lon.toFixed(6)+'</span><br><a href="https://www.google.com/maps?q='+l.lat+','+l.lon+'" target="_blank" rel="noopener">🗺️ Ouvrir dans Google Maps</a>';const la=document.getElementById('lat-'+index),lo=document.getElementById('lon-'+index);if(la)la.value=l.lat;if(lo)lo.value=l.lon}
-function findNearest(){if(!navigator.geolocation)return alert('La géolocalisation n’est pas disponible.');const box=document.getElementById('nearbyResult');box.innerHTML='<p class="muted">📡 Recherche de ta position…</p>';navigator.geolocation.getCurrentPosition(pos=>{const a=plants.map((p,index)=>p.location?{index,name:p.name,d:distanceMeters(pos.coords.latitude,pos.coords.longitude,p.location.lat,p.location.lon)}:null).filter(Boolean).sort((x,y)=>x.d-y.d).slice(0,8);if(!a.length){box.innerHTML='<div class="nearby"><b>Aucune position enregistrée.</b><p class="muted">Enregistre d’abord les positions de tes érables.</p></div>';return}box.innerHTML='<div class="nearby"><b>📍 Plus proches</b><p class="muted">Précision actuelle : ±'+Math.round(pos.coords.accuracy)+' m</p>'+a.map(x=>`<div class="nearby-item"><b>${esc(x.name)}</b><br><span class="distance">${formatDistance(x.d)}</span> <button class="secondary smallbtn" onclick="goToPlant(${x.index})">Voir</button></div>`).join('')+'</div>'},()=>{box.innerHTML='<p class="muted">❌ Position impossible. Active la localisation et autorise le navigateur.</p>'},{enableHighAccuracy:true,timeout:20000,maximumAge:0})}
-function goToPlant(index){const q=norm(plants[index].name);document.getElementById('filter').value=plants[index].name;render();setTimeout(()=>{const nodes=document.querySelectorAll('.item');const node=[...nodes].find(n=>norm(n.innerText).includes(q));if(node)node.scrollIntoView({behavior:'smooth',block:'center'})},50)}
+/* =========================================================
+   INITIALISATION
+   ========================================================= */
 
-function save(){localStorage.setItem(KEY,JSON.stringify(plants));render()}
-function norm(s){return s.toLowerCase().replace(/[‘’']/g,"").replace(/^acer\\s+(palmatum|japonicum|shirasawanum)\\s*/i,'').replace(/[^a-z0-9]+/g,' ').trim();}
-function duplicate(name){let n=norm(name);return plants.some(p=>norm(p.name)===n)}
-function render(){
- document.getElementById('count').textContent=plants.length;
- document.getElementById('verified').textContent=plants.filter(p=>p.confidence==='high').length;
- document.getElementById('doubt').textContent=plants.filter(p=>p.confidence!=='high').length;
- let q=norm(document.getElementById('filter').value||'');
- let arr=plants.filter(p=>!q||norm(p.name).includes(q)).sort((a,b)=>a.name.localeCompare(b.name));
- document.getElementById('list').innerHTML=arr.length?arr.map(p=>{const d=profileFor(p.name),species=d[0],colors=d[1],seasons=d[2],leaf=d[3],expo=d[4],interest=d[5];const key=encodeURIComponent(p.name),index=plants.indexOf(p);return `<div class="item"><div class="item-main"><b>${esc(p.name)}</b><br><span class="muted">${esc(species)} ${p.pot?'• '+esc(p.pot):''}</span><div style="margin-top:6px"><span class="tag">${esc(colors)}</span><span class="tag">${esc(expo)}</span>${p.confidence!=='high'?'<span class="badge red">Fiche à vérifier</span>':'<span class="badge">Fiche documentée</span>'}</div><div class="fiche"><div class="grid"><div class="cell"><h4>🌱 Feuillage</h4><p>${esc(leaf)}</p></div><div class="cell"><h4>🎨 Couleurs</h4><p>${esc(seasons)}</p></div><div class="cell"><h4>☀️ Exposition</h4><p>${esc(expo)}</p></div><div class="cell"><h4>⭐ Intérêt collection</h4><p>${esc(interest)}</p></div></div><h4>🔎 Sources pépinières</h4><p>${sourceLinks(p.name)}</p><p class="muted">Les liens ouvrent la recherche de ce cultivar chez chaque pépinière. La disponibilité réelle doit être vérifiée au moment de l'achat.</p><div class="photo-box"><h4>📸 Photos personnelles</h4><div id="photos-${index}"><span class="photo-empty">Chargement…</span></div><div class="photo-actions"><label class="secondary smallbtn">🖼️ Ajouter plusieurs photos<input type="file" accept="image/*" multiple hidden onchange="savePhotos(${index},this)"></label><label class="secondary smallbtn">📷 Appareil photo<input type="file" accept="image/*" capture="environment" hidden onchange="savePhotos(${index},this)"></label></div></div><div class="location-box"><h4>📍 Localisation</h4><div id="loc-${index}" class="location-status"></div><div class="photo-actions"><button class="secondary smallbtn" onclick="saveGPS(${index})">📍 Enregistrer ma position</button><button class="secondary smallbtn" onclick="clearGPS(${index})">Effacer</button></div><div class="coords" style="margin-top:7px"><input id="lat-${index}" inputmode="decimal" placeholder="Latitude"><input id="lon-${index}" inputmode="decimal" placeholder="Longitude"></div><button class="secondary smallbtn" style="margin-top:7px" onclick="saveManualGPS(${index})">💾 Enregistrer coordonnées</button></div></div></div><div class="item-actions"><button class="secondary smallbtn" onclick="window.open('https://www.google.com/search?q='+encodeURIComponent('Acer '+${JSON.stringify(p.name)}+' cultivar'),'_blank','noopener')">Web</button><button class="danger smallbtn" onclick="removePlant('${key}')">Suppr.</button></div></div>`}).join(''):'<p class="muted">Aucun érable enregistré pour le moment.</p>';
- setTimeout(()=>{plants.forEach((_,i)=>showGPS(i));renderPhotos()},0);
-}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function removePlant(n){plants=plants.filter(p=>p.name!==decodeURIComponent(n));save()}
-function addPlant(){
- let name=document.getElementById('addName').value.trim();if(!name)return alert('Entre un nom.');
- if(duplicate(name))return alert('Cet érable est déjà dans ta collection.');
- plants.push({name,species:document.getElementById('addSpecies').value,pot:document.getElementById('addPot').value.trim(),notes:document.getElementById('addNotes').value.trim(),confidence:'manual',created:new Date().toISOString()});
- document.getElementById('addName').value='';document.getElementById('addPot').value='';document.getElementById('addNotes').value='';save();activate('collection');
-}
-function doImport(){
- let lines=document.getElementById('importText').value.split(/\\r?\\n/).map(x=>x.trim()).filter(Boolean);
- let added=0,dup=0;lines.forEach(name=>{if(duplicate(name)){dup++;return}plants.push({name,confidence:'unknown',created:new Date().toISOString()});added++});
- save();document.getElementById('importStatus').textContent=`${added} ajouté(s), ${dup} doublon(s) ignoré(s). Total : ${plants.length}.`;
-}
-function activate(id){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));window.scrollTo(0,0)}
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>activate(b.dataset.tab));
-document.getElementById('filter').oninput=render;
+const KEY="carnet-erables-v5-116-fiches";
 
-async function startCamera(){
- if(!navigator.mediaDevices?.getUserMedia){alert('La caméra n’est pas disponible dans ce navigateur.');return}
- try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false});document.getElementById('video').srcObject=stream;document.getElementById('cameraWrap').style.display='block';document.getElementById('ocrstatus').textContent='Cadre l’étiquette puis appuie sur « Lire l’étiquette ».';
- }catch(e){alert('Accès caméra refusé ou indisponible. Vérifie l’autorisation caméra du navigateur.')}
+let erables=JSON.parse(localStorage.getItem(KEY)||"null");
+
+if(!Array.isArray(erables)){
+    erables=CULTIVARS.map(n=>({
+        nom:n,
+        created:"2026-09-03T00:00:00.000Z"
+    }));
+    sauvegarder();
 }
-function stopCamera(){if(stream)stream.getTracks().forEach(t=>t.stop());stream=null;document.getElementById('cameraWrap').style.display='none'}
-async function capture(){
- const video=document.getElementById('video'),canvas=document.getElementById('canvas');canvas.width=video.videoWidth;canvas.height=video.videoHeight;canvas.getContext('2d').drawImage(video,0,0);
- const bar=document.getElementById('ocrbar'),status=document.getElementById('ocrstatus');status.textContent='Lecture de l’étiquette…';bar.style.width='10%';
- try{
-   if(!window.Tesseract){await loadTesseract()}
-   const result=await Tesseract.recognize(canvas,'eng',{logger:m=>{if(m.progress)bar.style.width=Math.round(m.progress*100)+'%';}});
-   bar.style.width='100%';let raw=result.data.text.trim();
-   let cleaned=bestName(raw);
-   stopCamera();showScan(cleaned,raw);
- }catch(e){status.textContent='OCR indisponible. Tu peux saisir le nom manuellement ci-dessous.';console.error(e)}
+
+
+/* =========================================================
+   SAUVEGARDE
+   ========================================================= */
+
+function sauvegarder(){
+    localStorage.setItem(KEY,JSON.stringify(erables));
 }
-function loadTesseract(){
- return new Promise((resolve,reject)=>{
-  let s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';s.onload=resolve;s.onerror=reject;document.head.appendChild(s);
- })
+
+
+/* =========================================================
+   AFFICHAGE
+   ========================================================= */
+
+function afficher(){
+
+    const recherche=document
+        .getElementById("recherche")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const liste=document.getElementById("liste");
+
+    liste.innerHTML="";
+
+    let visibles=0;
+
+    erables.forEach((erable,index)=>{
+
+        const nom=
+            typeof erable==="string"
+            ?erable
+            :erable.nom;
+
+        if(
+            recherche &&
+            !nom.toLowerCase().includes(recherche)
+        )return;
+
+        visibles++;
+
+        const ficheData=FICHES[nom];
+
+        const div=document.createElement("div");
+
+        div.className="item";
+
+        div.innerHTML=`
+
+<strong>🌿 ${escapeHtml(nom)}</strong>
+
+<div class="badge">
+${ficheData ? "Fiche renseignée" : "Cultivar enregistré"}
+</div>
+
+<div class="actions">
+
+<button onclick="fiche(${index})">
+Fiche
+</button>
+
+<button
+class="red"
+onclick="supprimer(${index})">
+Supprimer
+</button>
+
+</div>
+`;
+
+        liste.appendChild(div);
+    });
+
+    document.getElementById("total").textContent=
+        erables.length;
+
+    document.getElementById("affiches").textContent=
+        visibles;
+
+    document.getElementById("titre").textContent=
+        erables.length+" érables dans ma collection";
 }
-function bestName(raw){
- let lines=raw.split(/\\r?\\n/).map(x=>x.replace(/[|_]+/g,' ').trim()).filter(x=>x.length>2);
- let cand=lines.find(x=>/acer|palmatum|japonicum|shirasawanum/i.test(x))||lines.sort((a,b)=>b.length-a.length)[0]||raw;
- cand=cand.replace(/\\b(acer\\s+)?(palmatum|japonicum|shirasawanum)\\b/ig,'').replace(/[\\[\\]{}]/g,'').trim();
- return cand.replace(/^['"“”]+|['"“”]+$/g,'').trim();
+
+
+/* =========================================================
+   AJOUT
+   ========================================================= */
+
+function ajouter(){
+
+    const input=document.getElementById("nom");
+
+    const nom=input.value.trim();
+
+    if(!nom)return;
+
+    const existe=erables.some(e=>{
+
+        const n=
+            typeof e==="string"
+            ?e
+            :e.nom;
+
+        return n.toLowerCase()===nom.toLowerCase();
+
+    });
+
+    if(existe){
+
+        afficherMessage(
+            "Cette variété est déjà dans ta collection."
+        );
+
+        return;
+    }
+
+    erables.push({
+
+        nom:nom,
+
+        created:new Date().toISOString()
+
+    });
+
+    sauvegarder();
+
+    input.value="";
+
+    afficher();
 }
-function showScan(name,raw){
- document.getElementById('scanResult').innerHTML=`<div class="card"><h3>🌿 Nom détecté</h3><input id="scanName" value="${esc(name)}"><p class="muted">Texte OCR brut : ${esc(raw||'—')}</p><div class="row"><button class="primary" onclick="confirmScan()">Ajouter à ma collection</button><button class="secondary" onclick="checkNursery(document.getElementById('scanName').value)">Analyser / comparer</button></div></div>`;
+
+
+/* =========================================================
+   SUPPRESSION
+   ========================================================= */
+
+function supprimer(index){
+
+    const nom=
+        typeof erables[index]==="string"
+        ?erables[index]
+        :erables[index].nom;
+
+    if(
+        !confirm(
+            "Supprimer "+nom+
+            " de la collection ?"
+        )
+    )return;
+
+    erables.splice(index,1);
+
+    sauvegarder();
+
+    afficher();
 }
-function checkNursery(forced){
- let name=(forced||document.getElementById('manualNursery').value||'').trim();if(!name)return alert('Entre ou scanne un nom.');
- let already=duplicate(name);
- let q=encodeURIComponent(name);
- document.getElementById('scanResult').innerHTML=`<div class="card"><h3>${esc(name)}</h3><p>${already?'<span class="badge red">⚠️ Déjà dans ta collection</span>':'<span class="badge">🟢 Nouveau pour ta collection</span>'}</p><p class="muted">Recherche rapide à ouvrir : choisis une pépinière ci-dessous. La présence réelle doit être vérifiée sur la fiche source.</p><div class="row">
- <button class="secondary" onclick="openSearch('Choteau', 'https://www.google.com/search?q=site%3Achoteau.com+'+encodeURIComponent(name))">Choteau</button>
- <button class="secondary" onclick="openSearch('Maillot', 'https://www.google.com/search?q=site%3Apepiniere-maillot.com+'+encodeURIComponent(name))">Maillot</button>
- <button class="secondary" onclick="openSearch('Esveld', 'https://www.esveld.nl/?s='+q)">Esveld</button>
- <button class="secondary" onclick="openSearch('The Maple Nursery', 'https://www.google.com/search?q=site%3Athemaplenursery.com+'+q)">The Maple Nursery</button>
- <button class="secondary" onclick="openSearch('Palmatia', 'https://www.google.com/search?q=site%3Apalmatia.com+'+q)">Palmatia</button>
- </div></div>`;
+
+
+/* =========================================================
+   FICHE
+   ========================================================= */
+
+function fiche(index){
+
+    const e=erables[index];
+
+    const nom=
+        typeof e==="string"
+        ?e
+        :e.nom;
+
+    const d=FICHES[nom];
+
+    if(!d){
+
+        alert(
+`🌳 ${nom}
+
+Aucune fiche détaillée n'est encore renseignée.`
+        );
+
+        return;
+    }
+
+    alert(
+`🌳 ${nom}
+
+Espèce : ${d.espece}
+
+Port : ${d.port}
+
+Feuillage : ${d.feuilles}
+
+🌱 Printemps :
+${d.printemps}
+
+☀️ Été :
+${d.ete}
+
+🍂 Automne :
+${d.automne}
+
+📈 Croissance :
+${d.croissance}
+
+☀️ Exposition :
+${d.exposition}
+
+💎 Rareté :
+${d.rareté}
+
+🔥 Effet « wahou » :
+${d.wahou}`
+    );
 }
-function openSearch(label,url){window.open(url,'_blank','noopener');}
-function confirmScan(){let name=document.getElementById('scanName').value.trim();if(!name)return;if(duplicate(name))return alert('Déjà présent.');plants.push({name,confidence:'manual',created:new Date().toISOString()});save();document.getElementById('scanResult').innerHTML='<div class="card"><b>✓ Ajouté à la collection.</b></div>';}
-function exportData(){let blob=new Blob([JSON.stringify(plants,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ma-collection-erables.json';a.click();URL.revokeObjectURL(a.href)}
-function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!Array.isArray(x))throw 0;plants=x;save();alert('Sauvegarde importée.')}catch(_){alert('Fichier de sauvegarde invalide.')}};r.readAsText(f)}
-render();
+
+
+/* =========================================================
+   IMPORT
+   ========================================================= */
+
+function importer(){
+
+    const texte=
+        document.getElementById("importBox").value;
+
+    const noms=texte
+        .split(/\r?\n/)
+        .map(x=>x.trim())
+        .filter(Boolean);
+
+    if(!noms.length)return;
+
+    erables=noms.map(n=>({
+
+        nom:n,
+
+        created:new Date().toISOString()
+
+    }));
+
+    sauvegarder();
+
+    afficher();
+
+    afficherMessage(
+        noms.length+" variétés importées."
+    );
+}
+
+
+/* =========================================================
+   COPIE
+   ========================================================= */
+
+function copierListe(){
+
+    const texte=CULTIVARS.join("\n");
+
+    navigator.clipboard
+        .writeText(texte)
+        .then(()=>{
+            afficherMessage("Liste copiée.");
+        })
+        .catch(()=>{
+            alert(texte);
+        });
+}
+
+
+/* =========================================================
+   EXPORT
+   ========================================================= */
+
+function exporter(){
+
+    const blob=new Blob(
+        [JSON.stringify(erables,null,2)],
+        {type:"application/json"}
+    );
+
+    const url=
+        URL.createObjectURL(blob);
+
+    const a=
+        document.createElement("a");
+
+    a.href=url;
+
+    a.download=
+        "ma-collection-erables.json";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
+
+
+/* =========================================================
+   REINITIALISATION
+   ========================================================= */
+
+function reinitialiser(){
+
+    if(
+        !confirm(
+            "Réinitialiser la collection avec les 116 érables ?"
+        )
+    )return;
+
+    erables=CULTIVARS.map(n=>({
+
+        nom:n,
+
+        created:
+        "2026-09-03T00:00:00.000Z"
+
+    }));
+
+    sauvegarder();
+
+    afficher();
+
+    afficherMessage(
+        "Collection réinitialisée avec 116 érables."
+    );
+}
+
+
+/* =========================================================
+   SCANNER
+   ========================================================= */
+
+function scannerInfo(){
+
+    const fichier=
+        document.getElementById("photo")
+        .files[0];
+
+    if(!fichier)return;
+
+    document.getElementById(
+        "scannerMessage"
+    ).innerHTML=
+
+        "<div id='message'>" +
+
+        "📷 Photo reçue : <strong>" +
+
+        escapeHtml(fichier.name) +
+
+        "</strong><br><br>" +
+
+        "Identification automatique du cultivar : " +
+
+        "<strong>fonction à connecter</strong>." +
+
+        "</div>";
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+function afficherMessage(message){
+
+    document.getElementById(
+        "message"
+    ).textContent=message;
+}
+
+
+/* =========================================================
+   SECURITE HTML
+   ========================================================= */
+
+function escapeHtml(str){
+
+    return String(str)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+}
+
+
+/* =========================================================
+   CONTROLE : 116 CULTIVARS
+   ========================================================= */
+
+console.log(
+    "Nombre de cultivars :",
+    CULTIVARS.length
+);
+
+
+/* =========================================================
+   CHARGEMENT
+   ========================================================= */
+
+document.getElementById(
+    "importBox"
+).value=CULTIVARS.join("\n");
+
+afficher();
+
 </script>
+
 </body>
-</html>  
+</html>
