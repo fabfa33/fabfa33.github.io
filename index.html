@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🌳 Ma collection d'érables</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:Arial,sans-serif;margin:0;background:#f3f6f3;color:#222}
+header{background:#245c36;color:white;padding:18px;text-align:center}
+header h1{margin:0 0 6px;font-size:25px}
+header p{margin:0;opacity:.9}
+main{max-width:1000px;margin:auto;padding:15px}
+.card{background:white;padding:18px;margin-bottom:15px;border-radius:14px;box-shadow:0 2px 8px #ccc}
+h2{margin-top:0}
+input,textarea,button{font:inherit;border-radius:9px}
+input,textarea{border:1px solid #bbb;padding:11px;width:100%;margin:5px 0 10px}
+button{border:0;padding:11px 15px;background:#245c36;color:white;cursor:pointer;margin:3px}
+button.secondary{background:#666}
+button.red{background:#b33}
+.search{font-size:17px}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{background:#edf3ed;padding:12px;border-radius:10px;flex:1;min-width:130px;text-align:center}
+#liste{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.item{background:#f5f5f5;border-radius:10px;padding:13px;border-left:5px solid #245c36}
+.item strong{font-size:17px}
+.actions{margin-top:8px}
+.hidden{display:none}
+.badge{display:inline-block;background:#ddd;border-radius:20px;padding:4px 8px;font-size:12px;margin-top:5px}
+#message{padding:10px;border-radius:8px;background:#edf3ed;margin-top:10px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌳 Ma collection d'érables</h1>
+<p id="titre">116 érables préchargés</p>
+</header>
+
+<main>
+
+<div class="card">
+<h2>🔎 Rechercher</h2>
+<input id="recherche" class="search" type="text"
+placeholder="Rechercher une variété..."
+oninput="afficher()">
+
+<div class="stats">
+<div class="stat"><strong id="total">0</strong><br>érables</div>
+<div class="stat"><strong id="affiches">0</strong><br>affichés</div>
+</div>
+</div>
+
+<div class="card">
+<h2>➕ Ajouter un érable</h2>
+<input id="nom" type="text" placeholder="Nom de la variété">
+<button onclick="ajouter()">Ajouter</button>
+</div>
+
+<div class="card">
+<h2>📷 Scanner une étiquette</h2>
+<p>
+La fonction scanner sera utilisée pour identifier automatiquement
+le cultivar à partir d'une photo ou d'une étiquette.
+</p>
+<input id="photo" type="file" accept="image/*" capture="environment"
+onchange="scannerInfo()">
+<div id="scannerMessage"></div>
+</div>
+
+<div class="card">
+<h2>📋 Ma collection — 116 érables importés</h2>
+<div id="liste"></div>
+</div>
+
+<div class="card">
+<h2>📥 Import</h2>
+<p>La liste complète des cultivars préchargés est conservée ici.</p>
+<textarea id="importBox" rows="15"></textarea>
+<br>
+<button onclick="importer()">Importer cette liste</button>
+<button class="secondary" onclick="copierListe()">Copier la liste</button>
+</div>
+
+<div class="card">
+<h2>💾 Sauvegarde</h2>
+<button onclick="exporter()">Exporter ma collection</button>
+<button class="secondary" onclick="reinitialiser()">Réinitialiser les 116</button>
+<div id="message"></div>
+</div>
+
+</main>
+
+<script>
+
+const CULTIVARS = [
+"Mila",
+"Azuma",
+"F.Nakai",
+"Purple ghost",
+"Wood's linearilobum",
+"Verkade's winter gold",
+"Will's devine",
+"Emmett's Pumpkin",
+"Gimborn's élégant surprise",
+"Oregon fern",
+"Palmatifolium",
+"Alpenweiss",
+"Villa taranto",
+"Ikandi",
+"Aka hosoda",
+"Kawahara rose",
+"Butterfly",
+"Aureum",
+"Metamorphosa",
+"Inaba shidare",
+"Shigitatsu",
+"Ukigumo",
+"Seryu",
+"Beni Maiko",
+"Sango Kaku",
+"Rubrifolium",
+"Katsura",
+"Koto Hime",
+"Lace Lady",
+"Scolopendrifolium",
+"Trompenburg",
+"Akatayioo",
+"Crimson Carole",
+"Wilson Pink",
+"Inazuma",
+"Bi Hoo",
+"Aconitifolium",
+"Kujaku Bato",
+"Cascade Gold",
+"Phoenix Garnet",
+"Veridis",
+"Skeeter Broom",
+"Shishigashira",
+"Shirazz",
+"Atropurpureum",
+"Aka Shigitatsu Sawa",
+"Reticulatum Red",
+"Blood good",
+"Osakazuki",
+"Arakawa",
+"Celebration",
+"Wakakusa Yama",
+"Autumn Moon",
+"Alexandre 1",
+"Orange Dream",
+"Emerald Lace",
+"Jerre Schwarts",
+"Festival",
+"Little Princess",
+"Starfish",
+"Summer gold",
+"Going Green",
+"Atrolineare",
+"Ueno Yama",
+"Shin deeshojo",
+"Yoshi Ryusen",
+"Burgundy Lace",
+"Shaina",
+"Moonrise",
+"Taylor",
+"Mikawa Yatsubusa",
+"Orangeola",
+"Flavescens",
+"Tamukeyama",
+"Lileeane's jewel",
+"Ariadne",
+"Ellen",
+"Koshimino",
+"Nyaku Oji",
+"Orange Lace",
+"Dr Baker",
+"Genji Yama",
+"Mikazuki",
+"Jordan",
+"Geisha",
+"Honoka",
+"Ice Dragon",
+"Manyo No Sato",
+"North Wind",
+"Artic Jade",
+"Vitifolium",
+"Hana Matoi",
+"Rainbow",
+"Arton",
+"Baldsmith",
+"Beni Kumo no su",
+"Black Lace",
+"Burgundy Lime",
+"Hagoromo",
+"Honoo",
+"Kishuzan",
+"Kuro Kami Yama",
+"Mischa",
+"Miss Piggy",
+"Nathan",
+"Nomura shidare",
+"Ohjishi",
+"Ornatum",
+"Otome zakura",
+"Pink Filigree",
+"Red Strata",
+"Red Wood",
+"Seiun Kaku",
+"Stella Rosa"
+];
+
+const KEY="carnet-erables-v4";
+
+let erables=JSON.parse(localStorage.getItem(KEY)||"null");
+
+if(!Array.isArray(erables)){
+    erables=CULTIVARS.map(n=>({
+        nom:n,
+        confidence:"unknown",
+        created:"2026-09-03T00:00:00.000Z"
+    }));
+    sauvegarder();
+}
+
+function sauvegarder(){
+    localStorage.setItem(KEY,JSON.stringify(erables));
+}
+
+function afficher(){
+
+    const recherche=document.getElementById("recherche").value
+        .trim().toLowerCase();
+
+    const liste=document.getElementById("liste");
+    liste.innerHTML="";
+
+    let visibles=0;
+
+    erables.forEach((erable,index)=>{
+
+        const nom=typeof erable==="string"
+            ? erable
+            : erable.nom;
+
+        if(recherche && !nom.toLowerCase().includes(recherche))
+            return;
+
+        visibles++;
+
+        const div=document.createElement("div");
+        div.className="item";
+
+        div.innerHTML=`
+            <strong>🌿 ${escapeHtml(nom)}</strong>
+            <div class="badge">Cultivar enregistré</div>
+            <div class="actions">
+                <button onclick="fiche(${index})">Fiche</button>
+                <button class="red" onclick="supprimer(${index})">Supprimer</button>
+            </div>
+        `;
+
+        liste.appendChild(div);
+    });
+
+    document.getElementById("total").textContent=erables.length;
+    document.getElementById("affiches").textContent=visibles;
+
+    document.getElementById("titre").textContent=
+        erables.length===116
+        ? "116 érables préchargés"
+        : erables.length+" érables dans ma collection";
+}
+
+function ajouter(){
+
+    const input=document.getElementById("nom");
+    const nom=input.value.trim();
+
+    if(!nom)return;
+
+    const existe=erables.some(e=>{
+        const n=typeof e==="string"?e:e.nom;
+        return n.toLowerCase()===nom.toLowerCase();
+    });
+
+    if(existe){
+        afficherMessage("Cette variété est déjà dans ta collection.");
+        return;
+    }
+
+    erables.push({
+        nom:nom,
+        confidence:"unknown",
+        created:new Date().toISOString()
+    });
+
+    sauvegarder();
+    input.value="";
+    afficher();
+}
+
+function supprimer(index){
+
+    const nom=typeof erables[index]==="string"
+        ? erables[index]
+        : erables[index].nom;
+
+    if(!confirm("Supprimer "+nom+" de la collection ?"))
+        return;
+
+    erables.splice(index,1);
+    sauvegarder();
+    afficher();
+}
+
+function fiche(index){
+
+    const e=erables[index];
+    const nom=typeof e==="string"?e:e.nom;
+
+    alert(
+`🌳 ${nom}
+
+Fiche du cultivar
+
+Espèce : NON VÉRIFIÉ
+Taille adulte : NON VÉRIFIÉ
+Port : NON VÉRIFIÉ
+Couleur printemps : NON VÉRIFIÉ
+Couleur été : NON VÉRIFIÉ
+Couleur automne : NON VÉRIFIÉ
+Feuilles : NON VÉRIFIÉ
+Croissance : NON VÉRIFIÉ
+Exposition : NON VÉRIFIÉ
+Rareté : NON VÉRIFIÉ
+Effet « wahou » : NON VÉRIFIÉ
+
+⚠️ Aucune donnée botanique n'est inventée.
+
+La prochaine étape est la recherche réelle des pépinières et des sources.`
+    );
+}
+
+function importer(){
+
+    const texte=document.getElementById("importBox").value;
+
+    const noms=texte
+        .split(/\r?\n/)
+        .map(x=>x.trim())
+        .filter(Boolean);
+
+    if(!noms.length)return;
+
+    erables=noms.map(n=>({
+        nom:n,
+        confidence:"unknown",
+        created:new Date().toISOString()
+    }));
+
+    sauvegarder();
+    afficher();
+
+    afficherMessage(noms.length+" variétés importées.");
+}
+
+function copierListe(){
+
+    const texte=CULTIVARS.join("\n");
+
+    navigator.clipboard.writeText(texte)
+        .then(()=>afficherMessage("Liste copiée."))
+        .catch(()=>alert(texte));
+}
+
+function exporter(){
+
+    const blob=new Blob(
+        [JSON.stringify(erables,null,2)],
+        {type:"application/json"}
+    );
+
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+
+    a.href=url;
+    a.download="ma-collection-erables.json";
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
+
+function reinitialiser(){
+
+    if(!confirm("Réinitialiser la collection avec les 116 érables préchargés ?"))
+        return;
+
+    erables=CULTIVARS.map(n=>({
+        nom:n,
+        confidence:"unknown",
+        created:"2026-09-03T00:00:00.000Z"
+    }));
+
+    sauvegarder();
+    afficher();
+
+    afficherMessage("Collection réinitialisée.");
+}
+
+function scannerInfo(){
+
+    const fichier=document.getElementById("photo").files[0];
+
+    if(!fichier)return;
+
+    document.getElementById("scannerMessage").innerHTML=
+        "<div id='message'>📷 Photo reçue : <strong>"+
+        escapeHtml(fichier.name)+
+        "</strong><br><br>"+
+        "Identification automatique : prochaine étape.</div>";
+}
+
+function afficherMessage(message){
+    document.getElementById("message").textContent=message;
+}
+
+function escapeHtml(str){
+
+    return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+document.getElementById("importBox").value=CULTIVARS.join("\n");
+
+afficher();
+
+</script>
+
+</body>
+</html>
