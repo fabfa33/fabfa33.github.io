@@ -266,6 +266,79 @@ font-weight:bold;
 text-decoration:underline;
 }
 
+
+/* =========================================================
+   AJOUT : SCANNER D'ÉTIQUETTE
+========================================================= */
+
+.scanner-box{
+background:white;
+border-radius:15px;
+padding:16px;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+margin-bottom:15px;
+}
+
+.scanner-box h2{
+margin-top:0;
+color:#245c36;
+font-size:19px;
+}
+
+.scanner-result{
+margin-top:12px;
+padding:13px;
+border-radius:10px;
+line-height:1.5;
+}
+
+.scanner-result.green{
+background:#e7f5ea;
+border:1px solid #b8d9bf;
+}
+
+.scanner-result.orange{
+background:#fff3df;
+border:1px solid #efd29c;
+}
+
+.scanner-result.blue{
+background:#e9f2fb;
+border:1px solid #bfd4e8;
+}
+
+.scanner-result.red{
+background:#fdeaea;
+border:1px solid #efc0c0;
+}
+
+.scanner-progress{
+margin-top:10px;
+font-size:13px;
+color:#59695e;
+}
+
+.similar-maple{
+background:white;
+border:1px solid #dfe7e1;
+border-radius:9px;
+padding:9px;
+margin-top:7px;
+}
+
+.similar-maple strong{
+color:#245c36;
+}
+
+.scanner-text{
+background:#f3f6f3;
+padding:9px;
+border-radius:8px;
+font-size:13px;
+white-space:pre-wrap;
+margin-top:8px;
+}
+
 @media(max-width:600px){
 .stats{
 grid-template-columns:repeat(2,1fr);
@@ -344,10 +417,38 @@ oninput="render()"
 📍 Trouver l'érable le plus proche
 </button>
 
+<!-- AJOUT : SCAN ÉTIQUETTE -->
+
+<label class="action">
+
+📷 Scanner une étiquette
+
+<input
+id="labelScanner"
+type="file"
+accept="image/*"
+capture="environment"
+style="display:none"
+onchange="scanLabel(this)"
+>
+
+</label>
+
 </div>
 
 
 <div id="nearestBox" class="notice hidden"></div>
+
+<!-- AJOUT : RÉSULTAT DU SCAN -->
+
+<div id="scannerBox" class="scanner-box hidden">
+
+<h2>🔎 Analyse de l'étiquette</h2>
+
+<div id="scannerResult"></div>
+
+</div>
+
 
 <div id="mapleList"></div>
 
@@ -410,6 +511,13 @@ Les photos restent stockées dans le navigateur.
 </section>
 
 </div>
+
+
+<!-- =========================================================
+     AJOUT : MOTEUR OCR
+     ========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
 
 <script>
@@ -540,7 +648,6 @@ const DEFAULT_MAPLES = [
 
 /* =========================================================
    FICHES DESCRIPTIVES
-   Reprises de la partie descriptive précédente
 ========================================================= */
 
 const PROFILES = {
@@ -551,7 +658,7 @@ const PROFILES = {
 "printemps rouge-pourpre; été pourpre; automne rouge",
 "feuille palmée, lobes fins à moyens",
 "mi-ombre à soleil doux",
-"Très graphique; excellent contraste"
+"Excellent contraste"
 ],
 
 "Emmett's Pumpkin":[
@@ -1553,12 +1660,6 @@ let erables =
 JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
 
 
-/*
-   IMPORTANT :
-   Si aucune collection n'existe encore,
-   on crée réellement les 116 objets.
-*/
-
 if(!Array.isArray(erables) || erables.length === 0){
 
 erables = DEFAULT_MAPLES.map(function(name){
@@ -1715,11 +1816,6 @@ return maple.gps !== null;
 }).length;
 
 
-/*
-   C'EST ICI QUE LES 116 FICHES
-   SONT CRÉÉES INDIVIDUELLEMENT.
-*/
-
 if(results.length === 0){
 
 list.innerHTML =
@@ -1742,11 +1838,6 @@ item.index
 })
 .join("");
 
-
-/*
-   Charger les photos après création
-   des fiches.
-*/
 
 results.forEach(function(item){
 
@@ -1785,10 +1876,6 @@ gpsText =
 }
 
 
-/* =========================================================
-   FICHE DESCRIPTIVE AJOUTÉE
-========================================================= */
-
 const profile =
 getProfile(maple.name);
 
@@ -1825,8 +1912,6 @@ ${gpsText}
 
 </div>
 
-
-<!-- FICHE DESCRIPTIVE INDIVIDUELLE -->
 
 <div class="fiche">
 
@@ -2819,6 +2904,749 @@ alert(
 
 
 reader.readAsText(file);
+
+}
+
+
+/* =========================================================
+   AJOUT : OUTILS DU SCANNER
+========================================================= */
+
+function normalizeCultivarName(text){
+
+return String(text || "")
+.toLowerCase()
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g,"")
+.replace(/[‘’'`´]/g,"")
+.replace(/[^a-z0-9]+/g,"")
+.trim();
+
+}
+
+
+function levenshtein(a,b){
+
+a = String(a);
+b = String(b);
+
+const matrix = [];
+
+for(let i=0;i<=b.length;i++){
+
+matrix[i] = [i];
+
+}
+
+for(let j=0;j<=a.length;j++){
+
+matrix[0][j] = j;
+
+}
+
+for(let i=1;i<=b.length;i++){
+
+for(let j=1;j<=a.length;j++){
+
+if(b.charAt(i-1) === a.charAt(j-1)){
+
+matrix[i][j] =
+matrix[i-1][j-1];
+
+}else{
+
+matrix[i][j] =
+Math.min(
+
+matrix[i-1][j] + 1,
+
+matrix[i][j-1] + 1,
+
+matrix[i-1][j-1] + 1
+
+);
+
+}
+
+}
+
+}
+
+return matrix[b.length][a.length];
+
+}
+
+
+function similarityText(a,b){
+
+const x =
+normalizeCultivarName(a);
+
+const y =
+normalizeCultivarName(b);
+
+if(!x || !y){
+
+return 0;
+
+}
+
+if(x === y){
+
+return 1;
+
+}
+
+if(x.includes(y) || y.includes(x)){
+
+return 0.92;
+
+}
+
+const distance =
+levenshtein(x,y);
+
+const maxLength =
+Math.max(x.length,y.length);
+
+if(maxLength === 0){
+
+return 0;
+
+}
+
+return 1 -
+(distance / maxLength);
+
+}
+
+
+/* =========================================================
+   COMPARAISON DES CARACTÉRISTIQUES
+========================================================= */
+
+function profileSimilarity(nameA,nameB){
+
+const a =
+getProfile(nameA);
+
+const b =
+getProfile(nameB);
+
+let score = 0;
+
+
+/* Espèce */
+
+if(a[0] === b[0]){
+
+score += 25;
+
+}
+
+
+/* Couleur */
+
+const colorsA =
+String(a[1]).toLowerCase();
+
+const colorsB =
+String(b[1]).toLowerCase();
+
+if(
+colorsA.includes("rouge") &&
+colorsB.includes("rouge")
+){
+
+score += 10;
+
+}
+
+if(
+colorsA.includes("vert") &&
+colorsB.includes("vert")
+){
+
+score += 8;
+
+}
+
+if(
+colorsA.includes("rose") &&
+colorsB.includes("rose")
+){
+
+score += 8;
+
+}
+
+if(
+colorsA.includes("panache") &&
+colorsB.includes("panache")
+){
+
+score += 12;
+
+}
+
+
+/* Feuillage */
+
+const foliageA =
+String(a[3]).toLowerCase();
+
+const foliageB =
+String(b[3]).toLowerCase();
+
+if(
+foliageA.includes("découp") &&
+foliageB.includes("découp")
+){
+
+score += 12;
+
+}
+
+if(
+foliageA.includes("petite") &&
+foliageB.includes("petite")
+){
+
+score += 8;
+
+}
+
+if(
+foliageA.includes("fin") &&
+foliageB.includes("fin")
+){
+
+score += 8;
+
+}
+
+if(
+foliageA.includes("palm") &&
+foliageB.includes("palm")
+){
+
+score += 5;
+
+}
+
+
+/* Port dissectum */
+
+if(
+String(a[0]).toLowerCase().includes("dissectum") &&
+String(b[0]).toLowerCase().includes("dissectum")
+){
+
+score += 15;
+
+}
+
+return score;
+
+}
+
+
+/* =========================================================
+   EXTRACTION DU NOM DU CULTIVAR
+========================================================= */
+
+function extractCultivarName(text){
+
+const cleaned =
+String(text || "")
+.replace(/\r/g," ")
+.replace(/\n+/g," ")
+.replace(/\s+/g," ")
+.trim();
+
+
+if(!cleaned){
+
+return "";
+
+}
+
+
+/* Recherche des noms déjà présents dans la collection */
+
+let bestName = "";
+let bestScore = 0;
+
+erables.forEach(function(maple){
+
+const score =
+similarityText(
+cleaned,
+maple.name
+);
+
+if(score > bestScore){
+
+bestScore = score;
+bestName = maple.name;
+
+}
+
+});
+
+
+/* Recherche également dans le texte ligne par ligne */
+
+const words =
+cleaned
+.split(/[\s,;:()|/]+/)
+.filter(function(word){
+
+return word.length >= 3;
+
+});
+
+
+erables.forEach(function(maple){
+
+words.forEach(function(word){
+
+const score =
+similarityText(
+word,
+maple.name
+);
+
+if(score > bestScore){
+
+bestScore = score;
+bestName = maple.name;
+
+}
+
+});
+
+});
+
+
+if(bestScore >= 0.72){
+
+return bestName;
+
+}
+
+
+/*
+   Si aucun nom de collection ne correspond,
+   on cherche les formulations typiques d'étiquette.
+*/
+
+const patterns = [
+
+/(?:Acer\s+(?:palmatum|japonicum|shirasawanum|pseudosieboldianum)[^,;]*)/i,
+
+/['“"]([^'”"]{3,60})['”"]/,
+
+/cultivar\s*[:\-]?\s*([A-Za-z0-9À-ÿ .'-]{3,60})/i,
+
+/variety\s*[:\-]?\s*([A-Za-z0-9À-ÿ .'-]{3,60})/i
+
+];
+
+for(const pattern of patterns){
+
+const match =
+cleaned.match(pattern);
+
+if(match){
+
+return (
+match[1] ||
+match[0]
+).trim();
+
+}
+
+}
+
+
+/*
+   Dernier recours :
+   le texte complet peut être le nom.
+*/
+
+return cleaned.slice(0,80);
+
+}
+
+
+/* =========================================================
+   RECHERCHE DES MEILLEURES CORRESPONDANCES
+========================================================= */
+
+function findClosestMaples(name){
+
+return erables
+.map(function(maple,index){
+
+const nameScore =
+similarityText(
+name,
+maple.name
+);
+
+const profileScore =
+profileSimilarity(
+name,
+maple.name
+);
+
+const finalScore =
+(nameScore * 100 * 0.75) +
+(profileScore * 0.25);
+
+return {
+
+maple:maple,
+
+index:index,
+
+nameScore:nameScore,
+
+profileScore:profileScore,
+
+score:finalScore
+
+};
+
+})
+.sort(function(a,b){
+
+return b.score - a.score;
+
+})
+.slice(0,5);
+
+}
+
+
+/* =========================================================
+   SCAN DE L'ÉTIQUETTE
+========================================================= */
+
+async function scanLabel(input){
+
+const file =
+input.files[0];
+
+if(!file){
+
+return;
+
+}
+
+
+const box =
+document.getElementById("scannerBox");
+
+const result =
+document.getElementById("scannerResult");
+
+box.classList.remove("hidden");
+
+result.className =
+"scanner-progress";
+
+result.innerHTML =
+"📷 Lecture de l'étiquette en cours...";
+
+
+try{
+
+if(
+typeof Tesseract === "undefined"
+){
+
+throw new Error(
+"Le moteur de lecture n'est pas disponible."
+);
+
+}
+
+
+/*
+   OCR en français + anglais.
+   Le français est utile pour les étiquettes
+   de pépinières françaises.
+*/
+
+const worker =
+await Tesseract.createWorker(
+"fra+eng"
+);
+
+
+result.innerHTML =
+"🔎 Analyse du texte de l'étiquette...";
+
+
+const recognition =
+await worker.recognize(file);
+
+
+const text =
+recognition.data.text.trim();
+
+
+await worker.terminate();
+
+
+if(!text){
+
+result.className =
+"scanner-result red";
+
+result.innerHTML =
+"❌ Aucun texte lisible n'a été détecté.<br><br>" +
+"Essaie de reprendre la photo en rapprochant l'étiquette, " +
+"avec une meilleure lumière et sans reflet.";
+
+input.value = "";
+
+return;
+
+}
+
+
+const detectedName =
+extractCultivarName(text);
+
+
+const closest =
+findClosestMaples(detectedName);
+
+
+const exact =
+erables.find(function(maple){
+
+return normalizeCultivarName(maple.name) ===
+normalizeCultivarName(detectedName);
+
+});
+
+
+/* =====================================================
+   CAS 1 : DÉJÀ PRÉSENT
+===================================================== */
+
+if(exact){
+
+result.className =
+"scanner-result green";
+
+result.innerHTML =
+
+"🟢 <strong>ATTENTION : TU AS DÉJÀ CET ÉRABLE !</strong>" +
+
+"<br><br>" +
+
+"🌳 Variété détectée : " +
+"<strong>" +
+escapeHtml(exact.name) +
+"</strong>" +
+
+"<br><br>" +
+
+"Il est déjà présent dans ta collection " +
+"(n° " +
+(erables.indexOf(exact)+1) +
+")." +
+
+"<div class=\"scanner-text\">" +
+"<strong>Texte lu sur l'étiquette :</strong><br>" +
+escapeHtml(text) +
+"</div>";
+
+input.value = "";
+
+return;
+
+}
+
+
+/* =====================================================
+   CAS 2 : CORRESPONDANCE TRÈS PROBABLE
+===================================================== */
+
+if(
+closest.length > 0 &&
+closest[0].nameScore >= 0.72
+){
+
+const best =
+closest[0];
+
+result.className =
+"scanner-result orange";
+
+result.innerHTML =
+
+"🟠 <strong>VARIÉTÉ TRÈS PROCHE D'UNE DE TA COLLECTION</strong>" +
+
+"<br><br>" +
+
+"Étiquette lue : " +
+"<strong>" +
+escapeHtml(detectedName) +
+"</strong>" +
+
+"<br><br>" +
+
+"🌳 La correspondance la plus proche est : " +
+
+"<strong>" +
+escapeHtml(best.maple.name) +
+"</strong>" +
+
+"<br>" +
+
+"Correspondance du nom : " +
+Math.round(best.nameScore * 100) +
+"%" +
+
+"<div style=\"margin-top:10px\">" +
+
+closest.slice(0,4).map(function(item){
+
+return (
+
+"<div class=\"similar-maple\">" +
+
+"<strong>" +
+escapeHtml(item.maple.name) +
+"</strong>" +
+
+"<br>" +
+
+"Proximité : " +
+Math.round(item.score) +
+"%"
+
++
+
+"</div>"
+
+);
+
+}).join("") +
+
+"</div>" +
+
+"<div class=\"scanner-text\">" +
+"<strong>Texte lu sur l'étiquette :</strong><br>" +
+escapeHtml(text) +
+"</div>";
+
+input.value = "";
+
+return;
+
+}
+
+
+/* =====================================================
+   CAS 3 : NOUVEAU CULTIVAR
+===================================================== */
+
+result.className =
+"scanner-result blue";
+
+result.innerHTML =
+
+"🔵 <strong>JE NE TROUVE PAS CETTE VARIÉTÉ DANS TA COLLECTION</strong>" +
+
+"<br><br>" +
+
+"🌳 Étiquette détectée : " +
+"<strong>" +
+escapeHtml(detectedName) +
+"</strong>" +
+
+"<br><br>" +
+
+"Voici les variétés de ta collection qui présentent " +
+"les caractéristiques les plus proches :" +
+
+"<div style=\"margin-top:10px\">" +
+
+closest.slice(0,5).map(function(item){
+
+return (
+
+"<div class=\"similar-maple\">" +
+
+"<strong>" +
+escapeHtml(item.maple.name) +
+"</strong>" +
+
+"<br>" +
+
+"🌱 " +
+escapeHtml(getProfile(item.maple.name)[3]) +
+
+"<br>" +
+
+"🎨 " +
+escapeHtml(getProfile(item.maple.name)[1]) +
+
+"<br>" +
+
+"⭐ Proximité : " +
+Math.round(item.score) +
+"%"
+
++
+
+"</div>"
+
+);
+
+}).join("") +
+
+"</div>" +
+
+"<div class=\"scanner-text\">" +
+"<strong>Texte lu sur l'étiquette :</strong><br>" +
+escapeHtml(text) +
+"</div>";
+
+input.value = "";
+
+
+}catch(error){
+
+console.error(error);
+
+result.className =
+"scanner-result red";
+
+result.innerHTML =
+
+"❌ Impossible de lire correctement cette étiquette." +
+
+"<br><br>" +
+
+"Essaie avec une photo plus nette, plus proche et bien éclairée." +
+
+"<br><br>" +
+
+"<span class=\"small\">" +
+escapeHtml(error.message || "Erreur inconnue") +
+"</span>";
+
+input.value = "";
+
+}
 
 }
 
