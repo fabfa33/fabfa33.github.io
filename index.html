@@ -3,265 +3,221 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>🌳 Ma collection d'érables</title>
 
 <meta name="theme-color" content="#245c36">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
 <link rel="icon" type="image/svg+xml"
 href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%23245c36'/%3E%3Cpath d='M64 20C47 34 28 52 28 73c0 20 15 35 36 35s36-15 36-35C100 52 81 34 64 20Z' fill='%23c85b3c'/%3E%3Cpath d='M64 40v64M64 57 45 45M64 68l20-13M64 80 45 68M64 89l18-10' fill='none' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
 
 <style>
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 
 body{
 margin:0;
-font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-background:#f3f6f2;
-color:#1d2b21;
+background:#f3f6f3;
+color:#17301f;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 header{
 background:#245c36;
 color:white;
-padding:18px 14px;
+padding:18px 15px;
 position:sticky;
 top:0;
-z-index:20;
-box-shadow:0 2px 10px #0003;
+z-index:10;
+box-shadow:0 2px 8px rgba(0,0,0,.2);
 }
 
-h1{
-margin:0;
+header h1{
+margin:0 0 15px;
 font-size:22px;
-}
-
-.subtitle{
-font-size:13px;
-opacity:.85;
-margin-top:3px;
 }
 
 .tabs{
 display:flex;
-gap:7px;
-margin-top:14px;
-overflow-x:auto;
+gap:8px;
 }
 
-.tab{
+.tabs button{
 border:0;
 border-radius:10px;
-padding:9px 13px;
-background:#ffffff22;
+padding:9px 14px;
+font-weight:bold;
+background:rgba(255,255,255,.15);
 color:white;
-white-space:nowrap;
-font-weight:700;
 cursor:pointer;
 }
 
-.tab.active{
+.tabs button.active{
 background:white;
 color:#245c36;
 }
 
-main{
-max-width:1100px;
+.container{
+max-width:1000px;
 margin:auto;
-padding:14px;
-}
-
-.panel{
-background:white;
-border-radius:16px;
 padding:15px;
-margin-bottom:14px;
-box-shadow:0 2px 9px #0000000d;
 }
 
 .stats{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:9px;
+gap:10px;
+margin-bottom:15px;
 }
 
 .stat{
-background:#edf5ee;
-border-radius:13px;
-padding:11px;
+background:white;
+border-radius:14px;
+padding:13px;
 text-align:center;
+box-shadow:0 2px 7px rgba(0,0,0,.08);
 }
 
-.stat b{
+.stat strong{
 display:block;
-font-size:24px;
-color:#245c36;
-}
-
-.stat span{
-font-size:12px;
+font-size:25px;
+margin-bottom:3px;
 }
 
 .search{
-margin:14px 0;
-}
-
-input[type=text],
-input[type=search],
-select{
 width:100%;
-padding:11px 12px;
+padding:13px;
 border:1px solid #ccd8ce;
-border-radius:10px;
-background:white;
-font:inherit;
+border-radius:12px;
+font-size:16px;
+margin-bottom:12px;
 }
 
-button{
+.toolbar{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-bottom:12px;
+}
+
+button.action,
+label.action{
+display:inline-block;
 border:0;
-border-radius:10px;
-padding:10px 13px;
-background:#245c36;
-color:white;
-font:inherit;
-font-weight:700;
+border-radius:9px;
+padding:9px 11px;
+background:#e5efe7;
+color:#174526;
+font-weight:bold;
 cursor:pointer;
 }
 
-button.secondary{
-background:#e9f0ea;
-color:#245c36;
-}
-
 button.danger{
-background:#a53c32;
-}
-
-button.small{
-padding:7px 9px;
-font-size:12px;
-}
-
-.actions{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-margin-top:10px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
-gap:12px;
+background:#fde5e5;
+color:#a00000;
 }
 
 .card{
-border:1px solid #dfe7e0;
-border-radius:15px;
-padding:14px;
 background:white;
+border-radius:15px;
+padding:15px;
+margin-bottom:11px;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .card h3{
-margin:0 0 6px;
-color:#245c36;
+margin:0 0 8px;
 font-size:18px;
-}
-
-.badge{
-display:inline-block;
-padding:4px 8px;
-border-radius:999px;
-background:#edf5ee;
 color:#245c36;
-font-size:11px;
-margin:2px 3px 7px 0;
 }
 
-.meta{
-font-size:13px;
-color:#536158;
-line-height:1.45;
+.card-info{
+font-size:14px;
+color:#59695e;
+line-height:1.5;
 }
 
-.detail{
-margin-top:11px;
-padding-top:11px;
-border-top:1px solid #e5ebe6;
+.card-actions{
+display:flex;
+flex-wrap:wrap;
+gap:7px;
+margin-top:12px;
 }
 
 .hidden{
 display:none!important;
 }
 
-.photo-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:6px;
-margin-top:8px;
+.panel{
+background:white;
+padding:16px;
+border-radius:15px;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+margin-bottom:15px;
 }
 
-.photo{
-position:relative;
-}
-
-.photo img{
+.panel input{
 width:100%;
-aspect-ratio:1;
+padding:12px;
+border:1px solid #ccd8ce;
+border-radius:10px;
+margin-bottom:10px;
+font-size:16px;
+}
+
+.photo-grid{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:12px;
+}
+
+.photo-box{
+width:120px;
+}
+
+.photo-box img{
+width:120px;
+height:95px;
 object-fit:cover;
-border-radius:8px;
+border-radius:9px;
 display:block;
 }
 
-.photo button{
-position:absolute;
-right:3px;
-top:3px;
-padding:3px 7px;
-background:#a53c32;
-border-radius:7px;
-}
-
-.filebtn{
-display:inline-block;
-background:#245c36;
-color:white;
-padding:10px 13px;
-border-radius:10px;
-font-weight:700;
-cursor:pointer;
-}
-
-.filebtn input{
-display:none;
-}
-
-.nearest{
-padding:10px;
-border-radius:10px;
-background:#f3f7f3;
-margin-top:7px;
-}
-
-small{
-color:#68756c;
-}
-
-footer{
-text-align:center;
-color:#69756c;
+.photo-box button{
+width:100%;
+margin-top:4px;
 font-size:12px;
-padding:20px;
+}
+
+.notice{
+padding:12px;
+background:#fff8dc;
+border-radius:10px;
+margin-bottom:12px;
+}
+
+.empty{
+text-align:center;
+padding:30px 10px;
+color:#69766d;
+}
+
+.small{
+font-size:12px;
+color:#69766d;
 }
 
 @media(max-width:600px){
 .stats{
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(2,1fr);
 }
-.grid{
-grid-template-columns:1fr;
+
+.stat:last-child{
+grid-column:span 2;
 }
 }
 </style>
@@ -271,151 +227,139 @@ grid-template-columns:1fr;
 
 <header>
 <h1>🌳 Ma collection d'érables</h1>
-<div class="subtitle">Carnet personnel • 116 variétés préchargées</div>
 
 <div class="tabs">
-<button class="tab active" data-tab="collection">Collection</button>
-<button class="tab" data-tab="ajout">Ajouter</button>
-<button class="tab" data-tab="outils">Outils</button>
+<button class="active" onclick="showTab('collection',this)">
+Collection
+</button>
+
+<button onclick="showTab('ajouter',this)">
+Ajouter
+</button>
+
+<button onclick="showTab('outils',this)">
+Outils
+</button>
 </div>
 </header>
 
-<main>
 
-<section id="collection" class="panel">
+<div class="container">
+
+<!-- COLLECTION -->
+
+<section id="collection">
 
 <div class="stats">
+
 <div class="stat">
-<b id="count">116</b>
-<span>érables</span>
+<strong id="total">116</strong>
+érables
 </div>
 
 <div class="stat">
-<b id="located">0</b>
-<span>géolocalisés</span>
+<strong id="located">0</strong>
+localisés
 </div>
 
 <div class="stat">
-<b id="photosCount">0</b>
-<span>avec photos</span>
-</div>
+<strong id="photoCount">0</strong>
+photos
 </div>
 
-<div class="actions">
-<button onclick="trouverPlusProche()">
+</div>
+
+
+<input
+id="search"
+class="search"
+type="search"
+placeholder="🔎 Rechercher un érable..."
+oninput="render()"
+>
+
+
+<div class="toolbar">
+
+<button class="action" onclick="findNearest()">
 📍 Trouver l'érable le plus proche
 </button>
+
 </div>
 
-<div id="nearest"></div>
 
-<div class="search">
-<input id="search"
-type="search"
-placeholder="🔎 Rechercher une variété...">
-</div>
+<div id="nearestBox" class="notice hidden"></div>
 
-<div id="list" class="grid"></div>
+<div id="mapleList"></div>
 
 </section>
 
 
-<section id="ajout" class="panel hidden">
+<!-- AJOUTER -->
 
-<h2>➕ Ajouter un érable</h2>
+<section id="ajouter" class="hidden">
+
+<div class="panel">
+
+<h2>Ajouter un érable</h2>
 
 <input
-id="newName"
-type="text"
-placeholder="Nom de la variété">
+id="newMaple"
+placeholder="Nom de la variété"
+>
 
-<div class="actions">
-<button onclick="ajouter()">
-Ajouter à ma collection
+<button class="action" onclick="addMaple()">
+➕ Ajouter
 </button>
+
 </div>
 
 </section>
 
 
-<section id="outils" class="panel hidden">
+<!-- OUTILS -->
 
-<h2>🛠️ Outils</h2>
+<section id="outils" class="hidden">
 
-<p>
-Chaque fiche permet d'enregistrer la position GPS et plusieurs photos.
-</p>
+<div class="panel">
 
-<div class="actions">
+<h2>Outils</h2>
 
-<label class="filebtn">
-📷 Scanner / choisir une photo
-<input
-type="file"
-accept="image/*"
-onchange="scannerInfo(this)">
-</label>
-
-</div>
-
-<hr>
-
-<h3>Import / export</h3>
-
-<div class="actions">
-
-<button onclick="exporter()">
-⬇️ Exporter ma collection
+<button class="action" onclick="exportCollection()">
+⬇️ Exporter la collection
 </button>
 
-<label class="filebtn">
+<button class="action" onclick="document.getElementById('importFile').click()">
 ⬆️ Importer une collection
+</button>
+
 <input
 id="importFile"
 type="file"
-accept=".json,application/json"
-onchange="importer(this)">
-</label>
+accept=".json"
+style="display:none"
+onchange="importCollection(this)"
+>
 
-<button
-class="secondary"
-onclick="copierListe()">
-📋 Copier la liste
-</button>
-
-<button
-class="danger"
-onclick="reinitialiser()">
-♻️ Réinitialiser les 116 érables
-</button>
+<p class="small">
+L'export contient les noms et les positions GPS.
+Les photos restent stockées dans le navigateur.
+</p>
 
 </div>
 
-<p>
-<small>
-Les photos sont conservées localement sur cet appareil et ne sont pas incluses dans l'export JSON.
-</small>
-</p>
-
 </section>
 
-</main>
+</div>
 
-<footer>
-Ma collection d'érables • données enregistrées localement sur l'appareil
-</footer>
 
 <script>
 
-"use strict";
-
-
 /* =========================================================
    LES 116 ÉRABLES
-   ========================================================= */
+========================================================= */
 
-const DEFAULT_NAMES = [
-
+const DEFAULT_MAPLES = [
 "Mila",
 "Azuma",
 "F.Nakai",
@@ -532,1160 +476,393 @@ const DEFAULT_NAMES = [
 "Red Wood",
 "Seiun Kaku",
 "Stella Rosa"
-
 ];
 
 
 /* =========================================================
-   FICHES
-   ========================================================= */
+   STOCKAGE
+========================================================= */
 
-const FICHES = {
+const STORAGE_KEY = "collection-erables-complete-v1";
 
-"Mila":{
-espece:"Acer palmatum",
-feuillage:"Rouge / rose",
-description:"Variété décorative à feuillage coloré."
-},
+let erables =
+JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
 
-"Azuma":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage fin et élégant."
-},
 
-"F.Nakai":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Variété japonaise originale."
-},
+/*
+   IMPORTANT :
+   Si aucune collection n'existe encore,
+   on crée réellement les 116 objets.
+*/
 
-"Purple ghost":{
-espece:"Acer palmatum",
-feuillage:"Pourpre",
-description:"Feuillage sombre avec de beaux contrastes."
-},
+if(!Array.isArray(erables) || erables.length === 0){
 
-"Wood's linearilobum":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuilles très étroites et profondément découpées."
-},
-
-"Verkade's winter gold":{
-espece:"Acer palmatum",
-feuillage:"Vert / jaune",
-description:"Variété appréciée pour son bois hivernal."
-},
-
-"Will's devine":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Feuillage décoratif et original."
-},
-
-"Emmett's Pumpkin":{
-espece:"Acer japonicum",
-feuillage:"Orange cuivré",
-description:"Une référence spectaculaire pour les couleurs automnales."
-},
-
-"Gimborn's élégant surprise":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Panachure très spectaculaire."
-},
-
-"Oregon fern":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage très finement découpé."
-},
-
-"Palmatifolium":{
-espece:"Acer shirasawanum",
-feuillage:"Vert",
-description:"Grandes feuilles et présence remarquable."
-},
-
-"Alpenweiss":{
-espece:"Acer palmatum",
-feuillage:"Panaché blanc",
-description:"Panachure blanche très lumineuse."
-},
-
-"Villa taranto":{
-espece:"Acer palmatum",
-feuillage:"Multicolore",
-description:"Feuillage fin avec de fortes variations de couleur."
-},
-
-"Ikandi":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Variété rare et très lumineuse."
-},
-
-"Aka hosoda":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Feuilles fines et élégantes."
-},
-
-"Kawahara rose":{
-espece:"Acer palmatum",
-feuillage:"Rose",
-description:"Panachure rose très décorative."
-},
-
-"Butterfly":{
-espece:"Acer palmatum",
-feuillage:"Vert / crème",
-description:"Panachure claire très reconnaissable."
-},
-
-"Aureum":{
-espece:"Acer palmatum",
-feuillage:"Doré",
-description:"Feuillage jaune lumineux."
-},
-
-"Metamorphosa":{
-espece:"Acer palmatum",
-feuillage:"Multicolore",
-description:"Très belle évolution des couleurs au fil des saisons."
-},
-
-"Inaba shidare":{
-espece:"Acer palmatum",
-feuillage:"Pourpre",
-description:"Feuillage lacinié pourpre et port retombant."
-},
-
-"Shigitatsu":{
-espece:"Acer palmatum",
-feuillage:"Vert / crème",
-description:"Feuillage fin et lumineux."
-},
-
-"Ukigumo":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Panachure blanche évoquant des nuages."
-},
-
-"Seryu":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage très découpé et port élégant."
-},
-
-"Beni Maiko":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Jeunes pousses rouges très lumineuses."
-},
-
-"Sango Kaku":{
-espece:"Acer palmatum",
-feuillage:"Vert / jaune",
-description:"Célèbre pour ses rameaux rouges en hiver."
-},
-
-"Rubrifolium":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Feuillage rouge décoratif."
-},
-
-"Katsura":{
-espece:"Acer palmatum",
-feuillage:"Orange / jaune",
-description:"Débourrement très spectaculaire."
-},
-
-"Koto Hime":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Très petites feuilles et port compact."
-},
-
-"Lace Lady":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage très finement découpé."
-},
-
-"Scolopendrifolium":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuilles extrêmement étroites."
-},
-
-"Trompenburg":{
-espece:"Acer palmatum",
-feuillage:"Pourpre",
-description:"Feuilles pourpres caractéristiques."
-},
-
-"Akatayioo":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Feuillage rouge très décoratif."
-},
-
-"Crimson Carole":{
-espece:"Acer palmatum",
-feuillage:"Rouge sombre",
-description:"Feuillage sombre et intense."
-},
-
-"Wilson Pink":{
-espece:"Acer palmatum",
-feuillage:"Rose",
-description:"Jeunes pousses fortement colorées."
-},
-
-"Inazuma":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Variété rare au feuillage très décoratif."
-},
-
-"Bi Hoo":{
-espece:"Acer palmatum",
-feuillage:"Vert / jaune",
-description:"Rameaux jaunes particulièrement intéressants en hiver."
-},
-
-"Aconitifolium":{
-espece:"Acer japonicum",
-feuillage:"Vert",
-description:"Très grandes feuilles profondément découpées."
-},
-
-"Kujaku Bato":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage fin et élégant."
-},
-
-"Cascade Gold":{
-espece:"Acer palmatum",
-feuillage:"Doré",
-description:"Port retombant et feuillage lumineux."
-},
-
-"Phoenix":{
-espece:"Acer palmatum",
-feuillage:"Rose / rouge",
-description:"Jeunes pousses fortement colorées."
-},
-
-"Garnet":{
-espece:"Acer palmatum",
-feuillage:"Pourpre",
-description:"Port retombant et feuillage sombre."
-},
-
-"Veridis":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage vert fin."
-},
-
-"Skeeter Broom":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Port compact et dressé."
-},
-
-"Shishigashira":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage dense et crêpé."
-},
-
-"Shirazz":{
-espece:"Acer palmatum",
-feuillage:"Rose / blanc",
-description:"Panachure spectaculaire."
-},
-
-"Atropurpureum":{
-espece:"Acer palmatum",
-feuillage:"Pourpre",
-description:"Grand classique au feuillage pourpre."
-},
-
-"Aka Shigitatsu Sawa":{
-espece:"Acer palmatum",
-feuillage:"Rose / vert",
-description:"Panachure et couleurs de printemps remarquables."
-},
-
-"Reticulatum Red":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Feuillage réticulé fortement coloré."
-},
-
-"Blood good":{
-espece:"Acer palmatum",
-feuillage:"Rouge sombre",
-description:"Feuillage rouge sombre très fiable."
-},
-
-"Osakazuki":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Réputé pour son rouge automnal exceptionnel."
-},
-
-"Arakawa":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Écorce liégeuse très caractéristique."
-},
-
-"Celebration":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Feuillage décoratif."
-},
-
-"Wakakusa Yama":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage tendre et lumineux."
-},
-
-"Autumn Moon":{
-espece:"Acer shirasawanum",
-feuillage:"Orange / vert",
-description:"Très belles couleurs automnales."
-},
-
-"Alexandre 1":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Variété décorative."
-},
-
-"Orange Dream":{
-espece:"Acer palmatum",
-feuillage:"Orange / jaune",
-description:"Débourrement orange particulièrement lumineux."
-},
-
-"Emerald Lace":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage très finement découpé."
-},
-
-"Jerre Schwarts":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Variété décorative."
-},
-
-"Festival":{
-espece:"Acer palmatum",
-feuillage:"Multicolore",
-description:"Feuillage changeant."
-},
-
-"Little Princess":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Petit développement et feuilles fines."
-},
-
-"Starfish":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage original."
-},
-
-"Summer gold":{
-espece:"Acer palmatum",
-feuillage:"Doré",
-description:"Feuillage jaune lumineux."
-},
-
-"Going Green":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage frais et lumineux."
-},
-
-"Atrolineare":{
-espece:"Acer palmatum",
-feuillage:"Pourpre",
-description:"Feuilles très étroites."
-},
-
-"Ueno Yama":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Variété décorative."
-},
-
-"Shin deeshojo":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Jeunes pousses très colorées."
-},
-
-"Yoshi":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage décoratif."
-},
-
-"Ryusen":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Port pleureur spectaculaire."
-},
-
-"Burgundy Lace":{
-espece:"Acer palmatum",
-feuillage:"Pourpre",
-description:"Feuillage très découpé."
-},
-
-"Shaina":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Port compact et feuillage rouge."
-},
-
-"Moonrise":{
-espece:"Acer shirasawanum",
-feuillage:"Orange / rose",
-description:"Couleurs très changeantes."
-},
-
-"Taylor":{
-espece:"Acer palmatum",
-feuillage:"Rose / blanc",
-description:"Panachure très décorative."
-},
-
-"Mikawa Yatsubusa":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Petites feuilles superposées, aspect très original."
-},
-
-"Orangeola":{
-espece:"Acer palmatum",
-feuillage:"Orange / pourpre",
-description:"Port retombant et couleurs intenses."
-},
-
-"Flavescens":{
-espece:"Acer palmatum",
-feuillage:"Jaune / vert",
-description:"Feuillage lumineux."
-},
-
-"Tamukeyama":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Lacinié et retombant."
-},
-
-"Lileeane's jewel":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Feuillage très décoratif."
-},
-
-"Ariadne":{
-espece:"Acer palmatum",
-feuillage:"Rose / blanc",
-description:"Panachure spectaculaire."
-},
-
-"Ellen":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Feuillage très décoratif."
-},
-
-"Koshimino":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuilles fines et élégantes."
-},
-
-"Nyaku Oji":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Variété originale."
-},
-
-"Orange Lace":{
-espece:"Acer palmatum",
-feuillage:"Orange",
-description:"Feuillage fin et coloré."
-},
-
-"Dr Baker":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Variété recherchée et décorative."
-},
-
-"Genji Yama":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Très belles couleurs saisonnières."
-},
-
-"Mikazuki":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Feuillage original."
-},
-
-"Jordan":{
-espece:"Acer palmatum",
-feuillage:"Jaune",
-description:"Débourrement lumineux."
-},
-
-"Geisha":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Petites feuilles très colorées."
-},
-
-"Honoka":{
-espece:"Acer palmatum",
-feuillage:"Rose / blanc",
-description:"Panachure délicate."
-},
-
-"Ice Dragon":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage très finement découpé."
-},
-
-"Manyo No Sato":{
-espece:"Acer palmatum",
-feuillage:"Panaché",
-description:"Variété rare et spectaculaire."
-},
-
-"North Wind":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage fin."
-},
-
-"Artic Jade":{
-espece:"Acer palmatum",
-feuillage:"Vert / blanc",
-description:"Panachure claire."
-},
-
-"Vitifolium":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Grandes feuilles originales."
-},
-
-"Hana Matoi":{
-espece:"Acer palmatum",
-feuillage:"Rose / blanc",
-description:"Panachure délicate et lumineuse."
-},
-
-"Rainbow":{
-espece:"Acer palmatum",
-feuillage:"Multicolore",
-description:"Forte variation saisonnière."
-},
-
-"Arton":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Feuillage décoratif."
-},
-
-"Baldsmith":{
-espece:"Acer palmatum",
-feuillage:"Rose / orange",
-description:"Jeunes pousses spectaculaires."
-},
-
-"Beni Kumo no su":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Nuances très fines."
-},
-
-"Black Lace":{
-espece:"Acer palmatum",
-feuillage:"Pourpre très sombre",
-description:"Feuillage fin et très contrasté."
-},
-
-"Burgundy Lime":{
-espece:"Acer palmatum",
-feuillage:"Pourpre / vert",
-description:"Contraste de couleurs marqué."
-},
-
-"Hagoromo":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage fin et élégant."
-},
-
-"Honoo":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Jeunes pousses flamboyantes."
-},
-
-"Kishuzan":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage fin."
-},
-
-"Kuro Kami Yama":{
-espece:"Acer palmatum",
-feuillage:"Pourpre sombre",
-description:"Feuillage très contrasté."
-},
-
-"Mischa":{
-espece:"Acer palmatum",
-feuillage:"Rose / blanc",
-description:"Panachure décorative."
-},
-
-"Miss Piggy":{
-espece:"Acer palmatum",
-feuillage:"Rose",
-description:"Jeunes pousses colorées."
-},
-
-"Nathan":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Feuillage décoratif."
-},
-
-"Nomura shidare":{
-espece:"Acer palmatum",
-feuillage:"Pourpre",
-description:"Port retombant et feuillage sombre."
-},
-
-"Ohjishi":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage original."
-},
-
-"Ornatum":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage finement découpé."
-},
-
-"Otome zakura":{
-espece:"Acer palmatum",
-feuillage:"Rose",
-description:"Petites feuilles colorées."
-},
-
-"Pink Filigree":{
-espece:"Acer palmatum",
-feuillage:"Rose / blanc",
-description:"Feuillage fin et panaché."
-},
-
-"Red Strata":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Feuillage très décoratif."
-},
-
-"Red Wood":{
-espece:"Acer palmatum",
-feuillage:"Rouge",
-description:"Bois et feuillage colorés."
-},
-
-"Seiun Kaku":{
-espece:"Acer palmatum",
-feuillage:"Vert",
-description:"Feuillage élégant."
-},
-
-"Stella Rosa":{
-espece:"Acer palmatum",
-feuillage:"Rose",
-description:"Feuillage lumineux et décoratif."
+erables = DEFAULT_MAPLES.map(function(name){
+return {
+name:name,
+gps:null
 };
+});
 
+save();
 
-function normaliser(texte){
-return String(texte||"")
-.toLowerCase()
-.normalize("NFD")
-.replace(/[\u0300-\u036f]/g,"")
-.trim();
-}
-
-
-function fichePour(nom){
-if(FICHES[nom]) return FICHES[nom];
-
-const cle=Object.keys(FICHES).find(
-k=>normaliser(k)===normaliser(nom)
-);
-
-return cle ? FICHES[cle] : {
-espece:"Acer palmatum",
-feuillage:"À renseigner",
-description:"Variété de ma collection."
-};
 }
 
 
 /* =========================================================
-   DONNÉES
-   ========================================================= */
+   SAUVEGARDE
+========================================================= */
 
-const STORAGE_KEY="carnet-erables-v6";
+function save(){
 
-function creerCollectionInitiale(){
-return DEFAULT_NAMES.map(name=>({
-name:name,
-created:new Date().toISOString()
-}));
-}
-
-let erables;
-
-try{
-erables=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");
-
-if(!Array.isArray(erables)||!erables.length){
-erables=creerCollectionInitiale();
-}
-
-}catch(e){
-erables=creerCollectionInitiale();
-}
-
-
-function sauvegarder(){
 localStorage.setItem(
 STORAGE_KEY,
 JSON.stringify(erables)
 );
-}
-
-
-function escapeHtml(value){
-return String(value??"").replace(
-/[&<>"']/g,
-m=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[m])
-);
-}
-
-
-/* =========================================================
-   INDEXEDDB — PHOTOS
-   ========================================================= */
-
-const PHOTO_DB="collection-erables-photos";
-const PHOTO_STORE="photos";
-let photoDBPromise=null;
-
-
-function ouvrirPhotoDB(){
-
-if(photoDBPromise)return photoDBPromise;
-
-photoDBPromise=new Promise((resolve,reject)=>{
-
-const request=indexedDB.open(PHOTO_DB,1);
-
-request.onupgradeneeded=function(){
-
-const db=request.result;
-
-if(!db.objectStoreNames.contains(PHOTO_STORE)){
-
-const store=db.createObjectStore(
-PHOTO_STORE,
-{keyPath:"id",autoIncrement:true}
-);
-
-store.createIndex(
-"plant",
-"plant",
-{unique:false}
-);
-
-}
-
-};
-
-request.onsuccess=()=>resolve(request.result);
-request.onerror=()=>reject(request.error);
-
-});
-
-return photoDBPromise;
-}
-
-
-async function compresserImage(file){
-
-return new Promise((resolve,reject)=>{
-
-const reader=new FileReader();
-
-reader.onload=function(){
-
-const image=new Image();
-
-image.onload=function(){
-
-const max=1600;
-
-const scale=Math.min(
-1,
-max/Math.max(image.width,image.height)
-);
-
-const canvas=document.createElement("canvas");
-
-canvas.width=Math.round(image.width*scale);
-canvas.height=Math.round(image.height*scale);
-
-const ctx=canvas.getContext("2d");
-
-ctx.drawImage(
-image,
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-canvas.toBlob(
-blob=>{
-if(blob)resolve(blob);
-else reject(new Error("Compression impossible"));
-},
-"image/jpeg",
-0.82
-);
-
-};
-
-image.onerror=reject;
-image.src=reader.result;
-
-};
-
-reader.onerror=reject;
-reader.readAsDataURL(file);
-
-}
-
-
-async function ajouterPhotoDB(plant,data){
-
-const db=await ouvrirPhotoDB();
-
-return new Promise((resolve,reject)=>{
-
-const transaction=db.transaction(
-PHOTO_STORE,
-"readwrite"
-);
-
-const request=transaction
-.objectStore(PHOTO_STORE)
-.add({
-plant:plant,
-data:data,
-date:new Date().toISOString()
-});
-
-request.onsuccess=()=>resolve(request.result);
-request.onerror=()=>reject(request.error);
-
-});
-
-}
-
-
-async function obtenirPhotos(plant){
-
-const db=await ouvrirPhotoDB();
-
-return new Promise((resolve,reject)=>{
-
-const transaction=db.transaction(
-PHOTO_STORE,
-"readonly"
-);
-
-const request=transaction
-.objectStore(PHOTO_STORE)
-.index("plant")
-.getAll(plant);
-
-request.onsuccess=()=>resolve(request.result||[]);
-request.onerror=()=>reject(request.error);
-
-});
-
-}
-
-
-async function supprimerPhotoDB(id){
-
-const db=await ouvrirPhotoDB();
-
-return new Promise((resolve,reject)=>{
-
-const transaction=db.transaction(
-PHOTO_STORE,
-"readwrite"
-);
-
-const request=transaction
-.objectStore(PHOTO_STORE)
-.delete(Number(id));
-
-request.onsuccess=()=>resolve();
-request.onerror=()=>reject(request.error);
-
-});
-
-}
-
-
-async function supprimerToutesPhotos(plant){
-
-try{
-
-const photos=await obtenirPhotos(plant);
-
-for(const photo of photos){
-await supprimerPhotoDB(photo.id);
-}
-
-}catch(e){}
 
 }
 
 
 /* =========================================================
-   PHOTOS
-   ========================================================= */
+   PROTECTION HTML
+========================================================= */
 
-async function ajouterPhotos(index,input){
+function escapeHtml(text){
 
-const files=[...input.files];
-
-if(!files.length)return;
-
-try{
-
-for(const file of files){
-
-const blob=await compresserImage(file);
-
-await ajouterPhotoDB(
-erables[index].name,
-blob
-);
-
-}
-
-input.value="";
-
-await afficherPhotos(index);
-await actualiserCompteurPhotos();
-
-}catch(e){
-
-alert("Impossible d'enregistrer la photo.");
-
-}
+return String(text)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
 
-async function afficherPhotos(index){
+/* =========================================================
+   AFFICHAGE DES 116 ÉRABLES
+========================================================= */
 
-const container=document.getElementById(
-"photos-"+index
-);
+function render(){
 
-if(!container)return;
+const list =
+document.getElementById("mapleList");
 
-try{
+const search =
+document.getElementById("search")
+.value
+.trim()
+.toLowerCase();
 
-const photos=await obtenirPhotos(
-erables[index].name
-);
 
-if(!photos.length){
+const results =
+erables
+.map(function(maple,index){
 
-container.innerHTML=
-"<small>Aucune photo enregistrée.</small>";
+return {
+maple:maple,
+index:index
+};
+
+})
+.filter(function(item){
+
+return item.maple.name
+.toLowerCase()
+.includes(search);
+
+});
+
+
+document.getElementById("total").textContent =
+erables.length;
+
+
+document.getElementById("located").textContent =
+erables.filter(function(maple){
+
+return maple.gps !== null;
+
+}).length;
+
+
+/*
+   C'EST ICI QUE LES 116 FICHES
+   SONT CRÉÉES INDIVIDUELLEMENT.
+*/
+
+if(results.length === 0){
+
+list.innerHTML =
+'<div class="empty">Aucun érable trouvé.</div>';
 
 return;
 
 }
 
-container.innerHTML=
-'<div class="photo-grid">'+
-photos.map(photo=>{
 
-const url=URL.createObjectURL(photo.data);
+list.innerHTML =
+results
+.map(function(item){
 
-return `
-<div class="photo">
-<img src="${url}" alt="Photo de ${escapeHtml(erables[index].name)}">
-<button
-onclick="supprimerPhoto(${photo.id},${index})">
-×
-</button>
-</div>
-`;
+return createMapleCard(
+item.maple,
+item.index
+);
 
-}).join("")+
-"</div>";
-
-}catch(e){
-
-container.innerHTML=
-"<small>Photos indisponibles.</small>";
-
-}
-
-}
+})
+.join("");
 
 
-async function supprimerPhoto(id,index){
+/*
+   Charger les photos après création
+   des fiches.
+*/
 
-if(!confirm("Supprimer cette photo ?"))return;
+results.forEach(function(item){
 
-try{
+loadPhotos(item.index);
 
-await supprimerPhotoDB(id);
-
-await afficherPhotos(index);
-await actualiserCompteurPhotos();
-
-}catch(e){
-
-alert("Impossible de supprimer la photo.");
-
-}
-
-}
-
-
-async function actualiserCompteurPhotos(){
-
-try{
-
-let compteur=0;
-
-for(const erable of erables){
-
-const photos=await obtenirPhotos(erable.name);
-
-if(photos.length)compteur++;
-
-}
-
-const element=document.getElementById("photosCount");
-
-if(element){
-element.textContent=compteur;
-}
-
-}catch(e){}
+});
 
 }
 
 
 /* =========================================================
-   GÉOLOCALISATION
-   ========================================================= */
+   CARTE INDIVIDUELLE
+========================================================= */
 
-function distanceGPS(
-lat1,
-lon1,
-lat2,
-lon2
-){
+function createMapleCard(maple,index){
 
-const R=6371000;
+let gpsText = "";
 
-const rad=Math.PI/180;
+if(maple.gps){
 
-const dLat=(lat2-lat1)*rad;
-const dLon=(lon2-lon1)*rad;
+gpsText =
+"📍 " +
+maple.gps.latitude.toFixed(6) +
+", " +
+maple.gps.longitude.toFixed(6) +
+"<br>" +
+"Précision : " +
+Math.round(maple.gps.accuracy || 0) +
+" m";
 
-const a=
-Math.sin(dLat/2)**2+
-Math.cos(lat1*rad)*
-Math.cos(lat2*rad)*
-Math.sin(dLon/2)**2;
+}else{
 
-return 2*R*Math.asin(
-Math.sqrt(a)
-);
+gpsText =
+"📍 Position non enregistrée";
 
 }
 
 
-function texteGPS(gps){
-
 return `
-📍 ${gps.latitude.toFixed(6)},
-${gps.longitude.toFixed(6)}
-<br>
-<small>
-Précision : ±${Math.round(gps.accuracy||0)} m
-•
-${new Date(gps.date).toLocaleString("fr-FR")}
-</small>
+
+<article class="card">
+
+<h3>
+${index + 1}. ${escapeHtml(maple.name)}
+</h3>
+
+<div class="card-info">
+
+${gpsText}
+
+</div>
+
+
+<div class="card-actions">
+
+<button
+class="action"
+onclick="locateMaple(${index})"
+>
+📍 ${maple.gps ? "Actualiser" : "Enregistrer ma position"}
+</button>
+
+
+${
+maple.gps
+?
+`
+<button
+class="action"
+onclick="clearLocation(${index})"
+>
+❌ Effacer position
+</button>
+
+<button
+class="action"
+onclick="openMaps(${index})"
+>
+🗺️ Carte
+</button>
+`
+:
+""
+}
+
+
+<label class="action">
+
+📷 Ajouter photo
+
+<input
+type="file"
+accept="image/*"
+capture="environment"
+multiple
+style="display:none"
+onchange="addPhotos(${index},this)"
+>
+
+</label>
+
+
+<button
+class="action danger"
+onclick="deleteMaple(${index})"
+>
+🗑️ Supprimer
+</button>
+
+</div>
+
+
+<div
+id="photos-${index}"
+class="photo-grid"
+>
+</div>
+
+</article>
+
 `;
 
 }
 
 
-function enregistrerPosition(index){
+/* =========================================================
+   ONGLET
+========================================================= */
+
+function showTab(tabId,button){
+
+document
+.querySelectorAll("main section");
+
+
+document
+.querySelectorAll(".container > section")
+.forEach(function(section){
+
+section.classList.add("hidden");
+
+});
+
+
+document
+.getElementById(tabId)
+.classList.remove("hidden");
+
+
+document
+.querySelectorAll(".tabs button")
+.forEach(function(btn){
+
+btn.classList.remove("active");
+
+});
+
+
+button.classList.add("active");
+
+
+if(tabId === "collection"){
+
+render();
+
+}
+
+}
+
+
+/* =========================================================
+   AJOUTER UN ÉRABLE
+========================================================= */
+
+function addMaple(){
+
+const input =
+document.getElementById("newMaple");
+
+const name =
+input.value.trim();
+
+
+if(!name){
+
+alert("Entre le nom de l'érable.");
+
+return;
+
+}
+
+
+erables.push({
+name:name,
+gps:null
+});
+
+
+save();
+
+input.value = "";
+
+render();
+
+alert("Érable ajouté à la collection.");
+
+}
+
+
+/* =========================================================
+   SUPPRIMER UN ÉRABLE
+========================================================= */
+
+function deleteMaple(index){
+
+const name =
+erables[index].name;
+
+
+if(!confirm(
+"Supprimer « " + name + " » de la collection ?"
+)){
+
+return;
+
+}
+
+
+deletePhotos(index);
+
+
+erables.splice(index,1);
+
+save();
+
+render();
+
+}
+
+
+/* =========================================================
+   GPS
+========================================================= */
+
+function locateMaple(index){
 
 if(!navigator.geolocation){
 
@@ -1697,54 +874,54 @@ return;
 
 }
 
-const zone=document.getElementById(
-"gps-"+index
-);
-
-if(zone){
-zone.innerHTML="⏳ Recherche de votre position…";
-}
 
 navigator.geolocation.getCurrentPosition(
 
-position=>{
+function(position){
 
-erables[index].gps={
-latitude:position.coords.latitude,
-longitude:position.coords.longitude,
-accuracy:position.coords.accuracy,
-date:new Date().toISOString()
+erables[index].gps = {
+
+latitude:
+position.coords.latitude,
+
+longitude:
+position.coords.longitude,
+
+accuracy:
+position.coords.accuracy,
+
+date:
+new Date().toISOString()
+
 };
 
-sauvegarder();
-afficher();
+
+save();
+
+render();
+
+alert(
+"Position enregistrée pour « " +
+erables[index].name +
+" »."
+);
 
 },
 
-error=>{
+function(error){
 
-let message;
+let message =
+"Impossible d'obtenir la position.";
 
-if(error.code===1){
+if(error.message){
 
-message=
-"Permission de localisation refusée. Autorisez la localisation dans les réglages du navigateur.";
-
-}else if(error.code===2){
-
-message=
-"Position indisponible.";
-
-}else{
-
-message=
-"Délai dépassé pour obtenir la position.";
+message +=
+"\n\n" +
+error.message;
 
 }
 
 alert(message);
-
-afficher();
 
 },
 
@@ -1759,38 +936,97 @@ maximumAge:0
 }
 
 
-function effacerPosition(index){
+/* =========================================================
+   EFFACER GPS
+========================================================= */
 
-if(!confirm(
-"Effacer la position enregistrée pour cet érable ?"
-))return;
+function clearLocation(index){
 
-delete erables[index].gps;
+erables[index].gps = null;
 
-sauvegarder();
-afficher();
+save();
+
+render();
 
 }
 
 
-function ouvrirGoogleMaps(index){
+/* =========================================================
+   GOOGLE MAPS
+========================================================= */
 
-const gps=erables[index].gps;
+function openMaps(index){
 
-if(!gps)return;
+const gps =
+erables[index].gps;
 
-window.open(
-"https://www.google.com/maps/search/?api=1&query="+
-gps.latitude+
-","+
-gps.longitude,
-"_blank"
+
+if(!gps){
+
+return;
+
+}
+
+
+const url =
+"https://www.google.com/maps?q=" +
+gps.latitude +
+"," +
+gps.longitude;
+
+
+window.open(url,"_blank");
+
+}
+
+
+/* =========================================================
+   DISTANCE GPS
+========================================================= */
+
+function distanceGPS(
+lat1,
+lon1,
+lat2,
+lon2
+){
+
+const R = 6371000;
+
+const rad =
+Math.PI / 180;
+
+const dLat =
+(lat2-lat1) * rad;
+
+const dLon =
+(lon2-lon1) * rad;
+
+
+const a =
+Math.sin(dLat/2) *
+Math.sin(dLat/2)
++
+Math.cos(lat1*rad) *
+Math.cos(lat2*rad) *
+Math.sin(dLon/2) *
+Math.sin(dLon/2);
+
+
+return 2 *
+R *
+Math.asin(
+Math.sqrt(a)
 );
 
 }
 
 
-function trouverPlusProche(){
+/* =========================================================
+   ÉRABLE LE PLUS PROCHE
+========================================================= */
+
+function findNearest(){
 
 if(!navigator.geolocation){
 
@@ -1802,95 +1038,109 @@ return;
 
 }
 
-const localises=erables
-.map((p,index)=>p.gps?{p,index}:null)
-.filter(Boolean);
 
-if(!localises.length){
+navigator.geolocation.getCurrentPosition(
 
-alert(
-"Aucun érable n'est encore géolocalisé."
-);
+function(position){
+
+let nearest = null;
+
+
+erables.forEach(function(maple,index){
+
+if(!maple.gps){
 
 return;
 
 }
 
-navigator.geolocation.getCurrentPosition(
 
-position=>{
+const distance =
+distanceGPS(
 
-localises.forEach(item=>{
-
-item.distance=distanceGPS(
 position.coords.latitude,
+
 position.coords.longitude,
-item.p.gps.latitude,
-item.p.gps.longitude
+
+maple.gps.latitude,
+
+maple.gps.longitude
+
 );
+
+
+if(
+nearest === null ||
+distance < nearest.distance
+){
+
+nearest = {
+
+index:index,
+distance:distance
+
+};
+
+}
 
 });
 
-localises.sort(
-(a,b)=>a.distance-b.distance
-);
 
-const resultats=localises.slice(0,8);
+const box =
+document.getElementById("nearestBox");
 
-document.getElementById("nearest").innerHTML=`
 
-<h3>📍 Érables les plus proches</h3>
+box.classList.remove("hidden");
 
-${resultats.map(item=>`
 
-<div class="nearest">
+if(nearest === null){
 
-<b>${escapeHtml(item.p.name)}</b>
+box.innerHTML =
+"📍 Aucun érable n'a encore de position enregistrée.";
 
-—
-${
-item.distance<1000
-?Math.round(item.distance)+" m"
-:(item.distance/1000).toFixed(2)+" km"
+return;
+
 }
 
-<div class="actions">
 
-<button
-class="small"
-onclick="
-document.getElementById('card-${item.index}')
-.scrollIntoView({behavior:'smooth'})
-">
+const maple =
+erables[nearest.index];
 
-Voir la fiche
 
-</button>
+let distanceText;
 
-<button
-class="small secondary"
-onclick="
-ouvrirGoogleMaps(${item.index})
-">
 
-🗺️ Carte
+if(nearest.distance < 1000){
 
-</button>
+distanceText =
+Math.round(nearest.distance) +
+" m";
 
-</div>
+}else{
 
-</div>
+distanceText =
+(nearest.distance / 1000)
+.toFixed(2) +
+" km";
 
-`).join("")}
+}
 
-`;
+
+box.innerHTML =
+"📍 L'érable le plus proche est <strong>" +
+escapeHtml(maple.name) +
+"</strong> à " +
+distanceText +
+".";
+
 
 },
 
-()=>{
+function(error){
 
 alert(
-"Impossible d'obtenir votre position actuelle."
+"Impossible d'obtenir votre position : " +
+error.message
 );
 
 },
@@ -1907,507 +1157,454 @@ maximumAge:0
 
 
 /* =========================================================
-   AFFICHAGE DES FICHES
-   ========================================================= */
+   PHOTOS
+========================================================= */
 
-function construireCarte(erable,index){
+function photoKey(index){
 
-const fiche=fichePour(erable.name);
-
-const gps=erable.gps;
-
-return `
-
-<article
-class="card"
-id="card-${index}"
->
-
-<h3>
-${escapeHtml(erable.name)}
-</h3>
-
-<span class="badge">
-${escapeHtml(fiche.espece)}
-</span>
-
-<span class="badge">
-${escapeHtml(fiche.feuillage)}
-</span>
-
-<div class="meta">
-${escapeHtml(fiche.description)}
-</div>
-
-
-<div class="detail">
-
-<b>📍 Géolocalisation</b>
-
-<div
-id="gps-${index}"
-class="meta"
-style="margin-top:6px"
->
-
-${
-gps
-?texteGPS(gps)
-:"Aucune position enregistrée."
-}
-
-</div>
-
-<div class="actions">
-
-<button
-class="small"
-onclick="enregistrerPosition(${index})"
->
-
-📍 Enregistrer ma position
-
-</button>
-
-${
-gps
-?`
-
-<button
-class="small secondary"
-onclick="ouvrirGoogleMaps(${index})"
->
-
-🗺️ Google Maps
-
-</button>
-
-<button
-class="small danger"
-onclick="effacerPosition(${index})"
->
-
-Effacer
-
-</button>
-
-`
-:""
-}
-
-</div>
-
-</div>
-
-
-<div class="detail">
-
-<b>📷 Photos</b>
-
-<div
-id="photos-${index}"
-class="meta"
-style="margin-top:6px"
->
-Chargement…
-</div>
-
-<div class="actions">
-
-<label class="filebtn">
-
-📷 Ajouter photo(s)
-
-<input
-type="file"
-accept="image/*"
-capture="environment"
-multiple
-onchange="ajouterPhotos(${index},this)"
->
-
-</label>
-
-</div>
-
-</div>
-
-
-<div class="actions">
-
-<button
-class="small danger"
-onclick="supprimer(${index})"
->
-
-Supprimer de la collection
-
-</button>
-
-</div>
-
-</article>
-
-`;
+return "photos-erable-" +
+erables[index].name;
 
 }
 
 
-function afficher(){
+function getPhotos(index){
 
-const champ=document.getElementById("search");
+try{
 
-const recherche=normaliser(
-champ ? champ.value : ""
+return JSON.parse(
+localStorage.getItem(
+photoKey(index)
+) || "[]"
 );
 
-const resultat=erables
-.map((p,index)=>({p,index}))
-.filter(item=>
-!recherche ||
-normaliser(item.p.name)
-.includes(recherche)
+}catch(error){
+
+return [];
+
+}
+
+}
+
+
+function setPhotos(index,photos){
+
+localStorage.setItem(
+photoKey(index),
+JSON.stringify(photos)
 );
 
-const liste=document.getElementById("list");
+}
 
-if(!resultat.length){
 
-liste.innerHTML=
-"<div class='panel'>Aucun érable trouvé.</div>";
+/* =========================================================
+   REDIMENSIONNEMENT PHOTO
+========================================================= */
+
+function resizeImage(file){
+
+return new Promise(function(resolve,reject){
+
+const reader =
+new FileReader();
+
+
+reader.onload = function(event){
+
+const image =
+new Image();
+
+
+image.onload = function(){
+
+const MAX = 1600;
+
+let width =
+image.width;
+
+let height =
+image.height;
+
+
+if(width > MAX || height > MAX){
+
+if(width > height){
+
+height =
+height * MAX / width;
+
+width = MAX;
 
 }else{
 
-liste.innerHTML=resultat
-.map(item=>
-construireCarte(
-item.p,
-item.index
-)
-)
-.join("");
+width =
+width * MAX / height;
+
+height = MAX;
 
 }
-
-document.getElementById("count")
-.textContent=erables.length;
-
-document.getElementById("located")
-.textContent=
-erables.filter(p=>p.gps).length;
-
-resultat.forEach(item=>{
-afficherPhotos(item.index);
-});
-
-actualiserCompteurPhotos();
 
 }
 
 
-/* =========================================================
-   AJOUT / SUPPRESSION
-   ========================================================= */
+const canvas =
+document.createElement("canvas");
 
-function ajouter(){
+canvas.width =
+Math.round(width);
 
-const input=document.getElementById("newName");
+canvas.height =
+Math.round(height);
 
-const nom=input.value.trim();
 
-if(!nom){
+const context =
+canvas.getContext("2d");
 
-alert("Indiquez le nom de la variété.");
 
-return;
-
-}
-
-if(
-erables.some(
-p=>normaliser(p.name)===normaliser(nom)
-)
-){
-
-alert(
-"Cet érable est déjà dans la collection."
+context.drawImage(
+image,
+0,
+0,
+canvas.width,
+canvas.height
 );
 
-return;
 
-}
+resolve(
+canvas.toDataURL(
+"image/jpeg",
+0.82
+)
+);
 
-erables.push({
-name:nom,
-created:new Date().toISOString()
+};
+
+
+image.onerror = reject;
+
+image.src =
+event.target.result;
+
+};
+
+
+reader.onerror = reject;
+
+reader.readAsDataURL(file);
+
 });
-
-input.value="";
-
-sauvegarder();
-
-afficher();
-
-afficherOnglet("collection");
-
-}
-
-
-async function supprimer(index){
-
-const nom=erables[index].name;
-
-if(!confirm(
-`Supprimer "${nom}" de la collection ?`
-))return;
-
-await supprimerToutesPhotos(nom);
-
-erables.splice(index,1);
-
-sauvegarder();
-
-afficher();
 
 }
 
 
 /* =========================================================
-   IMPORT / EXPORT
-   ========================================================= */
+   AJOUT PHOTOS
+========================================================= */
 
-function exporter(){
+async function addPhotos(index,input){
 
-const donnees={
-version:6,
-date:new Date().toISOString(),
-plants:erables
-};
+const files =
+Array.from(input.files);
 
-const blob=new Blob(
-[
+
+if(files.length === 0){
+
+return;
+
+}
+
+
+const photos =
+getPhotos(index);
+
+
+for(const file of files){
+
+try{
+
+const image =
+await resizeImage(file);
+
+
+photos.push({
+
+id:
+Date.now() +
+Math.random(),
+
+src:image,
+
+date:
+new Date().toISOString()
+
+});
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+
+setPhotos(index,photos);
+
+input.value = "";
+
+render();
+
+}
+
+
+/* =========================================================
+   AFFICHAGE PHOTOS
+========================================================= */
+
+function loadPhotos(index){
+
+const container =
+document.getElementById(
+"photos-" + index
+);
+
+
+if(!container){
+
+return;
+
+}
+
+
+const photos =
+getPhotos(index);
+
+
+container.innerHTML =
+photos.map(function(photo){
+
+return `
+
+<div class="photo-box">
+
+<img
+src="${photo.src}"
+alt="Photo de ${escapeHtml(erables[index].name)}"
+>
+
+<button
+class="action danger"
+onclick="deletePhoto(${index},'${photo.id}')"
+>
+Supprimer
+</button>
+
+</div>
+
+`;
+
+}).join("");
+
+
+updatePhotoCount();
+
+}
+
+
+/* =========================================================
+   SUPPRIMER PHOTO
+========================================================= */
+
+function deletePhoto(index,id){
+
+const photos =
+getPhotos(index)
+.filter(function(photo){
+
+return String(photo.id) !== String(id);
+
+});
+
+
+setPhotos(index,photos);
+
+render();
+
+}
+
+
+/* =========================================================
+   SUPPRIMER TOUTES LES PHOTOS D'UN ÉRABLE
+========================================================= */
+
+function deletePhotos(index){
+
+localStorage.removeItem(
+photoKey(index)
+);
+
+}
+
+
+/* =========================================================
+   COMPTEUR PHOTOS
+========================================================= */
+
+function updatePhotoCount(){
+
+let total = 0;
+
+
+erables.forEach(function(maple,index){
+
+total +=
+getPhotos(index).length;
+
+});
+
+
+document.getElementById(
+"photoCount"
+).textContent = total;
+
+}
+
+
+/* =========================================================
+   EXPORT
+========================================================= */
+
+function exportCollection(){
+
+const data =
 JSON.stringify(
-donnees,
+erables,
 null,
 2
-)
-],
+);
+
+
+const blob =
+new Blob(
+[data],
 {
 type:"application/json"
 }
 );
 
-const lien=document.createElement("a");
 
-lien.href=
+const url =
 URL.createObjectURL(blob);
 
-lien.download=
+
+const link =
+document.createElement("a");
+
+
+link.href = url;
+
+link.download =
 "ma-collection-erables.json";
 
-document.body.appendChild(lien);
 
-lien.click();
+document.body.appendChild(link);
 
-lien.remove();
+link.click();
+
+document.body.removeChild(link);
+
+URL.revokeObjectURL(url);
 
 }
 
 
-function importer(input){
+/* =========================================================
+   IMPORT
+========================================================= */
 
-const fichier=input.files[0];
+function importCollection(input){
 
-if(!fichier)return;
+const file =
+input.files[0];
 
-const lecteur=new FileReader();
 
-lecteur.onload=function(){
+if(!file){
+
+return;
+
+}
+
+
+const reader =
+new FileReader();
+
+
+reader.onload =
+function(){
 
 try{
 
-const donnees=
-JSON.parse(
-lecteur.result
-);
+const imported =
+JSON.parse(reader.result);
 
-const collection=
-Array.isArray(donnees)
-?donnees
-:donnees.plants;
 
-if(
-!Array.isArray(collection) ||
-!collection.every(
-p=>p &&
-typeof p.name==="string"
-)
-){
+if(!Array.isArray(imported)){
 
 throw new Error();
 
 }
 
-erables=collection;
 
-sauvegarder();
+erables =
+imported.map(function(item){
 
-afficher();
+return {
 
-alert(
-"Collection importée avec succès."
-);
+name:
+item.name || "Érable",
 
-}catch(e){
-
-alert(
-"Fichier invalide."
-);
-
-}
-
-input.value="";
+gps:
+item.gps || null
 
 };
 
-lecteur.readAsText(fichier);
-
-}
+});
 
 
-function copierListe(){
+save();
 
-const texte=
-erables
-.map(
-(p,index)=>
-`${index+1}. ${p.name}`
-)
-.join("\n");
-
-if(
-navigator.clipboard &&
-navigator.clipboard.writeText
-){
-
-navigator.clipboard
-.writeText(texte)
-.then(
-()=>alert("Liste copiée.")
-);
-
-}else{
-
-const zone=document.createElement("textarea");
-
-zone.value=texte;
-
-document.body.appendChild(zone);
-
-zone.select();
-
-document.execCommand("copy");
-
-zone.remove();
-
-alert("Liste copiée.");
-
-}
-
-}
-
-
-function reinitialiser(){
-
-if(!confirm(
-"Réinitialiser la collection aux 116 érables préchargés ? Les données personnalisées seront perdues."
-))return;
-
-erables=creerCollectionInitiale();
-
-sauvegarder();
-
-afficher();
-
-}
-
-
-/* =========================================================
-   OUTILS
-   ========================================================= */
-
-function scannerInfo(input){
-
-if(input.files.length){
+render();
 
 alert(
-"Photo sélectionnée. La fiche de l'érable permet également d'enregistrer directement plusieurs photos."
+"Import terminé : " +
+erables.length +
+" érables."
+);
+
+
+}catch(error){
+
+alert(
+"Le fichier sélectionné n'est pas valide."
 );
 
 }
 
-}
+};
 
 
-/* =========================================================
-   ONGLETS
-   ========================================================= */
-
-function afficherOnglet(id){
-
-document
-.querySelectorAll(".tab")
-.forEach(button=>{
-button.classList.toggle(
-"active",
-button.dataset.tab===id
-);
-});
-
-document
-.querySelectorAll("main>section")
-.forEach(section=>{
-section.classList.toggle(
-"hidden",
-section.id!==id
-);
-});
-
-if(id==="collection"){
-afficher();
-}
+reader.readAsText(file);
 
 }
-
-
-document
-.querySelectorAll(".tab")
-.forEach(button=>{
-
-button.addEventListener(
-"click",
-()=>{
-afficherOnglet(
-button.dataset.tab
-);
-}
-);
-
-});
-
-
-document
-.getElementById("search")
-.addEventListener(
-"input",
-afficher
-);
 
 
 /* =========================================================
    INITIALISATION
-   ========================================================= */
+========================================================= */
 
-afficher();
+render();
 
 </script>
+
+</body>
+</html>
