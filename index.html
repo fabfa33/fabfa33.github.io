@@ -3376,8 +3376,6 @@ throw new Error(
 
 /*
    OCR en français + anglais.
-   Le français est utile pour les étiquettes
-   de pépinières françaises.
 */
 
 const worker =
@@ -3418,53 +3416,166 @@ return;
 }
 
 
-const detectedName =
-extractCultivarName(text);
+/* =====================================================
+   NOUVELLE LOGIQUE STRICTE
+=====================================================
+
+   IMPORTANT :
+   Une ressemblance approximative n'est PLUS considérée
+   comme une identification.
+
+   Exemple :
+   ENKAN
+   ne pourra jamais être déclaré comme
+   VERKADE'S WINTER GOLD simplement parce que les deux
+   noms présentent une certaine proximité OCR.
+
+===================================================== */
 
 
-const closest =
-findClosestMaples(detectedName);
+/*
+   Normalisation du texte complet et des lignes.
+*/
+
+const normalizedText =
+normalizeCultivarName(text);
+
+const textLines =
+text
+.split(/\r?\n/)
+.map(function(line){
+
+return line.trim();
+
+})
+.filter(function(line){
+
+return line.length > 0;
+
+});
 
 
-const exact =
-erables.find(function(maple){
+let exactMatches = [];
 
-return normalizeCultivarName(maple.name) ===
-normalizeCultivarName(detectedName);
+
+/*
+   Recherche d'une correspondance exacte dans le texte OCR.
+
+   On teste :
+   1. le texte complet
+   2. chaque ligne
+   3. les mots/segments séparés
+
+   Aucune distance de Levenshtein n'est utilisée ici.
+*/
+
+erables.forEach(function(maple,index){
+
+const normalizedName =
+normalizeCultivarName(maple.name);
+
+if(!normalizedName){
+
+return;
+
+}
+
+
+/* Texte complet exactement égal */
+
+if(normalizedText === normalizedName){
+
+exactMatches.push({
+maple:maple,
+index:index
+});
+
+return;
+
+}
+
+
+/*
+   Le nom exact peut être présent au milieu d'une ligne.
+*/
+
+const normalizedLineMatches =
+textLines.some(function(line){
+
+const normalizedLine =
+normalizeCultivarName(line);
+
+return (
+normalizedLine === normalizedName ||
+normalizedLine.includes(normalizedName)
+);
+
+});
+
+
+if(normalizedLineMatches){
+
+exactMatches.push({
+maple:maple,
+index:index
+});
+
+}
+
+});
+
+
+/*
+   Suppression des doublons éventuels.
+*/
+
+exactMatches =
+exactMatches.filter(function(item,index,self){
+
+return self.findIndex(function(other){
+
+return other.index === item.index;
+
+}) === index;
 
 });
 
 
 /* =====================================================
-   CAS 1 : DÉJÀ PRÉSENT
+   CAS 1 : CORRESPONDANCE EXACTE
 ===================================================== */
 
-if(exact){
+if(exactMatches.length > 0){
+
+const exact =
+exactMatches[0];
 
 result.className =
 "scanner-result green";
 
 result.innerHTML =
 
-"🟢 <strong>ATTENTION : TU AS DÉJÀ CET ÉRABLE !</strong>" +
+"🟢 <strong>TU AS DÉJÀ CET ÉRABLE !</strong>" +
 
 "<br><br>" +
 
-"🌳 Variété détectée : " +
+"🌳 Variété reconnue : " +
+
 "<strong>" +
-escapeHtml(exact.name) +
+escapeHtml(exact.maple.name) +
 "</strong>" +
 
 "<br><br>" +
 
-"Il est déjà présent dans ta collection " +
-"(n° " +
-(erables.indexOf(exact)+1) +
-")." +
+"Cette variété correspond exactement à un nom " +
+"présent dans ta collection." +
 
 "<div class=\"scanner-text\">" +
+
 "<strong>Texte lu sur l'étiquette :</strong><br>" +
+
 escapeHtml(text) +
+
 "</div>";
 
 input.value = "";
@@ -3475,137 +3586,121 @@ return;
 
 
 /* =====================================================
-   CAS 2 : CORRESPONDANCE TRÈS PROBABLE
+   CAS 2 : PAS DE CORRESPONDANCE EXACTE
+=====================================================
+
+   À partir d'ici, aucune variété de la collection
+   ne doit être déclarée comme étant la même.
+
+   Les ressemblances éventuelles sont seulement
+   affichées comme suggestions.
 ===================================================== */
 
-if(
-closest.length > 0 &&
-closest[0].nameScore >= 0.72
-){
+const detectedName =
+extractCultivarName(text);
 
-const best =
-closest[0];
 
-result.className =
-"scanner-result orange";
+/*
+   Si l'extraction donne un nom qui n'est pas exactement
+   dans la collection, on peut afficher des suggestions,
+   mais JAMAIS comme identification.
+*/
 
-result.innerHTML =
+const closest =
+findClosestMaples(detectedName);
 
-"🟠 <strong>VARIÉTÉ TRÈS PROCHE D'UNE DE TA COLLECTION</strong>" +
 
-"<br><br>" +
+/*
+   On ne conserve comme suggestion que les résultats
+   présentant une certaine proximité.
 
-"Étiquette lue : " +
-"<strong>" +
-escapeHtml(detectedName) +
-"</strong>" +
+   Cela n'a aucune valeur d'identification.
+*/
 
-"<br><br>" +
+const suggestions =
+closest.filter(function(item){
 
-"🌳 La correspondance la plus proche est : " +
+return item.nameScore >= 0.45;
 
-"<strong>" +
-escapeHtml(best.maple.name) +
-"</strong>" +
-
-"<br>" +
-
-"Correspondance du nom : " +
-Math.round(best.nameScore * 100) +
-"%" +
-
-"<div style=\"margin-top:10px\">" +
-
-closest.slice(0,4).map(function(item){
-
-return (
-
-"<div class=\"similar-maple\">" +
-
-"<strong>" +
-escapeHtml(item.maple.name) +
-"</strong>" +
-
-"<br>" +
-
-"Proximité : " +
-Math.round(item.score) +
-"%"
-
-+
-
-"</div>"
-
-);
-
-}).join("") +
-
-"</div>" +
-
-"<div class=\"scanner-text\">" +
-"<strong>Texte lu sur l'étiquette :</strong><br>" +
-escapeHtml(text) +
-"</div>";
-
-input.value = "";
-
-return;
-
-}
+}).slice(0,5);
 
 
 /* =====================================================
-   CAS 3 : NOUVEAU CULTIVAR
+   CAS 2 : NOUVEAU CULTIVAR
 ===================================================== */
 
 result.className =
 "scanner-result blue";
 
-result.innerHTML =
+let html =
 
 "🔵 <strong>JE NE TROUVE PAS CETTE VARIÉTÉ DANS TA COLLECTION</strong>" +
 
 "<br><br>" +
 
 "🌳 Étiquette détectée : " +
+
 "<strong>" +
-escapeHtml(detectedName) +
+
+escapeHtml(detectedName || "Nom non déterminé") +
+
 "</strong>" +
 
 "<br><br>" +
 
-"Voici les variétés de ta collection qui présentent " +
-"les caractéristiques les plus proches :" +
+"<strong>❌ Je ne considère PAS cette variété comme déjà présente.</strong>" +
+
+"<br><br>" +
+
+"Une ressemblance avec un nom de ta collection " +
+"ne suffit pas pour identifier le cultivar.";
+
+
+/*
+   Suggestions facultatives.
+*/
+
+if(suggestions.length > 0){
+
+html +=
+
+"<br><br>" +
+
+"🔎 <strong>Noms éventuellement proches dans ta collection :</strong>" +
 
 "<div style=\"margin-top:10px\">" +
 
-closest.slice(0,5).map(function(item){
+suggestions.map(function(item){
 
 return (
 
 "<div class=\"similar-maple\">" +
 
 "<strong>" +
+
 escapeHtml(item.maple.name) +
+
 "</strong>" +
 
 "<br>" +
 
 "🌱 " +
+
 escapeHtml(getProfile(item.maple.name)[3]) +
 
 "<br>" +
 
 "🎨 " +
+
 escapeHtml(getProfile(item.maple.name)[1]) +
 
 "<br>" +
 
-"⭐ Proximité : " +
-Math.round(item.score) +
-"%"
+"<span class=\"small\">" +
 
-+
+"⚠️ Simple ressemblance — ce n'est PAS le même cultivar confirmé." +
+
+"</span>" +
 
 "</div>"
 
@@ -3613,12 +3708,25 @@ Math.round(item.score) +
 
 }).join("") +
 
-"</div>" +
+"</div>";
+
+}
+
+
+html +=
 
 "<div class=\"scanner-text\">" +
+
 "<strong>Texte lu sur l'étiquette :</strong><br>" +
+
 escapeHtml(text) +
+
 "</div>";
+
+
+result.innerHTML =
+html;
+
 
 input.value = "";
 
