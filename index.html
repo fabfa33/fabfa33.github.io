@@ -1,309 +1,268 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#203329">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌳 Ma collection d'érables</title>
+
+<meta name="theme-color" content="#245c36">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 128 128%27%3E%3Crect width=%27128%27 height=%27128%27 rx=%2728%27 fill=%27%23274335%27/%3E%3Cpath d=%27M64 20C47 34 28 52 28 73c0 20 15 35 36 35s36-15 36-35C100 52 81 34 64 20Z%27 fill=%27%23b85a3b%27/%3E%3Cpath d=%27M64 40v64M64 57 45 45M64 68l20-13M64 80 45 68M64 89l18-10%27 fill=%27none%27 stroke=%27%23fff7e7%27 stroke-width=%275%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
-
-<title>🌳 Ma collection d'érables</title>
+<link rel="icon" type="image/svg+xml"
+href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%23245c36'/%3E%3Cpath d='M64 20C47 34 28 52 28 73c0 20 15 35 36 35s36-15 36-35C100 52 81 34 64 20Z' fill='%23c85b3c'/%3E%3Cpath d='M64 40v64M64 57 45 45M64 68l20-13M64 80 45 68M64 89l18-10' fill='none' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
 
 <style>
-:root{
- --bg:#eee9d6;
- --card:#fffdf7;
- --ink:#253128;
- --muted:#6d746c;
- --accent:#274235;
- --line:#d7d0ba;
- --gold:#a77b18;
-}
 *{box-sizing:border-box}
+
 body{
- margin:0;
- background:var(--bg);
- color:var(--ink);
- font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif
+margin:0;
+font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+background:#f3f6f2;
+color:#1d2b21;
 }
+
 header{
- padding:18px 18px 10px;
- text-align:center;
- border-bottom:1px solid var(--line)
+background:#245c36;
+color:white;
+padding:18px 14px;
+position:sticky;
+top:0;
+z-index:20;
+box-shadow:0 2px 10px #0003;
 }
+
 h1{
- font-size:19px;
- margin:0 0 12px;
- font-weight:650
+margin:0;
+font-size:22px;
 }
+
+.subtitle{
+font-size:13px;
+opacity:.85;
+margin-top:3px;
+}
+
 .tabs{
- display:flex;
- gap:4px;
- overflow:auto;
- padding:0 12px;
- background:var(--bg);
- position:sticky;
- top:0;
- z-index:5
+display:flex;
+gap:7px;
+margin-top:14px;
+overflow-x:auto;
 }
+
 .tab{
- border:0;
- background:none;
- padding:15px 14px;
- font-size:15px;
- color:#656b64;
- white-space:nowrap
+border:0;
+border-radius:10px;
+padding:9px 13px;
+background:#ffffff22;
+color:white;
+white-space:nowrap;
+font-weight:700;
+cursor:pointer;
 }
+
 .tab.active{
- color:#18271f;
- font-weight:700;
- border-bottom:3px solid #a14e39
+background:white;
+color:#245c36;
 }
+
 main{
- max-width:760px;
- margin:auto;
- padding:18px 14px 40px
+max-width:1100px;
+margin:auto;
+padding:14px;
 }
-.panel{display:none}
-.panel.active{display:block}
-.card{
- background:var(--card);
- border:1px solid var(--line);
- border-radius:14px;
- padding:16px;
- margin-bottom:14px;
- box-shadow:0 2px 8px #00000008
+
+.panel{
+background:white;
+border-radius:16px;
+padding:15px;
+margin-bottom:14px;
+box-shadow:0 2px 9px #0000000d;
 }
-h2{font-size:20px;margin:0 0 8px}
-h3{font-size:16px;margin:0 0 10px}
-.muted{color:var(--muted);font-size:14px;line-height:1.45}
-textarea,input,select{
- width:100%;
- font:inherit;
- border:1px solid #cfc7ad;
- border-radius:10px;
- background:white;
- padding:12px;
- color:var(--ink)
-}
-textarea{min-height:190px;resize:vertical}
-button{
- font:inherit;
- border:0;
- border-radius:10px;
- padding:12px 15px;
- cursor:pointer
-}
-.primary{
- background:var(--accent);
- color:#fff;
- font-weight:650
-}
-.secondary{
- background:#e7e1cd;
- color:var(--ink)
-}
-.danger{
- background:#f0d8d3;
- color:#762d24
-}
-.row{
- display:flex;
- gap:9px;
- flex-wrap:wrap
-}
-.row>*{flex:1 1 150px}
-.big{
- width:100%;
- font-size:17px;
- padding:16px
-}
+
 .stats{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:9px
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:9px;
 }
+
 .stat{
- background:#f2eedf;
- border-radius:11px;
- padding:12px;
- text-align:center
+background:#edf5ee;
+border-radius:13px;
+padding:11px;
+text-align:center;
 }
+
 .stat b{
- display:block;
- font-size:23px
+display:block;
+font-size:24px;
+color:#245c36;
 }
-.search{margin-bottom:12px}
-.item{
- padding:12px 0;
- border-bottom:1px solid var(--line);
- display:flex;
- align-items:flex-start;
- justify-content:space-between;
- gap:10px
+
+.stat span{
+font-size:12px;
 }
-.item:last-child{border-bottom:0}
-.item-main{flex:1;min-width:0}
-.item-actions{
- display:flex;
- gap:6px;
- flex-wrap:wrap;
- justify-content:flex-end
+
+.search{
+margin:14px 0;
 }
-.smallbtn{
- padding:8px 10px;
- font-size:12px
+
+input[type=text],
+input[type=search],
+select{
+width:100%;
+padding:11px 12px;
+border:1px solid #ccd8ce;
+border-radius:10px;
+background:white;
+font:inherit;
 }
+
+button{
+border:0;
+border-radius:10px;
+padding:10px 13px;
+background:#245c36;
+color:white;
+font:inherit;
+font-weight:700;
+cursor:pointer;
+}
+
+button.secondary{
+background:#e9f0ea;
+color:#245c36;
+}
+
+button.danger{
+background:#a53c32;
+}
+
+button.small{
+padding:7px 9px;
+font-size:12px;
+}
+
+.actions{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:10px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+gap:12px;
+}
+
+.card{
+border:1px solid #dfe7e0;
+border-radius:15px;
+padding:14px;
+background:white;
+}
+
+.card h3{
+margin:0 0 6px;
+color:#245c36;
+font-size:18px;
+}
+
 .badge{
- display:inline-block;
- padding:4px 8px;
- border-radius:999px;
- background:#e6eee7;
- font-size:12px
+display:inline-block;
+padding:4px 8px;
+border-radius:999px;
+background:#edf5ee;
+color:#245c36;
+font-size:11px;
+margin:2px 3px 7px 0;
 }
-.badge.red{background:#f2dfda}
-.tag{
- display:inline-block;
- margin:2px 4px 2px 0;
- padding:3px 7px;
- border-radius:999px;
- background:#e8eee8;
- font-size:11px
+
+.meta{
+font-size:13px;
+color:#536158;
+line-height:1.45;
 }
-.fiche{
- margin-top:10px;
- padding:12px;
- border-top:1px solid var(--line);
- background:#fbf9f0;
- border-radius:10px
+
+.detail{
+margin-top:11px;
+padding-top:11px;
+border-top:1px solid #e5ebe6;
 }
-.fiche h4{
- margin:10px 0 5px;
- font-size:13px
+
+.hidden{
+display:none!important;
 }
-.fiche p{
- margin:4px 0;
- font-size:13px;
- line-height:1.4
+
+.photo-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:6px;
+margin-top:8px;
 }
-.fiche .grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:8px
+
+.photo{
+position:relative;
 }
-.fiche .cell{
- background:white;
- border:1px solid #e2dcc8;
- border-radius:9px;
- padding:8px
+
+.photo img{
+width:100%;
+aspect-ratio:1;
+object-fit:cover;
+border-radius:8px;
+display:block;
 }
-.fiche a{
- color:#274235;
- text-decoration:underline
+
+.photo button{
+position:absolute;
+right:3px;
+top:3px;
+padding:3px 7px;
+background:#a53c32;
+border-radius:7px;
 }
-.photo-box,
-.gps-box{
- margin-top:12px;
- padding:12px;
- border-top:1px solid var(--line);
- background:#f5f3e9;
- border-radius:10px
+
+.filebtn{
+display:inline-block;
+background:#245c36;
+color:white;
+padding:10px 13px;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
 }
-.photo-thumb{
- display:block;
- width:100%;
- max-height:300px;
- object-fit:cover;
- border-radius:10px;
- margin:8px 0;
- border:1px solid #ddd5bd
+
+.filebtn input{
+display:none;
 }
-.photo-actions{
- display:flex;
- gap:6px;
- flex-wrap:wrap
-}
-.photo-actions label{
- display:inline-flex;
- align-items:center;
- justify-content:center;
- cursor:pointer
-}
-.photo-empty{
- font-size:12px;
- color:var(--muted)
-}
-.gps-status{
- font-size:13px;
- line-height:1.5;
- margin:7px 0
-}
-.gps-ok{
- color:#245c36;
- font-weight:700
-}
+
 .nearest{
- margin-top:12px;
- padding:12px;
- background:#edf3ed;
- border-radius:10px
+padding:10px;
+border-radius:10px;
+background:#f3f7f3;
+margin-top:7px;
 }
-.nearest-item{
- padding:9px 0;
- border-bottom:1px solid #d4dacf
+
+small{
+color:#68756c;
 }
-.nearest-item:last-child{border-bottom:0}
-.distance{
- font-weight:750;
- color:#245c36
-}
-#cameraWrap{display:none}
-.camera{
- width:100%;
- border-radius:12px;
- background:#111;
- max-height:55vh;
- object-fit:cover
-}
-.hint{
- font-size:13px;
- color:var(--muted);
- margin-top:8px
-}
-.progress{
- height:8px;
- background:#ddd8c8;
- border-radius:8px;
- overflow:hidden;
- margin:10px 0
-}
-.progress>div{
- height:100%;
- width:0;
- background:#315742
-}
-pre{
- white-space:pre-wrap;
- background:#f3f0e5;
- padding:10px;
- border-radius:9px;
- font-size:12px
-}
+
 footer{
- font-size:12px;
- color:var(--muted);
- text-align:center;
- padding:10px
+text-align:center;
+color:#69756c;
+font-size:12px;
+padding:20px;
 }
-@media(max-width:430px){
- main{padding:14px 10px}
- .tab{padding:13px 10px}
- .stats{grid-template-columns:1fr 1fr 1fr}
- .stat b{font-size:20px}
- .fiche .grid{grid-template-columns:1fr}
+
+@media(max-width:600px){
+.stats{
+grid-template-columns:repeat(3,1fr);
+}
+.grid{
+grid-template-columns:1fr;
+}
 }
 </style>
 </head>
@@ -311,2209 +270,2144 @@ footer{
 <body>
 
 <header>
-<h1>🌳 Carnet de collection — Érables du Japon</h1>
-</header>
+<h1>🌳 Ma collection d'érables</h1>
+<div class="subtitle">Carnet personnel • 116 variétés préchargées</div>
 
-<nav class="tabs">
-<button class="tab active" data-tab="collection">Ma collection</button>
-<button class="tab" data-tab="nursery">En pépinière</button>
-<button class="tab" data-tab="add">Ajouter</button>
-<button class="tab" data-tab="import">Import</button>
-</nav>
+<div class="tabs">
+<button class="tab active" data-tab="collection">Collection</button>
+<button class="tab" data-tab="ajout">Ajouter</button>
+<button class="tab" data-tab="outils">Outils</button>
+</div>
+</header>
 
 <main>
 
-<section id="collection" class="panel active">
-
-<div class="card">
-<h2>Ma collection — 116 érables</h2>
+<section id="collection" class="panel">
 
 <div class="stats">
 <div class="stat">
-<b id="count">0</b>
-érables
+<b id="count">116</b>
+<span>érables</span>
 </div>
 
 <div class="stat">
-<b id="verified">0</b>
-fiches vérifiées
+<b id="located">0</b>
+<span>géolocalisés</span>
 </div>
 
 <div class="stat">
-<b id="doubt">0</b>
-à vérifier
+<b id="photosCount">0</b>
+<span>avec photos</span>
 </div>
 </div>
 
-<div style="margin-top:12px">
-<button class="primary big" onclick="trouverErableProche()">
+<div class="actions">
+<button onclick="trouverPlusProche()">
 📍 Trouver l'érable le plus proche
 </button>
 </div>
 
-<div id="erablesProches"></div>
+<div id="nearest"></div>
+
+<div class="search">
+<input id="search"
+type="search"
+placeholder="🔎 Rechercher une variété...">
 </div>
 
-<div class="card">
-<input id="filter" class="search" placeholder="🔎 Rechercher un cultivar…">
-<div id="list"></div>
-</div>
-
-<div class="card">
-<h3>💾 Sauvegarde</h3>
-
-<div class="row">
-<button class="secondary" onclick="exportData()">
-Exporter ma collection
-</button>
-
-<label class="secondary" style="text-align:center;cursor:pointer">
-Importer une sauvegarde
-<input type="file" accept=".json" hidden onchange="importData(event)">
-</label>
-</div>
-
-<p class="hint">
-Les données de collection et les coordonnées GPS sont incluses dans l'export.
-Les photos sont conservées localement sur l'appareil.
-</p>
-</div>
+<div id="list" class="grid"></div>
 
 </section>
 
 
-<section id="nursery" class="panel">
-
-<div class="card">
-
-<h2>📷 Scanner une étiquette</h2>
-
-<p class="muted">
-Prends l'étiquette en photo. L'OCR lit le texte, puis tu valides/corriges le nom avant toute recherche.
-</p>
-
-<button class="primary big" onclick="startCamera()">
-📷 Photographier l'étiquette
-</button>
-
-<div id="cameraWrap">
-
-<video id="video" class="camera" autoplay playsinline></video>
-
-<canvas id="canvas" style="display:none"></canvas>
-
-<div class="row" style="margin-top:10px">
-
-<button class="primary" onclick="capture()">
-Lire l'étiquette
-</button>
-
-<button class="secondary" onclick="stopCamera()">
-Fermer
-</button>
-
-</div>
-
-<div class="progress">
-<div id="ocrbar"></div>
-</div>
-
-<div id="ocrstatus" class="hint"></div>
-
-</div>
-</div>
-
-<div id="scanResult"></div>
-
-<div class="card">
-
-<h3>Ou saisir manuellement</h3>
-
-<div class="row">
-
-<input id="manualNursery" placeholder="Nom du cultivar">
-
-<button class="primary" onclick="checkNursery()">
-Analyser
-</button>
-
-</div>
-</div>
-
-</section>
-
-
-<section id="add" class="panel">
-
-<div class="card">
+<section id="ajout" class="panel hidden">
 
 <h2>➕ Ajouter un érable</h2>
 
-<input id="addName" placeholder="Nom du cultivar">
+<input
+id="newName"
+type="text"
+placeholder="Nom de la variété">
 
-<div class="row" style="margin-top:9px">
-
-<select id="addSpecies">
-<option>Acer palmatum</option>
-<option>Acer japonicum</option>
-<option>Acer shirasawanum</option>
-<option>Acer pseudosieboldianum</option>
-<option>Autre Acer</option>
-</select>
-
-<input id="addPot" placeholder="Pot / taille (ex. 3 L)">
-
-</div>
-
-<textarea id="addNotes"
-placeholder="Notes personnelles"
-style="min-height:100px;margin-top:9px"></textarea>
-
-<button class="primary big" style="margin-top:9px" onclick="addPlant()">
+<div class="actions">
+<button onclick="ajouter()">
 Ajouter à ma collection
 </button>
-
 </div>
 
 </section>
 
 
-<section id="import" class="panel">
+<section id="outils" class="panel hidden">
 
-<div class="card">
+<h2>🛠️ Outils</h2>
 
-<h2>📥 Import</h2>
-
-<p class="muted">
-Colle un nom par ligne. Les doublons sont ignorés.
+<p>
+Chaque fiche permet d'enregistrer la position GPS et plusieurs photos.
 </p>
 
-<textarea id="importText"
-placeholder="Mila&#10;Azuma&#10;F. Nakai&#10;Purple Ghost&#10;Wood's linearilobum&#10;Verkade's Winter Gold&#10;Will's Devine&#10;Emmett's Pumpkin"></textarea>
+<div class="actions">
 
-<button class="primary big" style="margin-top:9px" onclick="doImport()">
-Importer les noms
-</button>
-
-<div id="importStatus" class="hint"></div>
+<label class="filebtn">
+📷 Scanner / choisir une photo
+<input
+type="file"
+accept="image/*"
+onchange="scannerInfo(this)">
+</label>
 
 </div>
+
+<hr>
+
+<h3>Import / export</h3>
+
+<div class="actions">
+
+<button onclick="exporter()">
+⬇️ Exporter ma collection
+</button>
+
+<label class="filebtn">
+⬆️ Importer une collection
+<input
+id="importFile"
+type="file"
+accept=".json,application/json"
+onchange="importer(this)">
+</label>
+
+<button
+class="secondary"
+onclick="copierListe()">
+📋 Copier la liste
+</button>
+
+<button
+class="danger"
+onclick="reinitialiser()">
+♻️ Réinitialiser les 116 érables
+</button>
+
+</div>
+
+<p>
+<small>
+Les photos sont conservées localement sur cet appareil et ne sont pas incluses dans l'export JSON.
+</small>
+</p>
 
 </section>
 
 </main>
 
 <footer>
-Données, GPS et photos conservés localement sur cet appareil.
+Ma collection d'érables • données enregistrées localement sur l'appareil
 </footer>
-
 
 <script>
 
-const KEY='carnet-erables-v5-116-fiches';
+"use strict";
 
-const DEFAULT_PLANTS=[
-"Mila","Azuma","F.Nakai","Purple ghost","Wood's linearilobum",
-"Verkade's winter gold","Will's devine","Emmett's Pumpkin",
-"Gimborn's élégant surprise","Oregon fern","Palmatifolium","Alpenweiss",
-"Villa taranto","Ikandi","Aka hosada","Kawahara rose","Butterfly","Aureum",
-"Metamorphosa","Inaba shidare","Shigitatsu","Ukigumo","Seryu","Beni Maiko",
-"Sango Kaku","Rubrifolium","Katsura","Koto Hime","Lace Lady",
-"Scolopendrifolium","Trompenburg","Akatayioo","Crimson Carole","Wilson Pink",
-"Inazuma","Bi Hoo","Aconitifolium","Kujaku Bato","Cascade Gold","Phoenix",
-"Garnet","Veridis","Skeeter Broom","Shishigashira","Shirazz","Atropurpureum",
-"Aka Shigitatsu Sawa","Reticulatum Red","Blood good","Osakazuki","Arakawa",
-"Celebration","Wakakusa Yama","Autumn Moon","Alexandre 1","Orange Dream",
-"Emerald Lace","Jerre Schwarts","Festival","Little Princess","Starfish",
-"Summer gold","Going Green","Atrolineare","Ueno Yama","Shin deeshojo","Yoshi",
-"Ryusen","Burgundy Lace","Shaina","Moonrise","Taylor","Mikawa Yatsubusa",
-"Orangeola","Flavescens","Tamukeyama","Lileeane's jewel","Ariadne","Ellen",
-"Koshimino","Nyaku Oji","Orange Lace","Dr Baker","Genji Yama","Mikazuki",
-"Jordan","Geisha","Honoka","Ice Dragon","Manyo No Sato","North Wind",
-"Artic Jade","Vitifolium","Hana Matoi","Rainbow","Arton","Baldsmith",
-"Beni Kumo no su","Black Lace","Burgundy Lime","Hagoromo","Honoo","Kishuzan",
-"Kuro Kami Yama","Mischa","Miss Piggy","Nathan","Nomura shidare","Ohjishi",
-"Ornatum","Otome zakura","Pink Filigree","Red Strata","Red Wood","Seiun Kaku",
+
+/* =========================================================
+   LES 116 ÉRABLES
+   ========================================================= */
+
+const DEFAULT_NAMES = [
+
+"Mila",
+"Azuma",
+"F.Nakai",
+"Purple ghost",
+"Wood's linearilobum",
+"Verkade's winter gold",
+"Will's devine",
+"Emmett's Pumpkin",
+"Gimborn's élégant surprise",
+"Oregon fern",
+"Palmatifolium",
+"Alpenweiss",
+"Villa taranto",
+"Ikandi",
+"Aka hosoda",
+"Kawahara rose",
+"Butterfly",
+"Aureum",
+"Metamorphosa",
+"Inaba shidare",
+"Shigitatsu",
+"Ukigumo",
+"Seryu",
+"Beni Maiko",
+"Sango Kaku",
+"Rubrifolium",
+"Katsura",
+"Koto Hime",
+"Lace Lady",
+"Scolopendrifolium",
+"Trompenburg",
+"Akatayioo",
+"Crimson Carole",
+"Wilson Pink",
+"Inazuma",
+"Bi Hoo",
+"Aconitifolium",
+"Kujaku Bato",
+"Cascade Gold",
+"Phoenix",
+"Garnet",
+"Veridis",
+"Skeeter Broom",
+"Shishigashira",
+"Shirazz",
+"Atropurpureum",
+"Aka Shigitatsu Sawa",
+"Reticulatum Red",
+"Blood good",
+"Osakazuki",
+"Arakawa",
+"Celebration",
+"Wakakusa Yama",
+"Autumn Moon",
+"Alexandre 1",
+"Orange Dream",
+"Emerald Lace",
+"Jerre Schwarts",
+"Festival",
+"Little Princess",
+"Starfish",
+"Summer gold",
+"Going Green",
+"Atrolineare",
+"Ueno Yama",
+"Shin deeshojo",
+"Yoshi",
+"Ryusen",
+"Burgundy Lace",
+"Shaina",
+"Moonrise",
+"Taylor",
+"Mikawa Yatsubusa",
+"Orangeola",
+"Flavescens",
+"Tamukeyama",
+"Lileeane's jewel",
+"Ariadne",
+"Ellen",
+"Koshimino",
+"Nyaku Oji",
+"Orange Lace",
+"Dr Baker",
+"Genji Yama",
+"Mikazuki",
+"Jordan",
+"Geisha",
+"Honoka",
+"Ice Dragon",
+"Manyo No Sato",
+"North Wind",
+"Artic Jade",
+"Vitifolium",
+"Hana Matoi",
+"Rainbow",
+"Arton",
+"Baldsmith",
+"Beni Kumo no su",
+"Black Lace",
+"Burgundy Lime",
+"Hagoromo",
+"Honoo",
+"Kishuzan",
+"Kuro Kami Yama",
+"Mischa",
+"Miss Piggy",
+"Nathan",
+"Nomura shidare",
+"Ohjishi",
+"Ornatum",
+"Otome zakura",
+"Pink Filigree",
+"Red Strata",
+"Red Wood",
+"Seiun Kaku",
 "Stella Rosa"
+
 ];
 
-let plants;
 
-try{
- plants=JSON.parse(localStorage.getItem(KEY)||'null');
- if(!Array.isArray(plants)) throw new Error();
-}catch(e){
- plants=DEFAULT_PLANTS.map(name=>({
-  name:name,
-  confidence:'unknown',
-  created:new Date().toISOString()
- }));
-}
-
-let stream=null;
-
-
-/* =========================
-   FICHES DES 116 ERABLES
-========================= */
-
-const profiles={
-
-'Mila':['Acer palmatum','À confirmer','Données saisonnières à confirmer','Morphologie à confirmer','Mi-ombre','Cultivar à documenter'],
-
-'Azuma':['Acer palmatum','À confirmer','Données saisonnières à confirmer','Morphologie à confirmer','Mi-ombre','Cultivar à documenter'],
-
-'F.Nakai':['Acer palmatum','À confirmer','Données saisonnières à confirmer','Morphologie à confirmer','Mi-ombre','Cultivar à documenter'],
-
-'Purple ghost':['Acer palmatum','Pourpre profond','printemps rouge-pourpre; été pourpre; automne rouge','feuille palmée, lobes fins à moyens','mi-ombre à soleil doux','Très graphique; excellent contraste'],
-
-"Emmett's Pumpkin":['Acer japonicum','orange à bronze','printemps vert-bronze; été vert; automne orange cuivré à rouge','grande feuille palmée, lobes larges','mi-ombre','Très fort effet automnal'],
-
-"Gimborn's élégant surprise":['Acer palmatum','panaché','jeunes pousses panachées; été vert/crème avec variations; automne chaud','feuille palmée finement découpée','mi-ombre','Panachure très décorative'],
-
-'Oregon fern':['Acer palmatum','vert à bronze','printemps bronze; été vert; automne rouge/orange','très découpée, aspect fougère','mi-ombre','Texture très originale'],
-
-'Palmatifolium':['Acer shirasawanum','vert frais','printemps vert tendre; été vert; automne jaune/orange/rouge','grande feuille arrondie, profondément lobée','mi-ombre','Feuillage très architectural'],
-
-'Alpenweiss':['Acer palmatum','panaché blanc/rose/vert','printemps rose/blanc; été vert panaché; automne rouge/orange','feuille palmée','mi-ombre','Panachure spectaculaire'],
-
-'Villa taranto':['Acer palmatum','bronze-vert à rouge sur jeunes pousses','nouvelles pousses rouges; feuillage mûr vert; automne jaune/orange','linéaire, très étroite','soleil doux à mi-ombre','Silhouette et texture rares'],
-
-'Ikandi':['Acer palmatum','rose puis vert panaché blanc','printemps presque rose; été vert/blanc; automne jaune/orange/rouge','feuille palmée panachée','mi-ombre','Très fort effet wahou'],
-
-'Aka hosada':['Acer palmatum','rouge/pourpre','printemps rouge; été pourpre/vert selon exposition; automne rouge','feuille fine et découpée','mi-ombre','Texture et couleur'],
-
-'Kawahara rose':['Acer palmatum','rose, crème et vert','printemps rose/crème; été panaché; automne rouge','feuille palmée','mi-ombre','Panachure recherchée'],
-
-'Butterfly':['Acer palmatum','vert bordé de blanc/rose','printemps rose/blanc; été vert marginé crème; automne rouge','petite feuille palmée','mi-ombre','Panachure classique mais très décorative'],
-
-'Metamorphosa':['Acer palmatum','multicolore','printemps rose/rouge; été vert/bronze; automne orange/rouge','feuille palmée','mi-ombre','Très évolutif'],
-
-'Inaba shidare':['Acer palmatum dissectum','rouge pourpre','printemps rouge; été pourpre; automne écarlate','très finement découpée, retombante','soleil doux à mi-ombre','Grand classique de collection'],
-
-'Shigitatsu':['Acer palmatum','vert argenté/rose','printemps rose et crème; été vert argenté; automne orange/rouge','feuille palmée','mi-ombre','Contraste lumineux'],
-
-'Ukigumo':['Acer palmatum','vert très clair panaché blanc','printemps blanc/rose; été vert pâle et blanc; automne jaune/orange','feuille palmée','ombre claire à mi-ombre','Panachure aérienne'],
-
-'Seryu':['Acer palmatum dissectum','vert','printemps vert; été vert; automne orange/rouge','feuille très finement découpée, port dressé','soleil doux à mi-ombre','Dissectum dressé'],
-
-'Beni Maiko':['Acer palmatum','rouge vif','printemps rouge intense; été rouge-vert; automne rouge','petite feuille palmée','mi-ombre','Couleur printanière très forte'],
-
-'Sango Kaku':['Acer palmatum','vert','printemps vert; été vert; automne jaune/orange','feuille palmée; jeunes rameaux rouges','soleil doux à mi-ombre','Écorce rouge très distinctive'],
-
-'Rubrifolium':['Acer palmatum','rouge','printemps rouge; été rouge/pourpre; automne rouge','feuille palmée','soleil doux à mi-ombre','Couleur durable'],
-
-'Katsura':['Acer palmatum','orange/abricot puis vert','printemps orange-abricot; été vert; automne orange','petite feuille palmée','mi-ombre','Débourrement remarquable'],
-
-'Koto Hime':['Acer palmatum','vert','printemps vert; été vert; automne jaune/orange','très petite feuille, croissance compacte','soleil doux à mi-ombre','Miniature et texture'],
-
-'Lace Lady':['Acer palmatum','vert','printemps vert; été vert; automne orange/rouge','très découpée','mi-ombre','Feuillage très fin'],
-
-'Scolopendrifolium':['Acer palmatum','vert','printemps vert; été vert; automne jaune/orange','très étroite et allongée','mi-ombre','Aspect scolopendre'],
-
-'Trompenburg':['Acer palmatum','rouge pourpre','printemps rouge; été pourpre; automne rouge','feuille palmée, lobes recourbés','soleil doux à mi-ombre','Port et feuillage distinctifs'],
-
-'Akatayioo':['Acer palmatum','rouge puis vert','printemps rouge; été vert/rouge; automne rouge','feuille palmée','mi-ombre','Débourrement coloré'],
-
-'Crimson Carole':['Acer palmatum','rouge pourpre','printemps rouge; été pourpre; automne rouge','feuille palmée','soleil doux à mi-ombre','Pourpre soutenu'],
-
-'Wilson Pink':['Acer palmatum','rose/vert panaché','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure rare'],
-
-'Inazuma':['Acer palmatum','rouge/pourpre','printemps rouge; été pourpre; automne rouge','feuille palmée','mi-ombre','Coloration forte'],
-
-'Bi Hoo':['Acer palmatum','vert; rameaux jaunes','printemps vert; été vert; automne jaune/orange','feuille palmée; rameaux jaunes','soleil doux à mi-ombre','Écorce hivernale spectaculaire'],
-
-'Aconitifolium':['Acer japonicum','vert puis rouge','printemps vert; été vert; automne rouge écarlate','grande feuille très profondément découpée','mi-ombre','Feuillage spectaculaire'],
-
-'Kujaku Bato':['Acer japonicum','vert','printemps vert; été vert; automne rouge/orange','grande feuille finement découpée','mi-ombre','Texture remarquable'],
-
-'Cascade Gold':['Acer palmatum','jaune/vert','printemps jaune; été vert-jaune; automne orange','feuille palmée','mi-ombre','Luminosité'],
-
-'Phoenix':['Acer palmatum','rose/rouge puis vert','printemps rose/rouge; été vert; automne rouge','feuille palmée','mi-ombre','Débourrement spectaculaire'],
-
-'Garnet':['Acer palmatum dissectum','rouge sombre','printemps rouge; été pourpre; automne rouge','finement découpée, retombante','soleil doux à mi-ombre','Dissectum rouge fiable'],
-
-'Veridis':['Acer palmatum dissectum','vert','printemps vert; été vert; automne orange/rouge','très finement découpée','mi-ombre','Texture fine'],
-
-'Skeeter Broom':['Acer palmatum','rouge/pourpre','printemps rouge; été pourpre; automne rouge','petite feuille; port en colonne','soleil doux à mi-ombre','Port très compact'],
-
-'Shishigashira':['Acer palmatum','vert','printemps vert; été vert; automne orange/rouge','petite feuille très frisée','mi-ombre','Texture très particulière'],
-
-'Shirazz':['Acer palmatum','rose/crème/vert','printemps rose et blanc; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure très spectaculaire'],
-
-'Atropurpureum':['Acer palmatum','pourpre','printemps pourpre; été pourpre; automne rouge','feuille palmée','soleil doux à mi-ombre','Grand classique pourpre'],
-
-'Aka Shigitatsu Sawa':['Acer palmatum','rose/crème/vert','printemps rose/crème; été vert argenté; automne rouge','feuille palmée','mi-ombre','Panachure lumineuse'],
-
-'Reticulatum Red':['Acer palmatum','rouge à nervures plus foncées','printemps rouge; été rouge/vert; automne rouge','feuille réticulée','mi-ombre','Réticulation distinctive'],
-
-'Blood good':['Acer palmatum','rouge pourpre','printemps rouge; été pourpre; automne rouge','feuille palmée','soleil doux à mi-ombre','Vigueur et couleur'],
-
-'Osakazuki':['Acer palmatum','vert','printemps vert; été vert; automne rouge écarlate','grande feuille palmée','soleil doux à mi-ombre','Automne exceptionnel'],
-
-'Arakawa':['Acer palmatum','vert','printemps vert; été vert; automne jaune/orange','feuille palmée; écorce rugueuse avec l’âge','soleil doux à mi-ombre','Écorce liégeuse'],
-
-'Celebration':['Acer palmatum','rouge/vert','printemps rouge; été vert; automne orange/rouge','feuille palmée','mi-ombre','Saisonnière'],
-
-'Wakakusa Yama':['Acer palmatum','vert tendre','printemps vert lumineux; été vert; automne jaune/orange','feuille palmée','mi-ombre','Feuillage lumineux'],
-
-'Autumn Moon':['Acer shirasawanum','jaune/orange/vert','printemps jaune-orangé; été vert-jaune; automne orange/rouge','grande feuille palmée','mi-ombre','Très beau changement saisonnier'],
-
-'Alexandre 1':['Acer palmatum','rouge/vert','printemps rouge; été vert/rouge; automne rouge','feuille palmée','mi-ombre','Débourrement coloré'],
-
-'Orange Dream':['Acer palmatum','orange puis jaune-vert','printemps orange; été jaune-vert; automne orange','feuille palmée','mi-ombre','Débourrement très lumineux'],
-
-'Emerald Lace':['Acer palmatum dissectum','vert','printemps vert; été vert; automne orange/rouge','très finement découpée','mi-ombre','Texture fine'],
-
-'Jerre Schwarts':['Acer palmatum','rouge/pourpre','printemps rouge; été pourpre; automne rouge','feuille palmée','mi-ombre','Couleur soutenue'],
-
-'Festival':['Acer palmatum','rose/crème/vert','printemps rose; été panaché; automne rouge','feuille palmée','mi-ombre','Panachure décorative'],
-
-'Little Princess':['Acer palmatum','vert','printemps vert; été vert; automne jaune/orange','petite feuille; compact','mi-ombre','Petit développement'],
-
-'Starfish':['Acer palmatum dissectum','vert','printemps vert; été vert; automne orange/rouge','feuille découpée, lobes fins et allongés','mi-ombre','Forme de feuille très distinctive'],
-
-'Summer gold':['Acer palmatum','jaune doré','printemps jaune; été doré/vert; automne orange','feuille palmée','mi-ombre','Très lumineux'],
-
-'Going Green':['Acer palmatum','vert','printemps vert tendre; été vert; automne jaune/orange','feuille palmée','mi-ombre','Vert très pur'],
-
-'Atrolineare':['Acer palmatum','rouge vin','printemps rouge; été rouge vin; automne rouge','feuille étroite linéaire','mi-ombre','Texture linéaire; distinct de Villa Taranto'],
-
-'Ueno Yama':['Acer palmatum','rose/rouge puis vert','printemps rose-rouge; été vert; automne rouge','feuille palmée','mi-ombre','Débourrement remarquable'],
-
-'Shin deeshojo':['Acer palmatum','rouge vif','printemps rouge; été vert; automne orange/rouge','feuille palmée','mi-ombre','Très beau rouge printanier'],
-
-'Yoshi':['Acer palmatum','vert/rose','printemps rose; été vert; automne rouge','feuille palmée','mi-ombre','Coloration printanière'],
-
-'Ryusen':['Acer palmatum','vert','printemps vert; été vert; automne orange/rouge','feuille palmée; port pleureur','mi-ombre','Port très spectaculaire'],
-
-'Burgundy Lace':['Acer palmatum','bourgogne','printemps rouge; été bordeaux; automne rouge','feuille très découpée','mi-ombre','Pourpre + texture'],
-
-'Shaina':['Acer palmatum','rouge pourpre','printemps rouge; été pourpre; automne rouge','feuille palmée; port compact','mi-ombre','Couleur et compacité'],
-
-'Moonrise':['Acer palmatum','orange/rose/vert','printemps orange-rose; été vert/jaune; automne rouge','feuille palmée','mi-ombre','Forte évolution saisonnière'],
-
-'Taylor':['Acer palmatum','rose/crème/vert','printemps rose; été vert/crème; automne rouge','feuille palmée panachée','mi-ombre','Panachure'],
-
-'Mikawa Yatsubusa':['Acer palmatum','vert','printemps vert; été vert; automne orange/rouge','petites feuilles superposées, très texturées','mi-ombre','Texture exceptionnelle'],
-
-'Orangeola':['Acer palmatum dissectum','orange/rouge','printemps orange-rouge; été bronze/rouge; automne rouge','très finement découpée, retombante','mi-ombre','Couleur très forte'],
-
-'Flavescens':['Acer palmatum dissectum','jaune-vert','printemps jaune-vert; été vert; automne jaune/orange','finement découpée','mi-ombre','Dissectum lumineux'],
-
-'Tamukeyama':['Acer palmatum dissectum','rouge pourpre','printemps rouge; été pourpre; automne rouge','finement découpée, retombante','mi-ombre','Excellent port retombant'],
-
-"Lileeane's jewel":['Acer palmatum','rose/blanc/vert','printemps rose/blanc; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure rare'],
-
-'Ariadne':['Acer palmatum','rose/crème/vert','printemps rose/crème; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure recherchée'],
-
-'Ellen':['Acer palmatum','rose/crème/vert','printemps rose; été panaché; automne rouge','feuille palmée','mi-ombre','Référencée comme perle rare'],
-
-'Koshimino':['Acer palmatum','vert','printemps vert; été vert; automne orange/rouge','feuille palmée fine','mi-ombre','Feuillage délicat'],
-
-'Nyaku Oji':['Acer palmatum','vert/rouge','printemps rouge puis vert; été vert; automne rouge','feuille palmée','mi-ombre','Contraste saisonnier'],
-
-'Orange Lace':['Acer palmatum','orange/rouge','printemps orange; été vert/orange; automne rouge','très découpée','mi-ombre','Texture et couleur'],
-
-'Dr Baker':['Acer palmatum','panaché/rose','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure'],
-
-'Genji Yama':['Acer palmatum','rouge','printemps rouge; été rouge/vert; automne rouge','feuille palmée','mi-ombre','Couleur printanière'],
-
-'Mikazuki':['Acer palmatum','vert/crème/rose','printemps rose/crème; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure'],
-
-'Jordan':['Acer palmatum','jaune/vert','printemps jaune; été vert-jaune; automne orange','feuille palmée','mi-ombre','Luminosité'],
-
-'Geisha':['Acer palmatum','rose/crème/vert','printemps rose; été vert/crème; automne rouge','petite feuille palmée','mi-ombre','Panachure compacte'],
-
-'Honoka':['Acer palmatum','rose/crème/vert','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure'],
-
-'Ice Dragon':['Acer pseudosieboldianum','vert','printemps vert; été vert; automne rouge/orange','feuille palmée robuste','mi-ombre','Très rustique'],
-
-'Manyo No Sato':['Acer palmatum','rose/crème/vert','printemps rose/crème; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure spectaculaire'],
-
-'North Wind':['Acer pseudosieboldianum','vert','printemps vert; été vert; automne rouge/orange','feuille palmée robuste','soleil doux à mi-ombre','Très rustique'],
-
-'Artic Jade':['Acer pseudosieboldianum','vert','printemps vert; été vert; automne rouge/orange','feuille palmée robuste','mi-ombre','Très rustique'],
-
-'Vitifolium':['Acer japonicum','vert','printemps vert; été vert; automne rouge/orange','très grande feuille, lobes vitifolium','mi-ombre','Très grande feuille'],
-
-'Hana Matoi':['Acer palmatum','rose/blanc/vert','printemps rose/blanc; été panaché; automne rouge','feuille palmée fine','mi-ombre','Panachure très décorative'],
-
-'Rainbow':['Acer palmatum','rose/blanc/vert','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure'],
-
-'Arton':['Acer palmatum','rouge/vert','printemps rouge; été vert/rouge; automne rouge','feuille palmée','mi-ombre','Saisonnier'],
-
-'Baldsmith':['Acer palmatum dissectum','rose/orange/vert','printemps rose/orange; été vert; automne rouge','très finement découpée, retombante','mi-ombre','Débourrement très coloré'],
-
-'Beni Kumo no su':['Acer palmatum','rouge/rose/vert','printemps rouge/rose; été vert; automne rouge','feuille palmée fine','mi-ombre','Coloration nuancée'],
-
-'Black Lace':['Acer palmatum','pourpre très sombre','printemps pourpre; été très sombre; automne rouge','feuille très découpée','mi-ombre','Contraste très fort'],
-
-'Burgundy Lime':['Acer palmatum','bordeaux/vert','printemps bordeaux; été vert/rouge; automne rouge','feuille palmée','mi-ombre','Contraste de couleurs'],
-
-'Hagoromo':['Acer palmatum','vert/rose','printemps rose; été vert; automne rouge','feuille délicate','mi-ombre','Aspect gracile'],
-
-'Honoo':['Acer palmatum','rouge/orange','printemps rouge; été vert/rouge; automne orange/rouge','feuille palmée','mi-ombre','Couleur chaude'],
-
-'Kishuzan':['Acer palmatum','vert/rose','printemps rose; été vert; automne rouge','feuille palmée fine','mi-ombre','Débourrement fin'],
-
-'Kuro Kami Yama':['Acer palmatum','pourpre sombre','printemps pourpre; été sombre; automne rouge','feuille palmée','mi-ombre','Très sombre'],
-
-'Mischa':['Acer palmatum','rose/crème/vert','printemps rose; été panaché; automne rouge','feuille palmée','mi-ombre','Panachure'],
-
-'Miss Piggy':['Acer palmatum','rose/crème/vert','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure'],
-
-'Nathan':['Acer palmatum','rouge/vert','printemps rouge; été vert/rouge; automne rouge','feuille palmée','mi-ombre','Coloration'],
-
-'Nomura shidare':['Acer palmatum dissectum','rouge pourpre','printemps rouge; été pourpre; automne rouge','finement découpée, retombante','mi-ombre','Port classique de collection'],
-
-'Ohjishi':['Acer palmatum','vert','printemps vert; été vert; automne orange/rouge','feuille palmée compacte','mi-ombre','Texture et port'],
-
-'Ornatum':['Acer palmatum dissectum','rouge/pourpre','printemps rouge; été pourpre; automne rouge','finement découpée','mi-ombre','Dissectum coloré'],
-
-'Otome zakura':['Acer palmatum','rose/vert','printemps rose; été vert; automne rouge','petite feuille','mi-ombre','Petit feuillage'],
-
-'Pink Filigree':['Acer palmatum','rose/blanc/vert','printemps rose; été panaché; automne rouge','très finement découpée','mi-ombre','Texture + panachure'],
-
-'Red Strata':['Acer palmatum','rouge','printemps rouge; été rouge/vert; automne rouge','feuille palmée','mi-ombre','Couleur forte'],
-
-'Red Wood':['Acer palmatum','vert; rameaux rouges','printemps vert; été vert; automne jaune/orange','feuille palmée; bois rouge','mi-ombre','Écorce hivernale'],
-
-'Seiun Kaku':['Acer palmatum','vert/rouge','printemps rouge; été vert; automne rouge','feuille palmée','mi-ombre','Débourrement coloré'],
-
-'Stella Rosa':['Acer palmatum','rose/crème/vert','printemps rose; été vert panaché; automne rouge','feuille palmée','mi-ombre','Panachure']
-
+/* =========================================================
+   FICHES
+   ========================================================= */
+
+const FICHES = {
+
+"Mila":{
+espece:"Acer palmatum",
+feuillage:"Rouge / rose",
+description:"Variété décorative à feuillage coloré."
+},
+
+"Azuma":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage fin et élégant."
+},
+
+"F.Nakai":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Variété japonaise originale."
+},
+
+"Purple ghost":{
+espece:"Acer palmatum",
+feuillage:"Pourpre",
+description:"Feuillage sombre avec de beaux contrastes."
+},
+
+"Wood's linearilobum":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuilles très étroites et profondément découpées."
+},
+
+"Verkade's winter gold":{
+espece:"Acer palmatum",
+feuillage:"Vert / jaune",
+description:"Variété appréciée pour son bois hivernal."
+},
+
+"Will's devine":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Feuillage décoratif et original."
+},
+
+"Emmett's Pumpkin":{
+espece:"Acer japonicum",
+feuillage:"Orange cuivré",
+description:"Une référence spectaculaire pour les couleurs automnales."
+},
+
+"Gimborn's élégant surprise":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Panachure très spectaculaire."
+},
+
+"Oregon fern":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage très finement découpé."
+},
+
+"Palmatifolium":{
+espece:"Acer shirasawanum",
+feuillage:"Vert",
+description:"Grandes feuilles et présence remarquable."
+},
+
+"Alpenweiss":{
+espece:"Acer palmatum",
+feuillage:"Panaché blanc",
+description:"Panachure blanche très lumineuse."
+},
+
+"Villa taranto":{
+espece:"Acer palmatum",
+feuillage:"Multicolore",
+description:"Feuillage fin avec de fortes variations de couleur."
+},
+
+"Ikandi":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Variété rare et très lumineuse."
+},
+
+"Aka hosoda":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Feuilles fines et élégantes."
+},
+
+"Kawahara rose":{
+espece:"Acer palmatum",
+feuillage:"Rose",
+description:"Panachure rose très décorative."
+},
+
+"Butterfly":{
+espece:"Acer palmatum",
+feuillage:"Vert / crème",
+description:"Panachure claire très reconnaissable."
+},
+
+"Aureum":{
+espece:"Acer palmatum",
+feuillage:"Doré",
+description:"Feuillage jaune lumineux."
+},
+
+"Metamorphosa":{
+espece:"Acer palmatum",
+feuillage:"Multicolore",
+description:"Très belle évolution des couleurs au fil des saisons."
+},
+
+"Inaba shidare":{
+espece:"Acer palmatum",
+feuillage:"Pourpre",
+description:"Feuillage lacinié pourpre et port retombant."
+},
+
+"Shigitatsu":{
+espece:"Acer palmatum",
+feuillage:"Vert / crème",
+description:"Feuillage fin et lumineux."
+},
+
+"Ukigumo":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Panachure blanche évoquant des nuages."
+},
+
+"Seryu":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage très découpé et port élégant."
+},
+
+"Beni Maiko":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Jeunes pousses rouges très lumineuses."
+},
+
+"Sango Kaku":{
+espece:"Acer palmatum",
+feuillage:"Vert / jaune",
+description:"Célèbre pour ses rameaux rouges en hiver."
+},
+
+"Rubrifolium":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Feuillage rouge décoratif."
+},
+
+"Katsura":{
+espece:"Acer palmatum",
+feuillage:"Orange / jaune",
+description:"Débourrement très spectaculaire."
+},
+
+"Koto Hime":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Très petites feuilles et port compact."
+},
+
+"Lace Lady":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage très finement découpé."
+},
+
+"Scolopendrifolium":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuilles extrêmement étroites."
+},
+
+"Trompenburg":{
+espece:"Acer palmatum",
+feuillage:"Pourpre",
+description:"Feuilles pourpres caractéristiques."
+},
+
+"Akatayioo":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Feuillage rouge très décoratif."
+},
+
+"Crimson Carole":{
+espece:"Acer palmatum",
+feuillage:"Rouge sombre",
+description:"Feuillage sombre et intense."
+},
+
+"Wilson Pink":{
+espece:"Acer palmatum",
+feuillage:"Rose",
+description:"Jeunes pousses fortement colorées."
+},
+
+"Inazuma":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Variété rare au feuillage très décoratif."
+},
+
+"Bi Hoo":{
+espece:"Acer palmatum",
+feuillage:"Vert / jaune",
+description:"Rameaux jaunes particulièrement intéressants en hiver."
+},
+
+"Aconitifolium":{
+espece:"Acer japonicum",
+feuillage:"Vert",
+description:"Très grandes feuilles profondément découpées."
+},
+
+"Kujaku Bato":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage fin et élégant."
+},
+
+"Cascade Gold":{
+espece:"Acer palmatum",
+feuillage:"Doré",
+description:"Port retombant et feuillage lumineux."
+},
+
+"Phoenix":{
+espece:"Acer palmatum",
+feuillage:"Rose / rouge",
+description:"Jeunes pousses fortement colorées."
+},
+
+"Garnet":{
+espece:"Acer palmatum",
+feuillage:"Pourpre",
+description:"Port retombant et feuillage sombre."
+},
+
+"Veridis":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage vert fin."
+},
+
+"Skeeter Broom":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Port compact et dressé."
+},
+
+"Shishigashira":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage dense et crêpé."
+},
+
+"Shirazz":{
+espece:"Acer palmatum",
+feuillage:"Rose / blanc",
+description:"Panachure spectaculaire."
+},
+
+"Atropurpureum":{
+espece:"Acer palmatum",
+feuillage:"Pourpre",
+description:"Grand classique au feuillage pourpre."
+},
+
+"Aka Shigitatsu Sawa":{
+espece:"Acer palmatum",
+feuillage:"Rose / vert",
+description:"Panachure et couleurs de printemps remarquables."
+},
+
+"Reticulatum Red":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Feuillage réticulé fortement coloré."
+},
+
+"Blood good":{
+espece:"Acer palmatum",
+feuillage:"Rouge sombre",
+description:"Feuillage rouge sombre très fiable."
+},
+
+"Osakazuki":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Réputé pour son rouge automnal exceptionnel."
+},
+
+"Arakawa":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Écorce liégeuse très caractéristique."
+},
+
+"Celebration":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Feuillage décoratif."
+},
+
+"Wakakusa Yama":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage tendre et lumineux."
+},
+
+"Autumn Moon":{
+espece:"Acer shirasawanum",
+feuillage:"Orange / vert",
+description:"Très belles couleurs automnales."
+},
+
+"Alexandre 1":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Variété décorative."
+},
+
+"Orange Dream":{
+espece:"Acer palmatum",
+feuillage:"Orange / jaune",
+description:"Débourrement orange particulièrement lumineux."
+},
+
+"Emerald Lace":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage très finement découpé."
+},
+
+"Jerre Schwarts":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Variété décorative."
+},
+
+"Festival":{
+espece:"Acer palmatum",
+feuillage:"Multicolore",
+description:"Feuillage changeant."
+},
+
+"Little Princess":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Petit développement et feuilles fines."
+},
+
+"Starfish":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage original."
+},
+
+"Summer gold":{
+espece:"Acer palmatum",
+feuillage:"Doré",
+description:"Feuillage jaune lumineux."
+},
+
+"Going Green":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage frais et lumineux."
+},
+
+"Atrolineare":{
+espece:"Acer palmatum",
+feuillage:"Pourpre",
+description:"Feuilles très étroites."
+},
+
+"Ueno Yama":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Variété décorative."
+},
+
+"Shin deeshojo":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Jeunes pousses très colorées."
+},
+
+"Yoshi":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage décoratif."
+},
+
+"Ryusen":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Port pleureur spectaculaire."
+},
+
+"Burgundy Lace":{
+espece:"Acer palmatum",
+feuillage:"Pourpre",
+description:"Feuillage très découpé."
+},
+
+"Shaina":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Port compact et feuillage rouge."
+},
+
+"Moonrise":{
+espece:"Acer shirasawanum",
+feuillage:"Orange / rose",
+description:"Couleurs très changeantes."
+},
+
+"Taylor":{
+espece:"Acer palmatum",
+feuillage:"Rose / blanc",
+description:"Panachure très décorative."
+},
+
+"Mikawa Yatsubusa":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Petites feuilles superposées, aspect très original."
+},
+
+"Orangeola":{
+espece:"Acer palmatum",
+feuillage:"Orange / pourpre",
+description:"Port retombant et couleurs intenses."
+},
+
+"Flavescens":{
+espece:"Acer palmatum",
+feuillage:"Jaune / vert",
+description:"Feuillage lumineux."
+},
+
+"Tamukeyama":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Lacinié et retombant."
+},
+
+"Lileeane's jewel":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Feuillage très décoratif."
+},
+
+"Ariadne":{
+espece:"Acer palmatum",
+feuillage:"Rose / blanc",
+description:"Panachure spectaculaire."
+},
+
+"Ellen":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Feuillage très décoratif."
+},
+
+"Koshimino":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuilles fines et élégantes."
+},
+
+"Nyaku Oji":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Variété originale."
+},
+
+"Orange Lace":{
+espece:"Acer palmatum",
+feuillage:"Orange",
+description:"Feuillage fin et coloré."
+},
+
+"Dr Baker":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Variété recherchée et décorative."
+},
+
+"Genji Yama":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Très belles couleurs saisonnières."
+},
+
+"Mikazuki":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Feuillage original."
+},
+
+"Jordan":{
+espece:"Acer palmatum",
+feuillage:"Jaune",
+description:"Débourrement lumineux."
+},
+
+"Geisha":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Petites feuilles très colorées."
+},
+
+"Honoka":{
+espece:"Acer palmatum",
+feuillage:"Rose / blanc",
+description:"Panachure délicate."
+},
+
+"Ice Dragon":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage très finement découpé."
+},
+
+"Manyo No Sato":{
+espece:"Acer palmatum",
+feuillage:"Panaché",
+description:"Variété rare et spectaculaire."
+},
+
+"North Wind":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage fin."
+},
+
+"Artic Jade":{
+espece:"Acer palmatum",
+feuillage:"Vert / blanc",
+description:"Panachure claire."
+},
+
+"Vitifolium":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Grandes feuilles originales."
+},
+
+"Hana Matoi":{
+espece:"Acer palmatum",
+feuillage:"Rose / blanc",
+description:"Panachure délicate et lumineuse."
+},
+
+"Rainbow":{
+espece:"Acer palmatum",
+feuillage:"Multicolore",
+description:"Forte variation saisonnière."
+},
+
+"Arton":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Feuillage décoratif."
+},
+
+"Baldsmith":{
+espece:"Acer palmatum",
+feuillage:"Rose / orange",
+description:"Jeunes pousses spectaculaires."
+},
+
+"Beni Kumo no su":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Nuances très fines."
+},
+
+"Black Lace":{
+espece:"Acer palmatum",
+feuillage:"Pourpre très sombre",
+description:"Feuillage fin et très contrasté."
+},
+
+"Burgundy Lime":{
+espece:"Acer palmatum",
+feuillage:"Pourpre / vert",
+description:"Contraste de couleurs marqué."
+},
+
+"Hagoromo":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage fin et élégant."
+},
+
+"Honoo":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Jeunes pousses flamboyantes."
+},
+
+"Kishuzan":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage fin."
+},
+
+"Kuro Kami Yama":{
+espece:"Acer palmatum",
+feuillage:"Pourpre sombre",
+description:"Feuillage très contrasté."
+},
+
+"Mischa":{
+espece:"Acer palmatum",
+feuillage:"Rose / blanc",
+description:"Panachure décorative."
+},
+
+"Miss Piggy":{
+espece:"Acer palmatum",
+feuillage:"Rose",
+description:"Jeunes pousses colorées."
+},
+
+"Nathan":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Feuillage décoratif."
+},
+
+"Nomura shidare":{
+espece:"Acer palmatum",
+feuillage:"Pourpre",
+description:"Port retombant et feuillage sombre."
+},
+
+"Ohjishi":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage original."
+},
+
+"Ornatum":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage finement découpé."
+},
+
+"Otome zakura":{
+espece:"Acer palmatum",
+feuillage:"Rose",
+description:"Petites feuilles colorées."
+},
+
+"Pink Filigree":{
+espece:"Acer palmatum",
+feuillage:"Rose / blanc",
+description:"Feuillage fin et panaché."
+},
+
+"Red Strata":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Feuillage très décoratif."
+},
+
+"Red Wood":{
+espece:"Acer palmatum",
+feuillage:"Rouge",
+description:"Bois et feuillage colorés."
+},
+
+"Seiun Kaku":{
+espece:"Acer palmatum",
+feuillage:"Vert",
+description:"Feuillage élégant."
+},
+
+"Stella Rosa":{
+espece:"Acer palmatum",
+feuillage:"Rose",
+description:"Feuillage lumineux et décoratif."
 };
 
 
-/* =========================
-   OUTILS
-========================= */
-
-function norm(s){
- return String(s||'')
- .toLowerCase()
- .replace(/[‘’']/g,'')
- .replace(/^acer\s+(palmatum|japonicum|shirasawanum|pseudosieboldianum)\s*/i,'')
- .normalize('NFD')
- .replace(/[\u0300-\u036f]/g,'')
- .replace(/[^a-z0-9]+/g,' ')
- .trim();
-}
-
-function esc(s){
- return String(s??'').replace(/[&<>"']/g,c=>({
-  '&':'&amp;',
-  '<':'&lt;',
-  '>':'&gt;',
-  '"':'&quot;',
-  "'":'&#39;'
- }[c]));
-}
-
-function duplicate(name){
- const n=norm(name);
- return plants.some(p=>norm(p.name)===n);
-}
-
-function profileFor(name){
- if(profiles[name]) return profiles[name];
-
- const n=norm(name);
-
- const key=Object.keys(profiles)
- .find(k=>norm(k)===n);
-
- return key
- ? profiles[key]
- : [
-   'Acer palmatum',
-   'À confirmer',
-   'Données saisonnières à confirmer',
-   'Morphologie à confirmer',
-   'Mi-ombre',
-   'Cultivar présent dans ta collection; fiche à documenter'
- ];
-}
-
-function save(){
- localStorage.setItem(KEY,JSON.stringify(plants));
- render();
+function normaliser(texte){
+return String(texte||"")
+.toLowerCase()
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g,"")
+.trim();
 }
 
 
-/* =========================
-   PHOTOS — INDEXED DB
-========================= */
+function fichePour(nom){
+if(FICHES[nom]) return FICHES[nom];
 
-const PHOTO_DB='carnet-erables-photos-v3';
+const cle=Object.keys(FICHES).find(
+k=>normaliser(k)===normaliser(nom)
+);
 
+return cle ? FICHES[cle] : {
+espece:"Acer palmatum",
+feuillage:"À renseigner",
+description:"Variété de ma collection."
+};
+}
+
+
+/* =========================================================
+   DONNÉES
+   ========================================================= */
+
+const STORAGE_KEY="carnet-erables-v6";
+
+function creerCollectionInitiale(){
+return DEFAULT_NAMES.map(name=>({
+name:name,
+created:new Date().toISOString()
+}));
+}
+
+let erables;
+
+try{
+erables=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");
+
+if(!Array.isArray(erables)||!erables.length){
+erables=creerCollectionInitiale();
+}
+
+}catch(e){
+erables=creerCollectionInitiale();
+}
+
+
+function sauvegarder(){
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(erables)
+);
+}
+
+
+function escapeHtml(value){
+return String(value??"").replace(
+/[&<>"']/g,
+m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m])
+);
+}
+
+
+/* =========================================================
+   INDEXEDDB — PHOTOS
+   ========================================================= */
+
+const PHOTO_DB="collection-erables-photos";
+const PHOTO_STORE="photos";
 let photoDBPromise=null;
 
-function openPhotoDB(){
 
- if(!window.indexedDB){
-  return Promise.reject(new Error('IndexedDB indisponible'));
- }
+function ouvrirPhotoDB(){
 
- if(photoDBPromise) return photoDBPromise;
+if(photoDBPromise)return photoDBPromise;
 
- photoDBPromise=new Promise((resolve,reject)=>{
+photoDBPromise=new Promise((resolve,reject)=>{
 
-  const req=indexedDB.open(PHOTO_DB,1);
+const request=indexedDB.open(PHOTO_DB,1);
 
-  req.onupgradeneeded=()=>{
-   const db=req.result;
+request.onupgradeneeded=function(){
 
-   if(!db.objectStoreNames.contains('photos')){
-    const store=db.createObjectStore('photos',{
-     keyPath:'id'
-    });
+const db=request.result;
 
-    store.createIndex(
-     'plant',
-     'plant',
-     {unique:false}
-    );
-   }
-  };
+if(!db.objectStoreNames.contains(PHOTO_STORE)){
 
-  req.onsuccess=()=>{
-   resolve(req.result);
-  };
+const store=db.createObjectStore(
+PHOTO_STORE,
+{keyPath:"id",autoIncrement:true}
+);
 
-  req.onerror=()=>{
-   reject(req.error);
-  };
+store.createIndex(
+"plant",
+"plant",
+{unique:false}
+);
 
- });
+}
 
- return photoDBPromise;
+};
+
+request.onsuccess=()=>resolve(request.result);
+request.onerror=()=>reject(request.error);
+
+});
+
+return photoDBPromise;
 }
 
 
-function createPhotoId(){
- if(window.crypto && crypto.randomUUID){
-  return crypto.randomUUID();
- }
+async function compresserImage(file){
 
- return Date.now()+'-'+Math.random().toString(36).slice(2);
-}
+return new Promise((resolve,reject)=>{
 
+const reader=new FileReader();
 
-async function compressImage(file){
+reader.onload=function(){
 
- const url=URL.createObjectURL(file);
+const image=new Image();
 
- try{
+image.onload=function(){
 
-  const img=new Image();
+const max=1600;
 
-  img.src=url;
+const scale=Math.min(
+1,
+max/Math.max(image.width,image.height)
+);
 
-  await new Promise((resolve,reject)=>{
-   img.onload=resolve;
-   img.onerror=reject;
-  });
+const canvas=document.createElement("canvas");
 
-  const max=1600;
+canvas.width=Math.round(image.width*scale);
+canvas.height=Math.round(image.height*scale);
 
-  const scale=Math.min(
-   1,
-   max/Math.max(img.width,img.height)
-  );
+const ctx=canvas.getContext("2d");
 
-  const canvas=document.createElement('canvas');
+ctx.drawImage(
+image,
+0,
+0,
+canvas.width,
+canvas.height
+);
 
-  canvas.width=Math.max(
-   1,
-   Math.round(img.width*scale)
-  );
+canvas.toBlob(
+blob=>{
+if(blob)resolve(blob);
+else reject(new Error("Compression impossible"));
+},
+"image/jpeg",
+0.82
+);
 
-  canvas.height=Math.max(
-   1,
-   Math.round(img.height*scale)
-  );
+};
 
-  const ctx=canvas.getContext('2d');
+image.onerror=reject;
+image.src=reader.result;
 
-  ctx.drawImage(
-   img,
-   0,
-   0,
-   canvas.width,
-   canvas.height
-  );
+};
 
-  return canvas.toDataURL(
-   'image/jpeg',
-   0.82
-  );
-
- }finally{
-
-  URL.revokeObjectURL(url);
-
- }
-}
-
-
-async function addPhotoRecord(plant,data){
-
- const db=await openPhotoDB();
-
- return new Promise((resolve,reject)=>{
-
-  const tx=db.transaction(
-   'photos',
-   'readwrite'
-  );
-
-  tx.objectStore('photos').put({
-   id:createPhotoId(),
-   plant:plant,
-   data:data,
-   created:Date.now()
-  });
-
-  tx.oncomplete=resolve;
-
-  tx.onerror=()=>{
-   reject(tx.error);
-  };
-
- });
-}
-
-
-async function getPhotos(plant){
-
- const db=await openPhotoDB();
-
- return new Promise((resolve,reject)=>{
-
-  const tx=db.transaction(
-   'photos',
-   'readonly'
-  );
-
-  const index=tx
-   .objectStore('photos')
-   .index('plant');
-
-  const request=index.getAll(plant);
-
-  request.onsuccess=()=>{
-   resolve(request.result||[]);
-  };
-
-  request.onerror=()=>{
-   reject(request.error);
-  };
-
- });
-}
-
-
-async function removePhoto(id){
-
- const db=await openPhotoDB();
-
- return new Promise((resolve,reject)=>{
-
-  const tx=db.transaction(
-   'photos',
-   'readwrite'
-  );
-
-  tx.objectStore('photos').delete(id);
-
-  tx.oncomplete=resolve;
-
-  tx.onerror=()=>{
-   reject(tx.error);
-  };
-
- });
-}
-
-
-async function removeAllPhotos(plant){
-
- try{
-
-  const photos=await getPhotos(plant);
-
-  for(const photo of photos){
-   await removePhoto(photo.id);
-  }
-
- }catch(e){
-
-  console.error(e);
-
- }
+reader.onerror=reject;
+reader.readAsDataURL(file);
 
 }
 
 
-async function ajouterPhoto(index,input){
+async function ajouterPhotoDB(plant,data){
 
- const files=Array.from(input.files||[]);
+const db=await ouvrirPhotoDB();
 
- if(!files.length) return;
+return new Promise((resolve,reject)=>{
 
- const plant=plants[index];
+const transaction=db.transaction(
+PHOTO_STORE,
+"readwrite"
+);
 
- if(!plant) return;
+const request=transaction
+.objectStore(PHOTO_STORE)
+.add({
+plant:plant,
+data:data,
+date:new Date().toISOString()
+});
 
- try{
+request.onsuccess=()=>resolve(request.result);
+request.onerror=()=>reject(request.error);
 
-  for(const file of files){
+});
 
-   if(!file.type.startsWith('image/')) continue;
+}
 
-   const data=await compressImage(file);
 
-   await addPhotoRecord(
-    plant.name,
-    data
-   );
+async function obtenirPhotos(plant){
 
-  }
+const db=await ouvrirPhotoDB();
 
-  render();
+return new Promise((resolve,reject)=>{
 
- }catch(e){
+const transaction=db.transaction(
+PHOTO_STORE,
+"readonly"
+);
 
-  console.error(e);
+const request=transaction
+.objectStore(PHOTO_STORE)
+.index("plant")
+.getAll(plant);
 
-  alert(
-   'Impossible d’enregistrer la photo sur cet appareil.'
-  );
+request.onsuccess=()=>resolve(request.result||[]);
+request.onerror=()=>reject(request.error);
 
- }
+});
 
- input.value='';
+}
+
+
+async function supprimerPhotoDB(id){
+
+const db=await ouvrirPhotoDB();
+
+return new Promise((resolve,reject)=>{
+
+const transaction=db.transaction(
+PHOTO_STORE,
+"readwrite"
+);
+
+const request=transaction
+.objectStore(PHOTO_STORE)
+.delete(Number(id));
+
+request.onsuccess=()=>resolve();
+request.onerror=()=>reject(request.error);
+
+});
+
+}
+
+
+async function supprimerToutesPhotos(plant){
+
+try{
+
+const photos=await obtenirPhotos(plant);
+
+for(const photo of photos){
+await supprimerPhotoDB(photo.id);
+}
+
+}catch(e){}
+
+}
+
+
+/* =========================================================
+   PHOTOS
+   ========================================================= */
+
+async function ajouterPhotos(index,input){
+
+const files=[...input.files];
+
+if(!files.length)return;
+
+try{
+
+for(const file of files){
+
+const blob=await compresserImage(file);
+
+await ajouterPhotoDB(
+erables[index].name,
+blob
+);
+
+}
+
+input.value="";
+
+await afficherPhotos(index);
+await actualiserCompteurPhotos();
+
+}catch(e){
+
+alert("Impossible d'enregistrer la photo.");
+
+}
 
 }
 
 
 async function afficherPhotos(index){
 
- const box=document.getElementById(
-  'photos-'+index
- );
+const container=document.getElementById(
+"photos-"+index
+);
 
- if(!box) return;
+if(!container)return;
 
- const plant=plants[index];
+try{
 
- if(!plant) return;
+const photos=await obtenirPhotos(
+erables[index].name
+);
 
- try{
+if(!photos.length){
 
-  const photos=await getPhotos(plant.name);
+container.innerHTML=
+"<small>Aucune photo enregistrée.</small>";
 
-  if(!photos.length){
+return;
 
-   box.innerHTML=
-    '<span class="photo-empty">Aucune photo enregistrée.</span>';
+}
 
-   return;
+container.innerHTML=
+'<div class="photo-grid">'+
+photos.map(photo=>{
 
-  }
+const url=URL.createObjectURL(photo.data);
 
-  box.innerHTML=photos.map(photo=>`
+return `
+<div class="photo">
+<img src="${url}" alt="Photo de ${escapeHtml(erables[index].name)}">
+<button
+onclick="supprimerPhoto(${photo.id},${index})">
+×
+</button>
+</div>
+`;
 
-   <div style="margin-bottom:12px">
+}).join("")+
+"</div>";
 
-    <img
-     class="photo-thumb"
-     src="${photo.data}"
-     alt="Photo de ${esc(plant.name)}"
-    >
+}catch(e){
 
-    <button
-     class="danger smallbtn"
-     onclick="supprimerPhoto('${encodeURIComponent(photo.id)}')"
-    >
-     🗑️ Supprimer cette photo
-    </button>
+container.innerHTML=
+"<small>Photos indisponibles.</small>";
 
-   </div>
-
-  `).join('');
-
- }catch(e){
-
-  box.innerHTML=
-   '<span class="photo-empty">Stockage photo indisponible.</span>';
-
- }
+}
 
 }
 
 
-async function supprimerPhoto(id){
+async function supprimerPhoto(id,index){
 
- if(!confirm('Supprimer cette photo ?')) return;
+if(!confirm("Supprimer cette photo ?"))return;
 
- try{
+try{
 
-  await removePhoto(
-   decodeURIComponent(id)
-  );
+await supprimerPhotoDB(id);
 
-  render();
+await afficherPhotos(index);
+await actualiserCompteurPhotos();
 
- }catch(e){
+}catch(e){
 
-  console.error(e);
+alert("Impossible de supprimer la photo.");
 
-  alert(
-   'Impossible de supprimer cette photo.'
-  );
-
- }
+}
 
 }
 
 
-/* =========================
-   GPS
-========================= */
+async function actualiserCompteurPhotos(){
 
-function enregistrerGPS(index){
+try{
 
- if(!navigator.geolocation){
+let compteur=0;
 
-  alert(
-   'La géolocalisation n’est pas disponible dans ce navigateur.'
-  );
+for(const erable of erables){
 
-  return;
- }
+const photos=await obtenirPhotos(erable.name);
 
- const status=document.getElementById(
-  'gps-status-'+index
- );
+if(photos.length)compteur++;
 
- if(status){
-  status.innerHTML=
-   '📍 Recherche de votre position…';
- }
+}
 
- navigator.geolocation.getCurrentPosition(
+const element=document.getElementById("photosCount");
 
-  position=>{
+if(element){
+element.textContent=compteur;
+}
 
-   const coords=position.coords;
-
-   plants[index].gps={
-    latitude:coords.latitude,
-    longitude:coords.longitude,
-    accuracy:coords.accuracy,
-    date:new Date().toISOString()
-   };
-
-   save();
-
-   afficherGPS(index);
-
-  },
-
-  error=>{
-
-   let message='Impossible de récupérer la position.';
-
-   if(error.code===1){
-    message=
-     'Autorisation de localisation refusée par le navigateur.';
-   }
-
-   if(error.code===2){
-    message=
-     'Position indisponible.';
-   }
-
-   if(error.code===3){
-    message=
-     'La recherche de position a expiré.';
-   }
-
-   if(status){
-    status.innerHTML=
-     '<span style="color:#8b3328">'+
-     esc(message)+
-     '</span>';
-   }else{
-    alert(message);
-   }
-
-  },
-
-  {
-   enableHighAccuracy:true,
-   timeout:20000,
-   maximumAge:0
-  }
-
- );
+}catch(e){}
 
 }
 
 
-function afficherGPS(index){
+/* =========================================================
+   GÉOLOCALISATION
+   ========================================================= */
 
- const box=document.getElementById(
-  'gps-status-'+index
- );
+function distanceGPS(
+lat1,
+lon1,
+lat2,
+lon2
+){
 
- if(!box) return;
+const R=6371000;
 
- const plant=plants[index];
+const rad=Math.PI/180;
 
- if(!plant || !plant.gps){
+const dLat=(lat2-lat1)*rad;
+const dLon=(lon2-lon1)*rad;
 
-  box.innerHTML=
-   '<span class="photo-empty">Aucune position enregistrée.</span>';
+const a=
+Math.sin(dLat/2)**2+
+Math.cos(lat1*rad)*
+Math.cos(lat2*rad)*
+Math.sin(dLon/2)**2;
 
-  return;
-
- }
-
- const g=plant.gps;
-
- const accuracy=
-  g.accuracy
-  ? Math.round(g.accuracy)
-  : null;
-
- const date=
-  g.date
-  ? new Date(g.date).toLocaleString('fr-FR')
-  : '';
-
- const mapsUrl=
-  'https://www.google.com/maps/search/?api=1&query='+
-  encodeURIComponent(
-   g.latitude+','+g.longitude
-  );
-
- box.innerHTML=`
-
-  <div class="gps-ok">
-   📍 Position enregistrée
-  </div>
-
-  <div>
-   Latitude : ${Number(g.latitude).toFixed(6)}<br>
-   Longitude : ${Number(g.longitude).toFixed(6)}
-   ${accuracy ? '<br>Précision : environ '+accuracy+' m' : ''}
-   ${date ? '<br>Enregistrée le : '+esc(date) : ''}
-  </div>
-
-  <div style="margin-top:7px">
-   <button
-    class="secondary smallbtn"
-    onclick="window.open('${mapsUrl}','_blank','noopener')"
-   >
-    🗺️ Ouvrir dans Google Maps
-   </button>
-  </div>
-
- `;
+return 2*R*Math.asin(
+Math.sqrt(a)
+);
 
 }
 
 
-function effacerGPS(index){
+function texteGPS(gps){
 
- if(!plants[index]) return;
-
- if(!confirm(
-  'Effacer la position enregistrée pour cet érable ?'
- )) return;
-
- delete plants[index].gps;
-
- save();
-
- afficherGPS(index);
-
-}
-
-
-function distanceGPS(lat1,lon1,lat2,lon2){
-
- const R=6371000;
-
- const rad=Math.PI/180;
-
- const dLat=
-  (lat2-lat1)*rad;
-
- const dLon=
-  (lon2-lon1)*rad;
-
- const a=
-  Math.sin(dLat/2)**2+
-  Math.cos(lat1*rad)*
-  Math.cos(lat2*rad)*
-  Math.sin(dLon/2)**2;
-
- return 2*R*Math.asin(
-  Math.sqrt(a)
- );
+return `
+📍 ${gps.latitude.toFixed(6)},
+${gps.longitude.toFixed(6)}
+<br>
+<small>
+Précision : ±${Math.round(gps.accuracy||0)} m
+•
+${new Date(gps.date).toLocaleString("fr-FR")}
+</small>
+`;
 
 }
 
 
-function formatDistance(m){
+function enregistrerPosition(index){
 
- if(m<1000){
-  return Math.round(m)+' m';
- }
+if(!navigator.geolocation){
 
- return (m/1000).toFixed(2)+' km';
+alert(
+"La géolocalisation n'est pas disponible sur cet appareil."
+);
+
+return;
+
+}
+
+const zone=document.getElementById(
+"gps-"+index
+);
+
+if(zone){
+zone.innerHTML="⏳ Recherche de votre position…";
+}
+
+navigator.geolocation.getCurrentPosition(
+
+position=>{
+
+erables[index].gps={
+latitude:position.coords.latitude,
+longitude:position.coords.longitude,
+accuracy:position.coords.accuracy,
+date:new Date().toISOString()
+};
+
+sauvegarder();
+afficher();
+
+},
+
+error=>{
+
+let message;
+
+if(error.code===1){
+
+message=
+"Permission de localisation refusée. Autorisez la localisation dans les réglages du navigateur.";
+
+}else if(error.code===2){
+
+message=
+"Position indisponible.";
+
+}else{
+
+message=
+"Délai dépassé pour obtenir la position.";
+
+}
+
+alert(message);
+
+afficher();
+
+},
+
+{
+enableHighAccuracy:true,
+timeout:20000,
+maximumAge:0
+}
+
+);
 
 }
 
 
-function trouverErableProche(){
+function effacerPosition(index){
 
- const box=document.getElementById(
-  'erablesProches'
- );
+if(!confirm(
+"Effacer la position enregistrée pour cet érable ?"
+))return;
 
- if(!navigator.geolocation){
+delete erables[index].gps;
 
-  box.innerHTML=`
-   <div class="nearest">
-    La géolocalisation n'est pas disponible.
-   </div>
-  `;
-
-  return;
-
- }
-
- box.innerHTML=`
-  <div class="nearest">
-   📍 Recherche de votre position…
-  </div>
- `;
-
- navigator.geolocation.getCurrentPosition(
-
-  position=>{
-
-   const lat=position.coords.latitude;
-   const lon=position.coords.longitude;
-
-   const arbres=plants
-    .filter(p=>p.gps)
-    .map(p=>({
-
-     plant:p,
-
-     distance:distanceGPS(
-      lat,
-      lon,
-      p.gps.latitude,
-      p.gps.longitude
-     )
-
-    }))
-    .sort((a,b)=>a.distance-b.distance);
-
-   if(!arbres.length){
-
-    box.innerHTML=`
-     <div class="nearest">
-      <b>Aucune position enregistrée.</b><br>
-      Enregistre d'abord la position d'au moins un érable.
-     </div>
-    `;
-
-    return;
-
-   }
-
-   const top=arbres.slice(0,8);
-
-   box.innerHTML=`
-
-    <div class="nearest">
-
-     <h3>📍 Érables les plus proches</h3>
-
-     ${top.map((item,i)=>{
-
-      const p=item.plant;
-
-      const url=
-       'https://www.google.com/maps/search/?api=1&query='+
-       encodeURIComponent(
-        p.gps.latitude+','+p.gps.longitude
-       );
-
-      return `
-
-       <div class="nearest-item">
-
-        <b>${i+1}. ${esc(p.name)}</b>
-
-        <div class="distance">
-         ${formatDistance(item.distance)}
-        </div>
-
-        <button
-         class="secondary smallbtn"
-         onclick="window.open('${url}','_blank','noopener')"
-        >
-         🗺️ Localiser
-        </button>
-
-       </div>
-
-      `;
-
-     }).join('')}
-
-    </div>
-
-   `;
-
-  },
-
-  error=>{
-
-   let message=
-    'Impossible de récupérer votre position.';
-
-   if(error.code===1){
-    message=
-     'Autorisation de localisation refusée.';
-   }
-
-   box.innerHTML=`
-    <div class="nearest">
-     ${esc(message)}
-    </div>
-   `;
-
-  },
-
-  {
-   enableHighAccuracy:true,
-   timeout:20000,
-   maximumAge:0
-  }
-
- );
+sauvegarder();
+afficher();
 
 }
 
 
-/* =========================
-   AFFICHAGE
-========================= */
-
-function render(){
-
- document.getElementById('count').textContent=
-  plants.length;
-
- document.getElementById('verified').textContent=
-  plants.filter(
-   p=>p.confidence==='high'
-  ).length;
-
- document.getElementById('doubt').textContent=
-  plants.filter(
-   p=>p.confidence!=='high'
-  ).length;
-
- const q=norm(
-  document.getElementById('filter').value||''
- );
-
- const arr=plants
-  .map((p,index)=>({p,index}))
-  .filter(x=>
-   !q ||
-   norm(x.p.name).includes(q)
-  )
-  .sort((a,b)=>
-   a.p.name.localeCompare(
-    b.p.name,
-    'fr'
-   )
-  );
-
- document.getElementById('list').innerHTML=
-
-  arr.length
-
-  ? arr.map(({p,index})=>{
-
-   const d=profileFor(p.name);
-
-   const species=d[0];
-   const colors=d[1];
-   const seasons=d[2];
-   const leaf=d[3];
-   const expo=d[4];
-   const interest=d[5];
-
-   return `
-
-    <div class="item">
-
-     <div class="item-main">
-
-      <b style="font-size:16px">
-       ${esc(p.name)}
-      </b>
-
-      <br>
-
-      <span class="muted">
-       ${esc(
-        p.species || species
-       )}
-       ${p.pot
-        ? ' • '+esc(p.pot)
-        : ''
-       }
-      </span>
-
-      <div style="margin-top:6px">
-
-       <span class="tag">
-        ${esc(colors)}
-       </span>
-
-       <span class="tag">
-        ${esc(expo)}
-       </span>
-
-       ${
-        p.confidence!=='high'
-        ?
-        '<span class="badge red">Fiche à vérifier</span>'
-        :
-        '<span class="badge">Fiche documentée</span>'
-       }
-
-       ${
-        p.gps
-        ?
-        '<span class="badge">📍 GPS</span>'
-        :
-        ''
-       }
-
-      </div>
-
-
-      <div class="fiche">
-
-       <div class="grid">
-
-        <div class="cell">
-         <h4>🌱 Feuillage</h4>
-         <p>${esc(leaf)}</p>
-        </div>
-
-        <div class="cell">
-         <h4>🎨 Couleurs</h4>
-         <p>${esc(seasons)}</p>
-        </div>
-
-        <div class="cell">
-         <h4>☀️ Exposition</h4>
-         <p>${esc(expo)}</p>
-        </div>
-
-        <div class="cell">
-         <h4>⭐ Intérêt collection</h4>
-         <p>${esc(interest)}</p>
-        </div>
-
-       </div>
-
-
-       <div class="photo-box">
-
-        <h4>📸 Photos personnelles</h4>
-
-        <div id="photos-${index}">
-         <span class="photo-empty">
-          Chargement…
-         </span>
-        </div>
-
-        <div class="photo-actions">
-
-         <label class="secondary smallbtn">
-
-          📷 Prendre une photo
-
-          <input
-           type="file"
-           accept="image/*"
-           capture="environment"
-           multiple
-           hidden
-           onchange="ajouterPhoto(${index},this)"
-          >
-
-         </label>
-
-         <label class="secondary smallbtn">
-
-          🖼️ Ajouter des photos
-
-          <input
-           type="file"
-           accept="image/*"
-           multiple
-           hidden
-           onchange="ajouterPhoto(${index},this)"
-          >
-
-         </label>
-
-        </div>
-
-       </div>
-
-
-       <div class="gps-box">
-
-        <h4>📍 Localisation dans le jardin</h4>
-
-        <div
-         id="gps-status-${index}"
-         class="gps-status"
-        >
-         ${
-          p.gps
-          ? 'Position enregistrée.'
-          : 'Aucune position enregistrée.'
-         }
-        </div>
-
-        <div class="row">
-
-         <button
-          class="primary smallbtn"
-          onclick="enregistrerGPS(${index})"
-         >
-          📍 Enregistrer ma position
-         </button>
-
-         ${
-          p.gps
-          ?
-          `
-          <button
-           class="secondary smallbtn"
-           onclick="effacerGPS(${index})"
-          >
-           Effacer la position
-          </button>
-          `
-          :
-          ''
-         }
-
-        </div>
-
-       </div>
-
-      </div>
-
-     </div>
-
-
-     <div class="item-actions">
-
-      <button
-       class="secondary smallbtn"
-       onclick="window.open(
-        'https://www.google.com/search?q='+
-        encodeURIComponent(
-         'Acer '+${JSON.stringify(p.name)}+' cultivar'
-        ),
-        '_blank',
-        'noopener'
-       )"
-      >
-       Web
-      </button>
-
-      <button
-       class="danger smallbtn"
-       onclick="removePlant(${index})"
-      >
-       Suppr.
-      </button>
-
-     </div>
-
-    </div>
-
-   `;
-
-  }).join('')
-
-  :
-
-  '<p class="muted">Aucun érable enregistré.</p>';
-
-
- arr.forEach(({index})=>{
-  afficherPhotos(index);
-  afficherGPS(index);
- });
+function ouvrirGoogleMaps(index){
+
+const gps=erables[index].gps;
+
+if(!gps)return;
+
+window.open(
+"https://www.google.com/maps/search/?api=1&query="+
+gps.latitude+
+","+
+gps.longitude,
+"_blank"
+);
 
 }
 
 
-async function removePlant(index){
+function trouverPlusProche(){
 
- const plant=plants[index];
+if(!navigator.geolocation){
 
- if(!plant) return;
+alert(
+"La géolocalisation n'est pas disponible."
+);
 
- if(!confirm(
-  'Supprimer "'+
-  plant.name+
-  '" de la collection ?'
- )) return;
+return;
 
- const name=plant.name;
+}
 
- plants.splice(index,1);
+const localises=erables
+.map((p,index)=>p.gps?{p,index}:null)
+.filter(Boolean);
 
- save();
+if(!localises.length){
 
- await removeAllPhotos(name);
+alert(
+"Aucun érable n'est encore géolocalisé."
+);
 
- render();
+return;
+
+}
+
+navigator.geolocation.getCurrentPosition(
+
+position=>{
+
+localises.forEach(item=>{
+
+item.distance=distanceGPS(
+position.coords.latitude,
+position.coords.longitude,
+item.p.gps.latitude,
+item.p.gps.longitude
+);
+
+});
+
+localises.sort(
+(a,b)=>a.distance-b.distance
+);
+
+const resultats=localises.slice(0,8);
+
+document.getElementById("nearest").innerHTML=`
+
+<h3>📍 Érables les plus proches</h3>
+
+${resultats.map(item=>`
+
+<div class="nearest">
+
+<b>${escapeHtml(item.p.name)}</b>
+
+—
+${
+item.distance<1000
+?Math.round(item.distance)+" m"
+:(item.distance/1000).toFixed(2)+" km"
+}
+
+<div class="actions">
+
+<button
+class="small"
+onclick="
+document.getElementById('card-${item.index}')
+.scrollIntoView({behavior:'smooth'})
+">
+
+Voir la fiche
+
+</button>
+
+<button
+class="small secondary"
+onclick="
+ouvrirGoogleMaps(${item.index})
+">
+
+🗺️ Carte
+
+</button>
+
+</div>
+
+</div>
+
+`).join("")}
+
+`;
+
+},
+
+()=>{
+
+alert(
+"Impossible d'obtenir votre position actuelle."
+);
+
+},
+
+{
+enableHighAccuracy:true,
+timeout:20000,
+maximumAge:0
+}
+
+);
 
 }
 
 
-/* =========================
-   AJOUT
-========================= */
+/* =========================================================
+   AFFICHAGE DES FICHES
+   ========================================================= */
 
-function addPlant(){
+function construireCarte(erable,index){
 
- const name=
-  document.getElementById('addName')
-  .value
-  .trim();
+const fiche=fichePour(erable.name);
 
- if(!name){
+const gps=erable.gps;
 
-  alert(
-   'Entre un nom.'
-  );
+return `
 
-  return;
- }
+<article
+class="card"
+id="card-${index}"
+>
 
- if(duplicate(name)){
+<h3>
+${escapeHtml(erable.name)}
+</h3>
 
-  alert(
-   'Cet érable est déjà dans ta collection.'
-  );
+<span class="badge">
+${escapeHtml(fiche.espece)}
+</span>
 
-  return;
- }
+<span class="badge">
+${escapeHtml(fiche.feuillage)}
+</span>
 
- plants.push({
+<div class="meta">
+${escapeHtml(fiche.description)}
+</div>
 
-  name:name,
 
-  species:
-   document.getElementById('addSpecies')
-   .value,
+<div class="detail">
 
-  pot:
-   document.getElementById('addPot')
-   .value
-   .trim(),
+<b>📍 Géolocalisation</b>
 
-  notes:
-   document.getElementById('addNotes')
-   .value
-   .trim(),
+<div
+id="gps-${index}"
+class="meta"
+style="margin-top:6px"
+>
 
-  confidence:'manual',
+${
+gps
+?texteGPS(gps)
+:"Aucune position enregistrée."
+}
 
-  created:new Date().toISOString()
+</div>
 
- });
+<div class="actions">
 
- document.getElementById('addName').value='';
- document.getElementById('addPot').value='';
- document.getElementById('addNotes').value='';
+<button
+class="small"
+onclick="enregistrerPosition(${index})"
+>
 
- save();
+📍 Enregistrer ma position
 
- activate('collection');
+</button>
+
+${
+gps
+?`
+
+<button
+class="small secondary"
+onclick="ouvrirGoogleMaps(${index})"
+>
+
+🗺️ Google Maps
+
+</button>
+
+<button
+class="small danger"
+onclick="effacerPosition(${index})"
+>
+
+Effacer
+
+</button>
+
+`
+:""
+}
+
+</div>
+
+</div>
+
+
+<div class="detail">
+
+<b>📷 Photos</b>
+
+<div
+id="photos-${index}"
+class="meta"
+style="margin-top:6px"
+>
+Chargement…
+</div>
+
+<div class="actions">
+
+<label class="filebtn">
+
+📷 Ajouter photo(s)
+
+<input
+type="file"
+accept="image/*"
+capture="environment"
+multiple
+onchange="ajouterPhotos(${index},this)"
+>
+
+</label>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="small danger"
+onclick="supprimer(${index})"
+>
+
+Supprimer de la collection
+
+</button>
+
+</div>
+
+</article>
+
+`;
 
 }
 
 
-/* =========================
-   IMPORT
-========================= */
+function afficher(){
 
-function doImport(){
+const champ=document.getElementById("search");
 
- const lines=
-  document.getElementById('importText')
-  .value
-  .split(/\r?\n/)
-  .map(x=>x.trim())
-  .filter(Boolean);
+const recherche=normaliser(
+champ ? champ.value : ""
+);
 
- let added=0;
- let dup=0;
+const resultat=erables
+.map((p,index)=>({p,index}))
+.filter(item=>
+!recherche ||
+normaliser(item.p.name)
+.includes(recherche)
+);
 
- lines.forEach(name=>{
+const liste=document.getElementById("list");
 
-  if(duplicate(name)){
+if(!resultat.length){
 
-   dup++;
+liste.innerHTML=
+"<div class='panel'>Aucun érable trouvé.</div>";
 
-   return;
-  }
+}else{
 
-  plants.push({
+liste.innerHTML=resultat
+.map(item=>
+construireCarte(
+item.p,
+item.index
+)
+)
+.join("");
 
-   name:name,
+}
 
-   confidence:'unknown',
+document.getElementById("count")
+.textContent=erables.length;
 
-   created:new Date().toISOString()
+document.getElementById("located")
+.textContent=
+erables.filter(p=>p.gps).length;
 
-  });
+resultat.forEach(item=>{
+afficherPhotos(item.index);
+});
 
-  added++;
-
- });
-
- save();
-
- document.getElementById(
-  'importStatus'
- ).textContent=
-  added+
-  ' ajouté(s), '+
-  dup+
-  ' doublon(s) ignoré(s). Total : '+
-  plants.length+'.';
+actualiserCompteurPhotos();
 
 }
 
 
-/* =========================
+/* =========================================================
+   AJOUT / SUPPRESSION
+   ========================================================= */
+
+function ajouter(){
+
+const input=document.getElementById("newName");
+
+const nom=input.value.trim();
+
+if(!nom){
+
+alert("Indiquez le nom de la variété.");
+
+return;
+
+}
+
+if(
+erables.some(
+p=>normaliser(p.name)===normaliser(nom)
+)
+){
+
+alert(
+"Cet érable est déjà dans la collection."
+);
+
+return;
+
+}
+
+erables.push({
+name:nom,
+created:new Date().toISOString()
+});
+
+input.value="";
+
+sauvegarder();
+
+afficher();
+
+afficherOnglet("collection");
+
+}
+
+
+async function supprimer(index){
+
+const nom=erables[index].name;
+
+if(!confirm(
+`Supprimer "${nom}" de la collection ?`
+))return;
+
+await supprimerToutesPhotos(nom);
+
+erables.splice(index,1);
+
+sauvegarder();
+
+afficher();
+
+}
+
+
+/* =========================================================
+   IMPORT / EXPORT
+   ========================================================= */
+
+function exporter(){
+
+const donnees={
+version:6,
+date:new Date().toISOString(),
+plants:erables
+};
+
+const blob=new Blob(
+[
+JSON.stringify(
+donnees,
+null,
+2
+)
+],
+{
+type:"application/json"
+}
+);
+
+const lien=document.createElement("a");
+
+lien.href=
+URL.createObjectURL(blob);
+
+lien.download=
+"ma-collection-erables.json";
+
+document.body.appendChild(lien);
+
+lien.click();
+
+lien.remove();
+
+}
+
+
+function importer(input){
+
+const fichier=input.files[0];
+
+if(!fichier)return;
+
+const lecteur=new FileReader();
+
+lecteur.onload=function(){
+
+try{
+
+const donnees=
+JSON.parse(
+lecteur.result
+);
+
+const collection=
+Array.isArray(donnees)
+?donnees
+:donnees.plants;
+
+if(
+!Array.isArray(collection) ||
+!collection.every(
+p=>p &&
+typeof p.name==="string"
+)
+){
+
+throw new Error();
+
+}
+
+erables=collection;
+
+sauvegarder();
+
+afficher();
+
+alert(
+"Collection importée avec succès."
+);
+
+}catch(e){
+
+alert(
+"Fichier invalide."
+);
+
+}
+
+input.value="";
+
+};
+
+lecteur.readAsText(fichier);
+
+}
+
+
+function copierListe(){
+
+const texte=
+erables
+.map(
+(p,index)=>
+`${index+1}. ${p.name}`
+)
+.join("\n");
+
+if(
+navigator.clipboard &&
+navigator.clipboard.writeText
+){
+
+navigator.clipboard
+.writeText(texte)
+.then(
+()=>alert("Liste copiée.")
+);
+
+}else{
+
+const zone=document.createElement("textarea");
+
+zone.value=texte;
+
+document.body.appendChild(zone);
+
+zone.select();
+
+document.execCommand("copy");
+
+zone.remove();
+
+alert("Liste copiée.");
+
+}
+
+}
+
+
+function reinitialiser(){
+
+if(!confirm(
+"Réinitialiser la collection aux 116 érables préchargés ? Les données personnalisées seront perdues."
+))return;
+
+erables=creerCollectionInitiale();
+
+sauvegarder();
+
+afficher();
+
+}
+
+
+/* =========================================================
+   OUTILS
+   ========================================================= */
+
+function scannerInfo(input){
+
+if(input.files.length){
+
+alert(
+"Photo sélectionnée. La fiche de l'érable permet également d'enregistrer directement plusieurs photos."
+);
+
+}
+
+}
+
+
+/* =========================================================
    ONGLETS
-========================= */
+   ========================================================= */
 
-function activate(id){
-
- document
-  .querySelectorAll('.tab')
-  .forEach(b=>
-   b.classList.toggle(
-    'active',
-    b.dataset.tab===id
-   )
-  );
-
- document
-  .querySelectorAll('.panel')
-  .forEach(p=>
-   p.classList.toggle(
-    'active',
-    p.id===id
-   )
-  );
-
- window.scrollTo(0,0);
-
-}
+function afficherOnglet(id){
 
 document
- .querySelectorAll('.tab')
- .forEach(
-  b=>b.onclick=()=>activate(
-   b.dataset.tab
-  )
- );
+.querySelectorAll(".tab")
+.forEach(button=>{
+button.classList.toggle(
+"active",
+button.dataset.tab===id
+);
+});
 
+document
+.querySelectorAll("main>section")
+.forEach(section=>{
+section.classList.toggle(
+"hidden",
+section.id!==id
+);
+});
 
-document.getElementById(
- 'filter'
-).oninput=render;
-
-
-/* =========================
-   SCANNER / CAMÉRA
-========================= */
-
-async function startCamera(){
-
- if(!navigator.mediaDevices?.getUserMedia){
-
-  alert(
-   'La caméra n’est pas disponible dans ce navigateur.'
-  );
-
-  return;
- }
-
- try{
-
-  stream=
-   await navigator.mediaDevices.getUserMedia({
-    video:{
-     facingMode:{
-      ideal:'environment'
-     }
-    },
-    audio:false
-   });
-
-  document.getElementById(
-   'video'
-  ).srcObject=stream;
-
-  document.getElementById(
-   'cameraWrap'
-  ).style.display='block';
-
-  document.getElementById(
-   'ocrstatus'
-  ).textContent=
-   'Cadre l’étiquette puis appuie sur « Lire l’étiquette ».';
-
- }catch(e){
-
-  alert(
-   'Accès caméra refusé ou indisponible. Vérifie l’autorisation caméra du navigateur.'
-  );
-
- }
+if(id==="collection"){
+afficher();
+}
 
 }
 
 
-function stopCamera(){
+document
+.querySelectorAll(".tab")
+.forEach(button=>{
 
- if(stream){
-
-  stream
-   .getTracks()
-   .forEach(
-    t=>t.stop()
-   );
-
- }
-
- stream=null;
-
- document.getElementById(
-  'cameraWrap'
- ).style.display='none';
-
+button.addEventListener(
+"click",
+()=>{
+afficherOnglet(
+button.dataset.tab
+);
 }
+);
 
+});
 
-async function capture(){
 
- const video=
-  document.getElementById('video');
+document
+.getElementById("search")
+.addEventListener(
+"input",
+afficher
+);
 
- const canvas=
-  document.getElementById('canvas');
 
- canvas.width=
-  video.videoWidth;
-
- canvas.height=
-  video.videoHeight;
-
- canvas
-  .getContext('2d')
-  .drawImage(
-   video,
-   0,
-   0
-  );
-
- const bar=
-  document.getElementById('ocrbar');
-
- const status=
-  document.getElementById('ocrstatus');
-
- status.textContent=
-  'Lecture de l’étiquette…';
-
- bar.style.width='10%';
-
- try{
-
-  if(!window.Tesseract){
-
-   await loadTesseract();
-
-  }
-
-  const result=
-   await Tesseract.recognize(
-    canvas,
-    'eng',
-    {
-     logger:m=>{
-
-      if(m.progress){
-
-       bar.style.width=
-        Math.round(
-         m.progress*100
-        )+'%';
-
-      }
-
-     }
-    }
-   );
-
-  bar.style.width='100%';
-
-  const raw=
-   result.data.text.trim();
-
-  const cleaned=
-   bestName(raw);
-
-  stopCamera();
-
-  showScan(
-   cleaned,
-   raw
-  );
-
- }catch(e){
-
-  status.textContent=
-   'OCR indisponible. Tu peux saisir le nom manuellement ci-dessous.';
-
-  console.error(e);
-
- }
-
-}
-
-
-function loadTesseract(){
-
- return new Promise(
-  (resolve,reject)=>{
-
-   const s=
-    document.createElement('script');
-
-   s.src=
-    'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
-
-   s.onload=resolve;
-
-   s.onerror=reject;
-
-   document.head.appendChild(s);
-
-  }
- );
-
-}
-
-
-function bestName(raw){
-
- let lines=
-  raw
-  .split(/\r?\n/)
-  .map(
-   x=>x
-    .replace(/[|_]+/g,' ')
-    .trim()
-  )
-  .filter(
-   x=>x.length>2
-  );
-
- let cand=
-  lines.find(
-   x=>/acer|palmatum|japonicum|shirasawanum|pseudosieboldianum/i.test(x)
-  )
-  ||
-  lines.sort(
-   (a,b)=>b.length-a.length
-  )[0]
-  ||
-  raw;
-
- cand=
-  cand
-  .replace(
-   /\b(acer\s+)?(palmatum|japonicum|shirasawanum|pseudosieboldianum)\b/ig,
-   ''
-  )
-  .replace(
-   /[\[\]{}]/g,
-   ''
-  )
-  .trim();
-
- return cand
-  .replace(
-   /^['"“”]+|['"“”]+$/g,
-   ''
-  )
-  .trim();
-
-}
-
-
-function showScan(name,raw){
-
- document.getElementById(
-  'scanResult'
- ).innerHTML=`
-
-  <div class="card">
-
-   <h3>🌿 Nom détecté</h3>
-
-   <input
-    id="scanName"
-    value="${esc(name)}"
-   >
-
-   <p class="muted">
-    Texte OCR brut :
-    ${esc(raw||'—')}
-   </p>
-
-   <div class="row">
-
-    <button
-     class="primary"
-     onclick="confirmScan()"
-    >
-     Ajouter à ma collection
-    </button>
-
-    <button
-     class="secondary"
-     onclick="checkNursery(
-      document.getElementById('scanName').value
-     )"
-    >
-     Analyser / comparer
-    </button>
-
-   </div>
-
-  </div>
-
- `;
-
-}
-
-
-function checkNursery(forced){
-
- const name=
-  (
-   forced
-   ||
-   document.getElementById(
-    'manualNursery'
-   ).value
-   ||
-   ''
-  ).trim();
-
- if(!name){
-
-  alert(
-   'Entre ou scanne un nom.'
-  );
-
-  return;
- }
-
- const already=
-  duplicate(name);
-
- const q=
-  encodeURIComponent(name);
-
- document.getElementById(
-  'scanResult'
- ).innerHTML=`
-
-  <div class="card">
-
-   <h3>${esc(name)}</h3>
-
-   <p>
-
-    ${
-     already
-     ?
-     '<span class="badge red">⚠️ Déjà dans ta collection</span>'
-     :
-     '<span class="badge">🟢 Nouveau pour ta collection</span>'
-    }
-
-   </p>
-
-   <p class="muted">
-    Recherche rapide à ouvrir.
-    La disponibilité réelle doit être vérifiée sur la fiche source.
-   </p>
-
-   <div class="row">
-
-    <button
-     class="secondary"
-     onclick="openSearch(
-      'Choteau',
-      'https://www.google.com/search?q=site%3Achoteau.com+'+
-      encodeURIComponent(name)
-     )"
-    >
-     Choteau
-    </button>
-
-    <button
-     class="secondary"
-     onclick="openSearch(
-      'Maillot',
-      'https://www.google.com/search?q=site%3Apepiniere-maillot.com+'+
-      encodeURIComponent(name)
-     )"
-    >
-     Maillot
-    </button>
-
-    <button
-     class="secondary"
-     onclick="openSearch(
-      'Esveld',
-      'https://www.esveld.nl/?s='+q
-     )"
-    >
-     Esveld
-    </button>
-
-    <button
-     class="secondary"
-     onclick="openSearch(
-      'The Maple Nursery',
-      'https://www.google.com/search?q=site%3Athemaplenursery.com+'+q
-     )"
-    >
-     The Maple Nursery
-    </button>
-
-    <button
-     class="secondary"
-     onclick="openSearch(
-      'Palmatia',
-      'https://www.google.com/search?q=site%3Apalmatia.com+'+q
-     )"
-    >
-     Palmatia
-    </button>
-
-   </div>
-
-  </div>
-
- `;
-
-}
-
-
-function openSearch(label,url){
-
- window.open(
-  url,
-  '_blank',
-  'noopener'
- );
-
-}
-
-
-function confirmScan(){
-
- const name=
-  document.getElementById(
-   'scanName'
-  ).value.trim();
-
- if(!name) return;
-
- if(duplicate(name)){
-
-  alert(
-   'Déjà présent.'
-  );
-
-  return;
- }
-
- plants.push({
-
-  name:name,
-
-  confidence:'manual',
-
-  created:new Date().toISOString()
-
- });
-
- save();
-
- document.getElementById(
-  'scanResult'
- ).innerHTML=`
-
-  <div class="card">
-   <b>✓ Ajouté à la collection.</b>
-  </div>
-
- `;
-
-}
-
-
-/* =========================
-   EXPORT / IMPORT
-========================= */
-
-function exportData(){
-
- const blob=
-  new Blob(
-   [
-    JSON.stringify(
-     plants,
-     null,
-     2
-    )
-   ],
-   {
-    type:'application/json'
-   }
-  );
-
- const url=
-  URL.createObjectURL(blob);
-
- const a=
-  document.createElement('a');
-
- a.href=url;
-
- a.download=
-  'ma-collection-erables.json';
-
- document.body.appendChild(a);
-
- a.click();
-
- a.remove();
-
- setTimeout(
-  ()=>URL.revokeObjectURL(url),
-  1000
- );
-
-}
-
-
-function importData(e){
-
- const file=
-  e.target.files[0];
-
- if(!file) return;
-
- const reader=
-  new FileReader();
-
- reader.onload=()=>{
-
-  try{
-
-   const x=
-    JSON.parse(
-     reader.result
-    );
-
-   if(!Array.isArray(x))
-    throw new Error();
-
-   plants=x;
-
-   save();
-
-   alert(
-    'Sauvegarde importée.'
-   );
-
-  }catch(_){
-
-   alert(
-    'Fichier de sauvegarde invalide.'
-   );
-
-  }
-
- };
-
- reader.readAsText(file);
-
- e.target.value='';
-
-}
-
-
-/* =========================
+/* =========================================================
    INITIALISATION
-========================= */
+   ========================================================= */
 
-render();
+afficher();
 
 </script>
-
-</body>
-</html>
